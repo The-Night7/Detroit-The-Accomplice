@@ -97,6 +97,41 @@ static char *trim_whitespace(char *str) {
     return str;
 }
 
+/* Fonction pour nettoyer le texte de ses balises indésirables comme <source...> (modifie la chaîne sur place) */
+static void nettoyer_balises(char* texte) {
+    if (!texte) return;
+    
+    char* src = texte;
+    char* dst = texte;
+    int in_tag = 0;
+    
+    while (*src != '\0') {
+        // Détection du début d'une balise
+        if (*src == '<') {
+            in_tag = 1;
+            src++;
+            continue;
+        }
+        
+        // Si on est à l'intérieur d'une balise, on ignore les caractères jusqu'à '>'
+        if (in_tag) {
+            if (*src == '>') {
+                in_tag = 0;
+                src++;
+                // Sauter l'espace qui suit généralement la balise fermante s'il y en a un
+                if (*src == ' ') src++;
+            } else {
+                src++;
+            }
+            continue;
+        }
+        
+        // Copier les caractères normaux
+        *dst++ = *src++;
+    }
+    *dst = '\0'; // Nouvelle fin de chaîne propre
+}
+
 // Fonction pour lire tout le contenu d'un fichier texte dans une chaîne (buffer)
 char* lire_chapitre(const char* nom_fichier) {
     char chemin[256];
@@ -127,8 +162,8 @@ static int load_chapters_dir(const char *dir_path) {
     DIR *dir = opendir(dir_path);
     if (!dir) {
         fprintf(stderr, "Could not open directory %s: %s\n", dir_path, strerror(errno));
-        return -1;
-    }
+    return -1;
+}
     struct dirent *entry;
     /* We'll store file names first so we can sort them for consistent order */
     char **filenames = NULL;
@@ -173,7 +208,7 @@ static int load_chapters_dir(const char *dir_path) {
     free_pages();
     pages = NULL;
     page_count = 0;
-    
+
     /* Iterate over sorted files and parse each */
     for (size_t i = 0; i < count; i++) {
         // Utilisation de lire_chapitre au lieu de fopen/getline
@@ -281,6 +316,12 @@ static int load_chapters_dir(const char *dir_path) {
         
         /* Finalise text */
         current.text = text_buffer ? text_buffer : strdup("");
+        
+        // ========================================================
+        // NOUVEAU : On nettoie les balises du texte de narration !
+        // ========================================================
+        nettoyer_balises(current.text);
+        
         /* Add to pages array */
         pages = realloc(pages, sizeof(Page) * (page_count + 1));
         pages[page_count++] = current;
