@@ -1,0 +1,18 @@
+Title: LIE
+
+Text:
+|
+Andre
+⤵\
+[Warm]
+
+You shook your head at Andre as you stared off into a patch of empty space and touched your throat, images of your fragile neck giving away to forceful grips flashing in your mind's eye once again. Andre gave you a hard look and he looked away after regarding you for a while.
+
+".. I shouldn't have left you to rest in the breakroom." Guilt. A human emotion Andre expressed often around you although you reassured him countlese times it was unnecessary. You never understood it but knew it was an unpleasant feeling.
+
+You reached out to him and laid you hand on his arm and patted it gently. "I'm alright now. Don't fret over it, Doctor Andre." You told him sinserely as he looked back at you.
+
+"Also, about what you said earlier to the technician earlier.."
+
+Choices:
+- NOTHING -> NOTHING (id: 34970729)

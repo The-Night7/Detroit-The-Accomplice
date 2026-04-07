@@ -1,0 +1,28 @@
+Title: EMOTIONAL SHOCK
+
+Text:
+"You seemingly became a deviant when Ortiz hit you with the bat. You suffered from immense emotional shock," you paused leaning down to maintain eye contact as the deviant quickly ducked his head at the mention of the events that took place 3 weeks ago.
+
+[
+48%
+Level of Stress]
+[
+RAISE STRESS TO
+75%
+]
+
+".. enough to grow a concept of human irrationality, brashness," you gave pause to state the elephant in the room.
+
+"Fear."
+
+[
+OBJECTIVE
+:
+CHOOSE APPROACH
+]
+
+Choices:
+- COMFORT -> COMFORT (id: 36032868)
+- PLEAD -> PLEAD (id: 36033234)
+- BLAME -> BLAME (id: 36033291)
+- FRIGHTEN -> FRIGHTEN (id: 36033390)

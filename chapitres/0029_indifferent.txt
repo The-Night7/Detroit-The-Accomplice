@@ -1,0 +1,38 @@
+Title: INDIFFERENT
+
+Text:
+|Connor⤵\
+[Neutral]
+
+"Yes, that would be me." You said as you made your way past him to stand near the lieutenant of the pair.
+
+Connor stared after you blankly, following you in, ducking into the house as he began to take soak in the grim surroundings as both detectives listened to the briefing.
+
+You stood by them as they took a long hard look at the victim.
+
+"We had a call at around eight from the landlord. The tenant hadn't paid his rent for months, so he thought he'd drop by, see what was going on.." detective Ben paused as he sighed and looked away from the body. "That's when he found the body."
+
+"Jesus, that smell!" Hank exclaimed as he pulled up his arm to his nose, trying to rid it of the stench of rotting flesh that waved in thick gusts in the air.
+
+"'Was even before we opened the windows." Ben commented dryly, "As from here, YN600 will take over by request from CyberLife. I gotta get some air. Make yourselves at home. I'll be outside if you need me." with that, you stepped forward as he went outside and let out a wheezing breath. Hank looked at you somehow expectantly yet unimpressed at the same time. Humans are peculiar beings.
+
+"Lay it on us, robo doc."
+
+"The victim's name is Carlos Ortiz. Died 19 days ago at 11:30 PM. According to his neighbours, he rarely left his house. Suffered from depression after being replaced in his job and was a heavy drug user. More specifically, Red Ice," you stepped aside so Hank could catch a glimpse of the scattered bags, both filled and empty, of the tiny crimson crystals. Hank nodded and looked back at Ortiz.
+
+"Ortiz has been stabbed 28 times, as evident by his knife wounds from chest to abdomen and died of internal bleeding." you finished as Connor was looking at the writing above the body with interest.
+
+"Ugh, state he's in.. Wasn't worth calling everyone out in the middle of the night," Hank looked away to shake his head from the nauseating smell, "Could've waited 'til morning."
+
+"What do we know about his android?" Hank looked st you, still wary but reluctantly caving in for the sake of the investigation.
+
+"Nothing notable. Connor should be able to piece things together, though." You looked at Conner and he nodded and started to weave his way around, investigating the labled clues.
+
+As you moved back to talk to an agent who beckoned you for assistance, Hank suddenly grabbed your arm and pulled you aside with him, nodding at the agent without really caring.
+
+"So, what's your deal? CyberLife sat too idle for too long, twiddling their thumbs so they fucking made another 'droid to get involved in the DPD?" Hank shot questions casually at you as he crossed his arms and watched Connor kneel besides a knife.
+
+Choices:
+- POLITE -> POLITE (id: 35032403)
+- BLUNT -> BLUNT (id: 35032514)
+- SAY NOTHING -> SAY NOTHING (id: 34998050)
