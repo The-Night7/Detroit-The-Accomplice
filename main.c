@@ -9,14 +9,14 @@
  * title of the target chapter.  The program provides two modes of
  * interaction simultaneously:
  *
- *   • Console: The full narrative text is printed to standard output on
- *     a black background/white foreground console.  This satisfies the
- *     requirement for readability in an "invite de commande".
+ * • Console: The full narrative text is printed to standard output on
+ * a black background/white foreground console.  This satisfies the
+ * requirement for readability in an "invite de commande".
  *
- *   • Graphical window (SDL2): A window displays the current page
- *     title and presents each choice as a clickable button.  The
- *     player interacts with the story using the mouse.  A key press
- *     ('r') shows the relationship log in the console at any time.
+ * • Graphical window (SDL2): A window displays the current page
+ * title and presents each choice as a clickable button.  The
+ * player interacts with the story using the mouse.  A key press
+ * ('r') shows the relationship log in the console at any time.
  *
  * Game state is persisted: every time you start the program it creates
  * a new session log (`session_YYYYMMDD_HHMMSS.txt`) containing the
@@ -29,11 +29,11 @@
  * libraries installed on your system.  On Debian/Ubuntu you can
  * install them with:
  *
- *    sudo apt install libsdl2-dev libsdl2-ttf-dev
+ * sudo apt install libsdl2-dev libsdl2-ttf-dev
  *
  * Compile with:
  *
- *    gcc main.c -o story_game -lSDL2 -lSDL2_ttf
+ * gcc main.c -o story_game -lSDL2 -lSDL2_ttf
  *
  * The program expects `game_data.txt` in the working directory.
  */
@@ -97,6 +97,31 @@ static char *trim_whitespace(char *str) {
     return str;
 }
 
+// Fonction pour lire tout le contenu d'un fichier texte dans une chaîne (buffer)
+char* lire_chapitre(const char* nom_fichier) {
+    char chemin[256];
+    snprintf(chemin, sizeof(chemin), "chapitres/%s", nom_fichier); // Construit le chemin
+    
+    FILE* file = fopen(chemin, "r");
+    if (!file) {
+        printf("Erreur: Impossible d'ouvrir le fichier %s\n", chemin);
+        return NULL;
+    }
+    
+    // Obtenir la taille du fichier
+    fseek(file, 0, SEEK_END);
+    long length = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    
+    char* buffer = malloc(length + 1);
+    if (buffer) {
+        fread(buffer, 1, length, file);
+        buffer[length] = '\0'; // Fin de chaîne
+    }
+    fclose(file);
+    return buffer;
+}
+
 /* Load chapters from a directory of individual chapter files. */
 static int load_chapters_dir(const char *dir_path) {
     DIR *dir = opendir(dir_path);
@@ -148,15 +173,15 @@ static int load_chapters_dir(const char *dir_path) {
     free_pages();
     pages = NULL;
     page_count = 0;
+    
     /* Iterate over sorted files and parse each */
     for (size_t i = 0; i < count; i++) {
-        char pathbuf[4096];
-        snprintf(pathbuf, sizeof(pathbuf), "%s/%s", dir_path, filenames[i]);
-        FILE *fp = fopen(pathbuf, "r");
-        if (!fp) {
-            fprintf(stderr, "Could not open chapter file %s: %s\n", pathbuf, strerror(errno));
+        // Utilisation de lire_chapitre au lieu de fopen/getline
+        char *file_content = lire_chapitre(filenames[i]);
+        if (!file_content) {
             continue;
         }
+        
         Page current = {0};
         /* We will build the text buffer dynamically */
         char *text_buffer = NULL;
@@ -164,37 +189,48 @@ static int load_chapters_dir(const char *dir_path) {
         size_t text_len = 0;
         int in_text = 0;
         int in_choices = 0;
-        char *line = NULL;
-        size_t len = 0;
-        ssize_t read;
-        while ((read = getline(&line, &len, fp)) != -1) {
-            /* Trim newline */
-            while (read > 0 && (line[read - 1] == '\n' || line[read - 1] == '\r')) {
+        
+        char *ptr = file_content;
+        while (*ptr) {
+            char *line = ptr;
+            
+            // Find the end of the current line
+            while (*ptr && *ptr != '\n') {
+                ptr++;
+            }
+            int has_newline = (*ptr == '\n');
+            if (has_newline) {
+                *ptr = '\0'; // Replace newline with null terminator temporarily
+            }
+            
+            size_t read = strlen(line);
+            
+            /* Trim carriage return */
+            while (read > 0 && line[read - 1] == '\r') {
                 line[--read] = '\0';
             }
+            
             /* Skip empty lines outside of text accumulation */
             if (read == 0) {
+                if (has_newline) ptr++;
                 continue;
             }
             if (strncmp(line, "Title:", 6) == 0) {
                 char *p = line + 6;
                 p = trim_whitespace(p);
                 current.title = strdup(p);
-                continue;
             }
-            if (strcmp(line, "Text:") == 0) {
+            else if (strcmp(line, "Text:") == 0) {
                 in_text = 1;
                 in_choices = 0;
-                continue;
             }
-            if (strcmp(line, "Choices:") == 0) {
+            else if (strcmp(line, "Choices:") == 0) {
                 in_choices = 1;
                 in_text = 0;
                 current.num_choices = 0;
                 current.choices = NULL;
-                continue;
             }
-            if (in_text) {
+            else if (in_text) {
                 /* Append line to text buffer with newline */
                 size_t needed = text_len + read + 2;
                 if (needed > text_buf_size) {
@@ -207,39 +243,42 @@ static int load_chapters_dir(const char *dir_path) {
                 text_len += read;
                 text_buffer[text_len++] = '\n';
                 text_buffer[text_len] = '\0';
-                continue;
             }
-            if (in_choices) {
+            else if (in_choices) {
                 /* Expect format: - <choice text> -> <target title> (id: ...)? */
-                if (strncmp(line, "- ", 2) != 0) {
-                    continue;
+                if (strncmp(line, "- ", 2) == 0) {
+                    char *p = line + 2;
+                    char *arrow = strstr(p, "->");
+                    if (arrow) {
+                        *arrow = '\0';
+                        char *choice_text = trim_whitespace(p);
+                        char *target = trim_whitespace(arrow + 2);
+                        /* If there's a parenthesis, strip it and anything after */
+                        char *paren = strchr(target, '(');
+                        if (paren) {
+                            *paren = '\0';
+                        }
+                        /* Duplicate strings */
+                        char *opt_text = strdup(choice_text);
+                        char *target_title = strdup(target);
+                        current.choices = realloc(current.choices, sizeof(Choice) * (current.num_choices + 1));
+                        current.choices[current.num_choices].text = opt_text;
+                        current.choices[current.num_choices].target = target_title;
+                        current.choices[current.num_choices].target_index = -1;
+                        current.num_choices++;
+                    }
                 }
-                char *p = line + 2;
-                char *arrow = strstr(p, "->");
-                if (!arrow) {
-                    continue;
-                }
-                *arrow = '\0';
-                char *choice_text = trim_whitespace(p);
-                char *target = trim_whitespace(arrow + 2);
-                /* If there's a parenthesis, strip it and anything after */
-                char *paren = strchr(target, '(');
-                if (paren) {
-                    *paren = '\0';
-                }
-                /* Duplicate strings */
-                char *opt_text = strdup(choice_text);
-                char *target_title = strdup(target);
-                current.choices = realloc(current.choices, sizeof(Choice) * (current.num_choices + 1));
-                current.choices[current.num_choices].text = opt_text;
-                current.choices[current.num_choices].target = target_title;
-                current.choices[current.num_choices].target_index = -1;
-                current.num_choices++;
-                continue;
+            }
+            
+            // Advance ptr past the newline to read the next line
+            if (has_newline) {
+                ptr++;
             }
         }
-        free(line);
-        fclose(fp);
+        
+        // Libérer le buffer alloué par lire_chapitre
+        free(file_content);
+        
         /* Finalise text */
         current.text = text_buffer ? text_buffer : strdup("");
         /* Add to pages array */
@@ -250,23 +289,6 @@ static int load_chapters_dir(const char *dir_path) {
     free(filenames);
     return 0;
 }
-
-/* Load chapters from a directory of individual chapter files.  Each file
- * is expected to follow a simple format:
- *   Title: <chapter title>
- *
- *   Text:
- *   <line 1 of narrative>
- *   <line 2 of narrative>
- *   ...
- *
- *   Choices:
- *   - <choice text> -> <target title> (id: <optional id>)
- *   - ...
- *
- * Blank lines may separate sections.  Only regular files with a .txt
- * extension are loaded.  Returns 0 on success. */
-static int load_chapters_dir(const char *dir_path);
 
 int main(int argc, char *argv[]) {
     (void)argc;
@@ -319,13 +341,6 @@ int main(int argc, char *argv[]) {
      * current directory (e.g. DejaVuSans.ttf or FreeSans.ttf) and it
      * will be found.
      */
-    /*
-     * List of font file paths the program will attempt to load. The first
-     * entry (NULL) corresponds to a path supplied via the command line (if
-     * provided). In this version we only try to load the Courier font from
-     * the working directory by default. You can still override it by
-     * providing your own path on the command line.
-     */
     const char *font_candidates[] = {
         NULL,            /* optional user‑supplied path (argv[1]) */
         "./courrier.ttf", /* default font in local directory */
@@ -347,13 +362,13 @@ int main(int argc, char *argv[]) {
             break;
         } else {
             /* Log the error for each font candidate to aid debugging */
-            fprintf(stderr, "Impossible d\'ouvrir la police %s : %s\n", path, TTF_GetError());
+            fprintf(stderr, "Impossible d\'ouvrir la police %s : %s\n", path, TTF_GetError());
         }
     }
     if (!font) {
         fprintf(stderr,
-                "Échec du chargement de la police. Assurez‑vous que 'courrier.ttf' se trouve dans le répertoire du programme,\n"
-                "ou passez le chemin d’un fichier .ttf valide en argument.\n");
+                "Échec du chargement de la police. Assurez-vous que 'courrier.ttf' se trouve dans le répertoire du programme,\n"
+                "ou passez le chemin d'un fichier .ttf valide en argument.\n");
         TTF_Quit();
         SDL_Quit();
         free_pages();
@@ -543,7 +558,7 @@ int main(int argc, char *argv[]) {
 }
 
 /*
- * Load the game data file into memory.  Returns 0 on success, non‑zero
+ * Load the game data file into memory.  Returns 0 on success, non-zero
  * on failure.  The file format is described in parse_story.py.
  */
 static int load_game_data(const char *filename) {
@@ -669,7 +684,7 @@ static void free_pages(void) {
 }
 
 /* Find the index of the page whose title matches the given string.  Returns
- * -1 if not found.  The match is case‑sensitive. */
+ * -1 if not found.  The match is case-sensitive. */
 static int find_page_index(const char *title) {
     for (int i = 0; i < page_count; i++) {
         if (strcmp(pages[i].title, title) == 0) {
@@ -681,7 +696,7 @@ static int find_page_index(const char *title) {
 
 /* Render a single line of text centred horizontally in the window.  The y
  * coordinate specifies the top of the text.  The caller must ensure the
- * renderer’s background has been cleared and presented. */
+ * renderer's background has been cleared and presented. */
 static void render_text_center(SDL_Renderer *renderer, TTF_Font *font,
                                const char *text, int y, SDL_Color color) {
     if (!text || !*text) return;
