@@ -33,7 +33,7 @@
         }
 
         /* Masquage du format natif AO3 pour garder l'immersion */
-        .chapter-nav, .landmark {
+        .chapter-nav, .landmark, .chapter-title {
             display: none !important;
         }
 
@@ -183,7 +183,6 @@
     </footer>
 
     <script>
-        // Le graphe de l'histoire contiendra { 'chapter_1': { title: '...', content: '...' } }
         let storyGraph = {};
         let historyStack = [];
         let selectedFile = null;
@@ -207,7 +206,6 @@
 
             selectedFile = file;
             
-            // Mise à jour de l'UI pour montrer le fichier et activer le bouton GO
             document.getElementById('file-name-display').innerText = "> Fichier détecté : " + file.name;
             
             const goBtn = document.getElementById('go-btn');
@@ -231,7 +229,6 @@
             
             const reader = new FileReader();
             reader.onload = (e) => {
-                // Délai asynchrone pour laisser l'UI afficher le message de chargement
                 setTimeout(() => buildStoryGraph(e.target.result), 100);
             };
             reader.onerror = () => {
@@ -255,15 +252,12 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlContent, "text/html");
 
-                // Récupérer tous les chapitres générés par AO3
                 let chapters = Array.from(doc.querySelectorAll('.chapter'));
                 
-                // Fallback 1 : si le HTML a été exporté différemment
                 if (chapters.length === 0) {
                     chapters = Array.from(doc.querySelectorAll('div[id^="chapter_"], div[id^="chapitre_"]'));
                 }
 
-                // Super-Fallback 2 : Si la structure est cassée, on cherche au moins le contenu de l'histoire
                 if (chapters.length === 0) {
                     updateStatus("RECHERCHE AVANCÉE DES CHAPITRES...");
                     const userstuffs = Array.from(doc.querySelectorAll('.userstuff'));
@@ -291,14 +285,12 @@
                     const id = chap.id || 'chapter_' + (index + 1);
                     if (!firstChapId) firstChapId = id;
 
-                    // Chercher le titre : balise heading ou class title
                     const titleNode = chap.querySelector('.heading, .chapter-title, h2, h3');
                     let titleText = titleNode ? titleNode.textContent.trim() : `Chapitre ${index + 1}`;
                     
-                    // Nettoyer les éventuels textes redondants de l'interface AO3
-                    titleText = titleText.replace(/Chapter \d+/, '').replace(/^: /, '').trim();
+                    // On supprime "Chapter XXX: " pour n'avoir que le nom exact du choix
+                    titleText = titleText.replace(/Chapter\s+\d+[:.\-\s]*/i, '').trim();
 
-                    // Récupérer le contenu de l'histoire (userstuff)
                     const contentNode = chap.querySelector('.userstuff') || chap;
                     
                     storyGraph[id] = {
@@ -311,7 +303,6 @@
                 document.getElementById('memory-counter').innerText = `NŒUDS: ${Object.keys(storyGraph).length}`;
                 document.getElementById('memory-counter').classList.remove('hidden');
 
-                // Lancement de l'interface du jeu
                 document.getElementById('upload-section').style.display = 'none';
                 const storySection = document.getElementById('story-section');
                 storySection.classList.remove('hidden');
@@ -322,7 +313,6 @@
                     updateStatus("CONNEXION ÉTABLIE - LECTURE");
                 }, 100);
 
-                // Démarrer sur le premier chapitre
                 playChapter(firstChapId, true);
 
             } catch(error) {
@@ -333,12 +323,32 @@
             }
         }
 
+        // Helper pour retrouver l'ID d'un chapitre à partir du texte d'un choix
+        function findChapterByTitle(targetTitle) {
+            // Retire les caractères spéciaux pour un matching parfait
+            const normalize = str => str.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const targetNorm = normalize(targetTitle);
+            
+            // Recherche exacte d'abord
+            for (let id in storyGraph) {
+                if (normalize(storyGraph[id].title) === targetNorm) {
+                    return id;
+                }
+            }
+            // Recherche partielle en secours
+            for (let id in storyGraph) {
+                if (normalize(storyGraph[id].title).includes(targetNorm)) {
+                    return id;
+                }
+            }
+            return null;
+        }
+
         // 4. Affichage d'un Chapitre et gestion de l'historique
         function playChapter(chapterId, isFirst = false) {
             const chapter = storyGraph[chapterId];
             
             if (!chapter) {
-                console.warn("Lien mort vers :", chapterId);
                 alert("Accès impossible : nœud mémoire [" + chapterId + "] non trouvé.");
                 return;
             }
@@ -352,16 +362,14 @@
             renderView(chapterId);
         }
 
-        // Bouton de retour en arrière
         function safeGoBack() {
             if (historyStack.length > 1) {
-                historyStack.pop(); // Retire le chapitre actuel
-                const prevId = historyStack[historyStack.length - 1]; // Regarde le précédent
-                renderView(prevId); // Affiche le précédent sans toucher à l'historique
+                historyStack.pop(); 
+                const prevId = historyStack[historyStack.length - 1]; 
+                renderView(prevId); 
             }
         }
 
-        // Revenir au tout début
         function goToStart() {
             const keys = Object.keys(storyGraph);
             if(keys.length > 0) {
@@ -369,51 +377,64 @@
             }
         }
 
-        // 5. Injection des données et formatage des choix (Liens)
+        // 5. Injection des données et auto-génération des choix
         function renderView(chapterId) {
             const chapter = storyGraph[chapterId];
             
             document.getElementById('chapter-title').textContent = chapter.title;
             const contentContainer = document.getElementById('chapter-content');
             
-            // Effet de fade out/in fluide
             contentContainer.style.opacity = 0;
             
             setTimeout(() => {
-                contentContainer.innerHTML = chapter.content;
-
-                // Transformer tous les liens du document en boutons d'interface
-                const links = contentContainer.querySelectorAll('a');
+                let html = chapter.content;
                 let choiceCount = 0;
 
+                // MAGIE : Auto-détection des choix sous forme de texte [Symbole][Titre du chapitre]
+                // L'auteur a tapé ça : [□][PRESSURE IT] au lieu de faire des liens HTML !
+                const choiceRegex = /\[([^\]]{1,20})\]\s*\[([^\]]+)\]/g;
+                
+                html = html.replace(choiceRegex, (match, symbol, choiceText) => {
+                    // On ne modifie pas les textes comme [OBJECTIVE: EXTRACT CONFESSION]
+                    if (symbol.toLowerCase().includes('objective')) return match;
+                    
+                    const targetChapId = findChapterByTitle(choiceText);
+                    
+                    if (targetChapId) {
+                        choiceCount++;
+                        return `<a class="detroit-choice w-full text-left" onclick="event.preventDefault(); playChapter('${targetChapId}')">
+                                    <span class="mr-4 text-[#00e5ff] font-bold text-xl inline-block w-8 text-center">[${symbol}]</span> ${choiceText}
+                                </a>`;
+                    }
+                    // Bouton inactif si le chapitre avec ce nom n'existe pas
+                    return `<div class="p-4 my-2 border border-red-900 text-red-500 bg-red-900 bg-opacity-20 opacity-70">
+                                <span class="mr-4 inline-block w-8 text-center">[${symbol}]</span> ${choiceText} <span class="text-xs ml-2">(Erreur mémorielle : Chapitre manquant)</span>
+                            </div>`;
+                });
+
+                contentContainer.innerHTML = html;
+
+                // Récupération des liens classiques s'il y en a tout de même
+                const links = contentContainer.querySelectorAll('a:not(.detroit-choice)');
                 links.forEach(link => {
                     const href = link.getAttribute('href');
-                    
-                    // Tolérance max : Si le lien contient un '#' (ex: #chapter_45 ou fic.html#chapter_45)
                     if (href && href.includes('#')) {
-                        const targetId = href.split('#')[1]; // Extraction de l'ID pur
-                        
+                        const targetId = href.split('#')[1]; 
                         if (storyGraph[targetId]) {
                             link.classList.add('detroit-choice');
                             choiceCount++;
-                            
                             link.onclick = (e) => {
                                 e.preventDefault();
                                 playChapter(targetId); 
                             };
                         } else {
-                            // C'est un lien classique vers l'extérieur (ex: le profil de l'auteur)
                             link.style.color = '#00e5ff';
                             link.style.textDecoration = 'underline';
                         }
                     }
                 });
 
-                // Cacher les textes superflus des chapitres de base d'AO3 si présents
-                const headings = contentContainer.querySelectorAll('.heading, .chapter-title');
-                headings.forEach(h => h.style.display = 'none');
-
-                // --- NOUVEAUTÉ : Ajout du bouton GO sur le Chapitre 1 ou si aucun choix n'est dispo ---
+                // Gérer les cas sans choix (Fin ou premier chapitre)
                 const keys = Object.keys(storyGraph);
                 const currentIndex = keys.indexOf(chapterId);
 
@@ -432,12 +453,10 @@
                         contentContainer.appendChild(goContainer);
                     }
                 }
-                // --------------------------------------------------------------------------------------
 
                 contentContainer.style.opacity = 1;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                // Mettre à jour l'affichage des boutons de navigation
                 const backBtn = document.getElementById('back-btn');
                 const homeBtn = document.getElementById('home-btn');
                 if (historyStack.length > 1) {
@@ -448,9 +467,8 @@
                     homeBtn.classList.add('hidden');
                 }
 
-            }, 200); // 200ms pour l'animation
+            }, 200);
         }
-
     </script>
 </body>
 </html>
