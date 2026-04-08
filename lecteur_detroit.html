@@ -137,10 +137,18 @@
             <h2 class="text-3xl font-bold mb-4 text-white glow-text uppercase tracking-wider">Initialisation Mentale</h2>
             <p class="mb-8 text-gray-400 text-lg">Veuillez insérer le fichier de mémoire source <br><span class="font-mono text-[#00e5ff] mt-2 inline-block bg-black px-2 py-1 rounded">Detroit_The_Accomplice.html</span><br> pour reconstruire l'arborescence des événements.</p>
 
-            <label class="cursor-pointer bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold py-3 px-10 rounded uppercase tracking-widest transition-all duration-300">
-                <span id="upload-btn-text">Lier la mémoire</span>
-                <input type="file" id="file-upload" accept=".html,.htm" class="hidden" onchange="handleFileUpload(event)">
-            </label>
+            <div class="flex flex-col items-center gap-4 w-full">
+                <label class="cursor-pointer bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold py-3 px-10 rounded uppercase tracking-widest transition-all duration-300">
+                    <span id="upload-btn-text">Lier la mémoire</span>
+                    <input type="file" id="file-upload" accept=".html,.htm" class="hidden" onchange="handleFileSelect(event)">
+                </label>
+
+                <p id="file-name-display" class="text-[#00e5ff] font-mono text-sm h-6 mb-4"></p>
+
+                <button id="go-btn" disabled onclick="startEngine()" class="opacity-30 cursor-not-allowed bg-[#00e5ff] text-black font-bold py-3 px-16 rounded uppercase tracking-widest text-xl transition-all duration-300">
+                    GO
+                </button>
+            </div>
         </div>
 
         <!-- Section de Lecture (Histoire) -->
@@ -173,6 +181,7 @@
         // Le graphe de l'histoire contiendra { 'chapter_1': { title: '...', content: '...' } }
         let storyGraph = {};
         let historyStack = [];
+        let selectedFile = null;
 
         function updateStatus(text, isAlert = false) {
             const statusEl = document.getElementById('system-status');
@@ -186,12 +195,33 @@
             }
         }
 
-        // 1. Lecture du fichier HTML chargé par l'utilisateur
-        function handleFileUpload(event) {
+        // 1. Sélection du fichier HTML par l'utilisateur
+        function handleFileSelect(event) {
             const file = event.target.files[0];
             if (!file) return;
 
-            document.getElementById('upload-btn-text').innerText = "ANALYSE EN COURS...";
+            selectedFile = file;
+            
+            // Mise à jour de l'UI pour montrer le fichier et activer le bouton GO
+            document.getElementById('file-name-display').innerText = "> Fichier détecté : " + file.name;
+            
+            const goBtn = document.getElementById('go-btn');
+            goBtn.disabled = false;
+            goBtn.classList.remove('opacity-30', 'cursor-not-allowed');
+            goBtn.classList.add('hover:shadow-[0_0_20px_#00e5ff]', 'hover:bg-white');
+            
+            updateStatus("FICHIER EN ATTENTE D'ANALYSE...");
+        }
+
+        // 2. Déclenchement de la lecture via le bouton GO
+        function startEngine() {
+            if (!selectedFile) return;
+
+            const goBtn = document.getElementById('go-btn');
+            goBtn.innerText = "ANALYSE EN COURS...";
+            goBtn.disabled = true;
+            goBtn.classList.add('opacity-50', 'cursor-wait');
+
             updateStatus("DÉCRYPTAGE DES DONNÉES...");
             
             const reader = new FileReader();
@@ -201,11 +231,19 @@
             };
             reader.onerror = () => {
                 updateStatus("ERREUR LECTURE FICHIER", true);
+                resetGoButton();
             };
-            reader.readAsText(file);
+            reader.readAsText(selectedFile);
         }
 
-        // 2. Construction de l'arborescence (Graph)
+        function resetGoButton() {
+            const goBtn = document.getElementById('go-btn');
+            goBtn.innerText = "RÉESSAYER";
+            goBtn.disabled = false;
+            goBtn.classList.remove('opacity-50', 'cursor-wait');
+        }
+
+        // 3. Construction de l'arborescence (Graph)
         function buildStoryGraph(htmlContent) {
             try {
                 updateStatus("PARSAGE DU DOM...");
@@ -237,7 +275,7 @@
                 if (chapters.length === 0) {
                     updateStatus("ÉCHEC: FORMAT INVALIDE", true);
                     alert("Impossible de détecter la structure des chapitres. Assurez-vous d'avoir téléchargé un HTML AO3.");
-                    document.getElementById('upload-btn-text').innerText = "RÉESSAYER";
+                    resetGoButton();
                     return;
                 }
 
@@ -286,11 +324,11 @@
                 console.error(error);
                 updateStatus("CORRUPTION SYSTÈME", true);
                 alert("Erreur lors de l'analyse : " + error.message);
-                document.getElementById('upload-btn-text').innerText = "RÉESSAYER";
+                resetGoButton();
             }
         }
 
-        // 3. Affichage d'un Chapitre et gestion de l'historique
+        // 4. Affichage d'un Chapitre et gestion de l'historique
         function playChapter(chapterId, isFirst = false) {
             const chapter = storyGraph[chapterId];
             
@@ -318,7 +356,7 @@
             }
         }
 
-        // 4. Injection des données et formatage des choix (Liens)
+        // 5. Injection des données et formatage des choix (Liens)
         function renderView(chapterId) {
             const chapter = storyGraph[chapterId];
             
