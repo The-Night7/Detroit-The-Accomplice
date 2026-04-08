@@ -1,0 +1,2 @@
+playerName=YN600
+currentChapter=0

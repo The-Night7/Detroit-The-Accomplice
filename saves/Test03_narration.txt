@@ -1,0 +1,3 @@
+playerName=YN600
+currentChapter=0
+Chapter 0 (Notes)

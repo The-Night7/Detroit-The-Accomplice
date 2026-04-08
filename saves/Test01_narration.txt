@@ -1,0 +1,4 @@
+playerName=MYRIAM
+currentChapter=0
+Chapter 0 (Notes)
+Chapter 0 (Notes) -> Choice: REPLACE
