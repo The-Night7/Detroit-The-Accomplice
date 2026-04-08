@@ -156,9 +156,14 @@
             
             <!-- Navigation -->
             <div class="w-full flex justify-between items-end mb-8 border-b border-gray-800 pb-4">
-                <button onclick="safeGoBack()" id="back-btn" class="hidden text-gray-500 hover:text-[#00e5ff] font-bold uppercase text-sm tracking-widest transition-colors flex items-center gap-2">
-                    <span class="text-lg">&#9664;</span> Option Précédente
-                </button>
+                <div class="flex gap-6">
+                    <button onclick="safeGoBack()" id="back-btn" class="hidden text-gray-500 hover:text-[#00e5ff] font-bold uppercase text-sm tracking-widest transition-colors flex items-center gap-2">
+                        <span class="text-lg">&#9664;</span> Option Précédente
+                    </button>
+                    <button onclick="goToStart()" id="home-btn" class="hidden text-gray-500 hover:text-[#00e5ff] font-bold uppercase text-sm tracking-widest transition-colors flex items-center gap-2">
+                        <span class="text-lg">⟲</span> Recommencer
+                    </button>
+                </div>
                 <div id="chapter-title" class="text-2xl font-bold text-[#00e5ff] tracking-widest uppercase opacity-90 ml-auto">
                     TITRE DU CHAPITRE
                 </div>
@@ -356,6 +361,14 @@
             }
         }
 
+        // Revenir au tout début
+        function goToStart() {
+            const keys = Object.keys(storyGraph);
+            if(keys.length > 0) {
+                playChapter(keys[0], true);
+            }
+        }
+
         // 5. Injection des données et formatage des choix (Liens)
         function renderView(chapterId) {
             const chapter = storyGraph[chapterId];
@@ -371,6 +384,8 @@
 
                 // Transformer tous les liens du document en boutons d'interface
                 const links = contentContainer.querySelectorAll('a');
+                let choiceCount = 0;
+
                 links.forEach(link => {
                     const href = link.getAttribute('href');
                     
@@ -380,6 +395,7 @@
                         
                         if (storyGraph[targetId]) {
                             link.classList.add('detroit-choice');
+                            choiceCount++;
                             
                             link.onclick = (e) => {
                                 e.preventDefault();
@@ -397,15 +413,39 @@
                 const headings = contentContainer.querySelectorAll('.heading, .chapter-title');
                 headings.forEach(h => h.style.display = 'none');
 
+                // --- NOUVEAUTÉ : Ajout du bouton GO sur le Chapitre 1 ou si aucun choix n'est dispo ---
+                const keys = Object.keys(storyGraph);
+                const currentIndex = keys.indexOf(chapterId);
+
+                if (currentIndex === 0 || choiceCount === 0) {
+                    if (currentIndex < keys.length - 1) {
+                        const nextId = keys[currentIndex + 1];
+                        const goContainer = document.createElement('div');
+                        goContainer.className = 'mt-12 flex justify-center w-full';
+                        
+                        const goBtn = document.createElement('button');
+                        goBtn.className = 'bg-[#00e5ff] text-black hover:bg-white font-bold py-4 px-20 rounded uppercase tracking-widest text-2xl transition-all duration-300 shadow-[0_0_15px_rgba(0,229,255,0.4)] hover:shadow-[0_0_25px_rgba(0,229,255,0.8)]';
+                        goBtn.innerHTML = 'GO ➔';
+                        goBtn.onclick = () => playChapter(nextId);
+                        
+                        goContainer.appendChild(goBtn);
+                        contentContainer.appendChild(goContainer);
+                    }
+                }
+                // --------------------------------------------------------------------------------------
+
                 contentContainer.style.opacity = 1;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                // Mettre à jour l'affichage du bouton retour
+                // Mettre à jour l'affichage des boutons de navigation
                 const backBtn = document.getElementById('back-btn');
+                const homeBtn = document.getElementById('home-btn');
                 if (historyStack.length > 1) {
                     backBtn.classList.remove('hidden');
+                    homeBtn.classList.remove('hidden');
                 } else {
                     backBtn.classList.add('hidden');
+                    homeBtn.classList.add('hidden');
                 }
 
             }, 200); // 200ms pour l'animation
