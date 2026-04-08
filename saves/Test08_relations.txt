@@ -1,0 +1,2 @@
+playerName=MYRIAM
+currentChapter=0

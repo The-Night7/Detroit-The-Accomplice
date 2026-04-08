@@ -1,0 +1,7 @@
+playerName=MYRIAM
+currentChapter=3
+Chapter 0 (Notes)
+Chapter 0 (Notes) -> Choice: REPLACE
+Chapter 0 (Notes)
+Chapter 0 (Notes) -> Choice: LISTEN IN
+Chapter 3 (LISTEN IN)

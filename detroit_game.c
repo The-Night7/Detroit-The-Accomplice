@@ -71,6 +71,9 @@ typedef struct {
     char *endingAct;      /* Roman numeral of the act if this chapter finishes an act */
     int endingNumber;     /* Which ending number (n) within its act */
     int endingTotal;      /* Total endings (m) within its act */
+    /* Act tracking: assign each chapter to an act based on the last act completion encountered. */
+    char *actRoman;       /* Roman numeral of the act this chapter belongs to */
+    int actNumber;        /* Numeric act index (converted from roman) */
 } Chapter;
 
 /* Dynamic container for chapters */
@@ -186,6 +189,7 @@ static void free_chapter_list(ChapterList *cl) {
         }
         free(ch->infos);
         free(ch->endingAct);
+        free(ch->actRoman);
     }
     free(cl->chapters);
     cl->chapters = NULL;
@@ -248,6 +252,105 @@ static int roman_to_int(const char *roman) {
     }
     return total;
 }
+
+/*
+ * Helper to sanitize strings for matching chapter labels and titles.
+ * It converts alphabetic characters to uppercase and removes any
+ * characters that are not ASCII letters or digits.  This allows fuzzy
+ * matching of labels containing glitch characters (e.g., CR℅WL A+AY) or
+ * strikethrough formatting.  The caller must free the returned
+ * string.
+ */
+static char *sanitize_key(const char *s) {
+    size_t n = strlen(s);
+    /* allocate maximum possible length */
+    char *res = (char *)malloc(n + 1);
+    if (!res) return NULL;
+    size_t idx = 0;
+    for (size_t i = 0; i < n; ++i) {
+        unsigned char c = (unsigned char)s[i];
+        /* Accept ASCII letters and digits */
+        if (c >= 'a' && c <= 'z') {
+            res[idx++] = (char)(c - 'a' + 'A');
+        } else if (c >= 'A' && c <= 'Z') {
+            res[idx++] = (char)c;
+        } else if (c >= '0' && c <= '9') {
+            res[idx++] = (char)c;
+        }
+        /* Otherwise skip this character entirely */
+    }
+    res[idx] = '\0';
+    return res;
+}
+
+/* Compute the Levenshtein distance between two strings.  Uses a
+ * two‑row dynamic programming implementation for efficiency. */
+static int levenshtein_distance(const char *s1, const char *s2) {
+    size_t len1 = strlen(s1);
+    size_t len2 = strlen(s2);
+    /* if either string is empty, distance is the other length */
+    if (len1 == 0) return (int)len2;
+    if (len2 == 0) return (int)len1;
+    int *prev = (int *)malloc((len2 + 1) * sizeof(int));
+    int *curr = (int *)malloc((len2 + 1) * sizeof(int));
+    if (!prev || !curr) {
+        free(prev);
+        free(curr);
+        return (int)(len1 + len2);
+    }
+    for (size_t j = 0; j <= len2; ++j) {
+        prev[j] = (int)j;
+    }
+    for (size_t i = 1; i <= len1; ++i) {
+        curr[0] = (int)i;
+        for (size_t j = 1; j <= len2; ++j) {
+            int cost = (s1[i - 1] == s2[j - 1]) ? 0 : 1;
+            int deletion = prev[j] + 1;
+            int insertion = curr[j - 1] + 1;
+            int substitution = prev[j - 1] + cost;
+            int min = deletion < insertion ? deletion : insertion;
+            if (substitution < min) min = substitution;
+            curr[j] = min;
+        }
+        /* swap rows */
+        int *tmp = prev;
+        prev = curr;
+        curr = tmp;
+    }
+    int dist = prev[len2];
+    free(prev);
+    free(curr);
+    return dist;
+}
+
+/* Manual mapping for mis‑labelled or glitched choice labels.  Each entry
+ * maps a sanitized label to a sanitized destination title.  The
+ * sanitized destination must correspond to an existing chapter title
+ * after sanitisation. */
+typedef struct {
+    const char *labelSan;
+    const char *destSan;
+} ManualMapEntry;
+
+static const ManualMapEntry manual_map[] = {
+    /* Glitched crawl/identify sequences */
+    { "CRWLAAY", "WAIT" },        /* CR℅WL A+AY -> WAIT */
+    { "CAWLAAY", "CRAWLAWAY" },   /* C÷AWL A+AY -> CRAWL AWAY */
+    { "IDNTFYVICE", "WAIT" },     /* ID#NT&FY V#ICE -> WAIT */
+    /* Glitched FURNATURE spelling */
+    { "INSPECTFURNATURE", "INSPECTFURNITURE" },
+    /* Probe/manipulate/pressure interrogation: default to TRUTH */
+    { "PRESSUREIT", "TRUTH" },
+    { "MANIPULATEIT", "TRUTH" },
+    { "PROBEITSMEMORY", "TRUTH" },
+    /* Proceed choices: map to NOTHING as default fallback */
+    { "PROCEED", "NOTHING" },
+    /* Strikethrough plead/thank labels */
+    { "PLEAD", "CALMITDOWN" },
+    { "THANK", "THANK" }
+};
+
+static const int manual_map_count = sizeof(manual_map) / sizeof(manual_map[0]);
 
 /* Parse the entire story file and fill the ChapterList.  Also collects
  * information about acts and endings (returning maximum endings for each act
@@ -624,30 +727,91 @@ static int parse_story(ChapterList *cl, int verbose) {
     }
     free(line);
     fclose(fp);
-    /* Link choices to destination chapter indices by matching labels to titles */
+    /* Link choices to destination chapter indices by matching labels to titles.
+     * Uses sanitisation and manual mapping to improve robustness. */
     for (int i = 0; i < cl->count; ++i) {
         Chapter *ch = &cl->chapters[i];
         for (int c = 0; c < ch->choiceCount; ++c) {
             Choice *choice = &ch->choices[c];
-            /* Match choice label (case insensitive) to chapter titles */
+            /* Trim whitespace from the choice label */
             char *labelTrim = trim(choice->label);
-            /* Convert label to uppercase copy for comparison */
-            char *labUp = strdup(labelTrim);
-            strtoupper(labUp);
+            /* Sanitize the choice label: remove non‑alphanumeric and uppercase */
+            char *labSan = sanitize_key(labelTrim);
             int dest = -1;
-            for (int j = 0; j < cl->count; ++j) {
-                char *titleUp = strdup(cl->chapters[j].title);
-                strtoupper(titleUp);
-                if (strcmp(titleUp, labUp) == 0) {
-                    dest = j;
-                    free(titleUp);
-                    break;
+            /* Special cases: REPLACE and DO NOTHING do not jump chapters */
+            if (labSan &&
+                (strcmp(labSan, "REPLACE") == 0 ||
+                 strcmp(labSan, "REPLACEYN600") == 0 ||
+                 strcmp(labSan, "DONOTHING") == 0)) {
+                dest = -1;
+            } else {
+                /* Determine the target sanitized title via manual mapping */
+                const char *targetSan = NULL;
+                for (int m = 0; m < manual_map_count; ++m) {
+                    if (labSan && strcmp(labSan, manual_map[m].labelSan) == 0) {
+                        targetSan = manual_map[m].destSan;
+                        break;
+                    }
                 }
-                free(titleUp);
+                char *targetBuf = NULL;
+                if (targetSan) {
+                    targetBuf = strdup(targetSan);
+                } else {
+                    targetBuf = labSan ? strdup(labSan) : NULL;
+                }
+                if (targetBuf) {
+                    /* Search for an exact match of sanitised titles */
+                    for (int j = 0; j < cl->count; ++j) {
+                        char *titleSan = sanitize_key(cl->chapters[j].title);
+                        if (titleSan) {
+                            if (strcmp(titleSan, targetBuf) == 0) {
+                                dest = j;
+                                free(titleSan);
+                                break;
+                            }
+                            free(titleSan);
+                        }
+                    }
+                    /* If not found, dest remains -1 (unlinked).  No approximate matching
+                     * is attempted because each choice label should correspond exactly
+                     * to a chapter name or be covered by manual_map. */
+                    free(targetBuf);
+                }
             }
-            free(labUp);
+            /* Assign destination index */
             choice->destChapter = dest;
+            free(labSan);
         }
+    }
+    /* After linking destination chapters, propagate act information and fix choice labels */
+    {
+        /* Default to Act I until an act completion line updates currentAct. */
+        char *currentRoman = strdup("I");
+        int currentNumber = roman_to_int(currentRoman);
+        for (int i = 0; i < cl->count; ++i) {
+            Chapter *ch = &cl->chapters[i];
+            /* When this chapter has an endingAct, update the current act */
+            if (ch->endingAct && strlen(ch->endingAct) > 0) {
+                free(currentRoman);
+                currentRoman = strdup(ch->endingAct);
+                currentNumber = roman_to_int(currentRoman);
+            }
+            /* Assign act info to this chapter */
+            if (currentRoman) {
+                ch->actRoman = strdup(currentRoman);
+                ch->actNumber = currentNumber;
+            }
+            /* Fix choice labels: use the destination chapter's title if available */
+            for (int ci = 0; ci < ch->choiceCount; ++ci) {
+                Choice *choice = &ch->choices[ci];
+                if (choice->destChapter >= 0 && choice->destChapter < cl->count) {
+                    /* Replace the displayed label with the correct chapter title */
+                    free(choice->label);
+                    choice->label = strdup(cl->chapters[choice->destChapter].title);
+                }
+            }
+        }
+        free(currentRoman);
     }
     return 0;
 }
@@ -1118,8 +1282,14 @@ static void run_game(ChapterList *cl, const char *saveName, char *playerName) {
         printf("\033[2J\033[H");
         print_banner();
         /* No special pre‑prompting here – name replacement is handled when the corresponding choice is selected */
-        /* Print chapter title */
-        printf(ANSI_BOLD ANSI_YELLOW "\nChapter %d: %s\n" ANSI_RESET, ch->number, ch->title);
+        /* Print act and chapter title.  Show the act's Roman numeral and numeric index. */
+        if (ch->actRoman && ch->actNumber > 0) {
+            printf(ANSI_BOLD ANSI_YELLOW "\nAct %s (%d) - Chapter %d: %s\n" ANSI_RESET,
+                   ch->actRoman, ch->actNumber, ch->number, ch->title);
+        } else {
+            /* Fallback if act info missing */
+            printf(ANSI_BOLD ANSI_YELLOW "\nChapter %d: %s\n" ANSI_RESET, ch->number, ch->title);
+        }
         printf("\n");
         /* Replace YN600 with playerName in text */
         char *displayText = replace_substr(ch->text, "YN600", playerName);
@@ -1251,19 +1421,9 @@ static void run_game(ChapterList *cl, const char *saveName, char *playerName) {
                     ch->choices[j] = ch->choices[j + 1];
                 }
                 ch->choiceCount--;
-                /* Après la suppression, couper le texte avant READY */
-                char *readyPtr = strstr(ch->text, "READY");
-                if (readyPtr) {
-                    char *postPtr = strchr(readyPtr, '\n');
-                    if (postPtr) postPtr++; else postPtr = readyPtr;
-                    char *newText = strdup(postPtr);
-                    if (newText) {
-                        free(ch->text);
-                        ch->text = newText;
-                    }
-                }
                 free(mapping);
-                continue; /* Revenir au début de la boucle pour afficher la suite du chapitre */
+                /* Stay in the same chapter; do not update currentIndex */
+                continue;
             }
             /* Normal branch: follow destination */
             if (sel->destChapter >= 0 && sel->destChapter < cl->count) {
