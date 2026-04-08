@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detroit: The Accomplice - CyberLife OS</title>
+    <!-- Tailwind CSS pour un design propre et adaptatif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+
+        :root {
+            --cyber-blue: #00e5ff;
+            --cyber-dark: #003344;
+            --cyber-bg: #050a0f;
+        }
+
+        body {
+            background-color: var(--cyber-bg);
+            color: #d1d5db;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+        }
+
+        .cyber-panel {
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            background: linear-gradient(135deg, rgba(0, 51, 68, 0.4), rgba(0, 0, 0, 0.8));
+            box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.05);
+        }
+
+        /* Masquage du format natif AO3 pour garder l'immersion */
+        .chapter-nav, .landmark {
+            display: none !important;
+        }
+
+        /* Formatage du texte de l'histoire */
+        .userstuff {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            padding-bottom: 2rem;
+        }
+
+        .userstuff p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Design des choix façon Detroit: Become Human */
+        .detroit-choice {
+            display: block;
+            margin: 1rem 0;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-left: 4px solid var(--cyber-blue);
+            color: white !important;
+            text-decoration: none !important;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .detroit-choice::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.1), transparent);
+            transition: all 0.4s ease;
+        }
+
+        .detroit-choice:hover {
+            background: rgba(0, 229, 255, 0.15);
+            padding-left: 2rem;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+            border-color: var(--cyber-blue);
+        }
+
+        .detroit-choice:hover::before {
+            left: 100%;
+        }
+
+        /* Animation visuelle "Scanline" subtile */
+        .scanline {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.03), transparent);
+            animation: scan 8s linear infinite;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Scrollbar custom */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--cyber-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--cyber-dark); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyber-blue); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <div class="scanline"></div>
+
+    <!-- Header CyberLife -->
+    <header class="w-full p-4 border-b border-[#00e5ff] flex justify-between items-center bg-black bg-opacity-70 backdrop-blur-md sticky top-0 z-40">
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full border-2 border-[#00e5ff] flex justify-center items-center glow-text font-bold text-xl text-[#00e5ff]">Δ</div>
+            <h1 class="text-2xl font-bold tracking-widest text-[#00e5ff] glow-text uppercase">CyberLife Engine</h1>
+        </div>
+        <div class="flex items-center gap-6">
+            <div id="memory-counter" class="hidden text-sm font-mono text-[#00e5ff]">NŒUDS MÉMOIRE: 0</div>
+            <div id="system-status" class="text-sm font-mono text-gray-400 bg-gray-900 px-3 py-1 rounded cyber-panel">EN ATTENTE D'INSTRUCTIONS</div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-start p-6 z-10 w-full max-w-4xl mx-auto relative pt-12">
+
+        <!-- Écran de Chargement du Fichier -->
+        <div id="upload-section" class="w-full cyber-panel p-12 rounded-lg mt-10 flex flex-col items-center text-center transition-opacity duration-500">
+            <div class="mb-6 w-16 h-16 rounded-full border border-[#00e5ff] flex justify-center items-center animate-pulse">
+                <span class="text-[#00e5ff] text-2xl font-bold">!</span>
+            </div>
+            <h2 class="text-3xl font-bold mb-4 text-white glow-text uppercase tracking-wider">Initialisation Mentale</h2>
+            <p class="mb-8 text-gray-400 text-lg">Veuillez insérer le fichier de mémoire source <br><span class="font-mono text-[#00e5ff] mt-2 inline-block bg-black px-2 py-1 rounded">Detroit_The_Accomplice.html</span><br> pour reconstruire l'arborescence des événements.</p>
+
+            <label class="cursor-pointer bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold py-3 px-10 rounded uppercase tracking-widest transition-all duration-300">
+                Lier la mémoire
+                <input type="file" id="file-upload" accept=".html,.htm" class="hidden" onchange="handleFileUpload(event)">
+            </label>
+        </div>
+
+        <!-- Section de Lecture (Histoire) -->
+        <div id="story-section" class="w-full hidden flex-col opacity-0 transition-opacity duration-1000">
+            
+            <!-- Navigation -->
+            <div class="w-full flex justify-between items-end mb-8 border-b border-gray-800 pb-4">
+                <button onclick="safeGoBack()" id="back-btn" class="hidden text-gray-500 hover:text-[#00e5ff] font-bold uppercase text-sm tracking-widest transition-colors flex items-center gap-2">
+                    <span class="text-lg">&#9664;</span> Option Précédente
+                </button>
+                <div id="chapter-title" class="text-2xl font-bold text-[#00e5ff] tracking-widest uppercase opacity-90 ml-auto">
+                    TITRE DU CHAPITRE
+                </div>
+            </div>
+
+            <!-- Contenu Dynamique -->
+            <div id="chapter-content" class="w-full cyber-panel p-8 rounded-lg">
+                <!-- Le texte et les choix apparaîtront ici -->
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="w-full p-4 border-t border-gray-900 text-center text-gray-600 text-xs font-mono z-40 relative">
+        LOGICIEL LECTEUR CYBERLIFE v1.0 • INTERACTION ASSURÉE
+    </footer>
+
+    <script>
+        // Le graphe de l'histoire contiendra { 'chapter_1': { title: '...', content: '...' } }
+        let storyGraph = {};
+        let historyStack = [];
+
+        function updateStatus(text, isAlert = false) {
+            const statusEl = document.getElementById('system-status');
+            statusEl.innerText = text;
+            if (isAlert) {
+                statusEl.classList.add('text-red-500', 'border-red-500');
+                statusEl.classList.remove('text-gray-400');
+            } else {
+                statusEl.classList.remove('text-red-500', 'border-red-500');
+                statusEl.classList.add('text-[#00e5ff]');
+            }
+        }
+
+        // 1. Lecture du fichier HTML chargé par l'utilisateur
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            updateStatus("DÉCRYPTAGE DES DONNÉES...");
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                buildStoryGraph(e.target.result);
+            };
+            reader.onerror = () => {
+                updateStatus("ERREUR LECTURE FICHIER", true);
+            };
+            reader.readAsText(file);
+        }
+
+        // 2. Construction de l'arborescence (Graph)
+        function buildStoryGraph(htmlContent) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlContent, "text/html");
+
+                // Récupérer tous les chapitres générés par AO3
+                let chapters = doc.querySelectorAll('.chapter');
+                
+                // Fallback si le HTML a été exporté différemment
+                if (chapters.length === 0) {
+                    chapters = doc.querySelectorAll('div[id^="chapter_"], div[id^="chapitre_"]');
+                }
+
+                if (chapters.length === 0) {
+                    updateStatus("ÉCHEC: FORMAT INVALIDE", true);
+                    alert("Impossible de détecter la structure des chapitres. Avez-vous bien chargé le fichier HTML complet téléchargé depuis AO3 ?");
+                    return;
+                }
+
+                let firstChapId = null;
+
+                chapters.forEach(chap => {
+                    const id = chap.id;
+                    if (!firstChapId) firstChapId = id;
+
+                    // Chercher le titre : balise heading ou class title
+                    const titleNode = chap.querySelector('.heading, .chapter-title');
+                    let titleText = titleNode ? titleNode.textContent.trim() : id;
+                    
+                    // Nettoyer les éventuels textes redondants de l'interface AO3
+                    titleText = titleText.replace(/Chapter \d+/, '').replace(/^: /, '').trim();
+
+                    // Récupérer le contenu de l'histoire (userstuff)
+                    const contentNode = chap.querySelector('.userstuff') || chap;
+                    
+                    storyGraph[id] = {
+                        id: id,
+                        title: titleText || "SANS TITRE",
+                        content: contentNode.innerHTML
+                    };
+                });
+
+                document.getElementById('memory-counter').innerText = `NŒUDS: ${Object.keys(storyGraph).length}`;
+                document.getElementById('memory-counter').classList.remove('hidden');
+
+                // Lancement de l'interface du jeu
+                document.getElementById('upload-section').style.display = 'none';
+                const storySection = document.getElementById('story-section');
+                storySection.classList.remove('hidden');
+                storySection.classList.add('flex');
+                
+                setTimeout(() => {
+                    storySection.classList.remove('opacity-0');
+                    updateStatus("CONNEXION ÉTABLIE");
+                }, 100);
+
+                // Démarrer sur le premier chapitre
+                playChapter(firstChapId, true);
+
+            } catch(error) {
+                console.error(error);
+                updateStatus("CORRUPTION SYSTÈME", true);
+                alert("Erreur lors de l'analyse : " + error.message);
+            }
+        }
+
+        // 3. Affichage d'un Chapitre et gestion de l'historique
+        function playChapter(chapterId, isFirst = false) {
+            const chapter = storyGraph[chapterId];
+            
+            if (!chapter) {
+                console.warn("Lien mort vers :", chapterId);
+                alert("Accès impossible : nœud mémoire [" + chapterId + "] non trouvé.");
+                return;
+            }
+
+            if (isFirst) {
+                historyStack = [chapterId];
+            } else {
+                historyStack.push(chapterId);
+            }
+
+            renderView(chapterId);
+        }
+
+        // Bouton de retour en arrière
+        function safeGoBack() {
+            if (historyStack.length > 1) {
+                historyStack.pop(); // Retire le chapitre actuel
+                const prevId = historyStack[historyStack.length - 1]; // Regarde le précédent
+                renderView(prevId); // Affiche le précédent sans toucher à l'historique
+            }
+        }
+
+        // 4. Injection des données et formatage des choix (Liens)
+        function renderView(chapterId) {
+            const chapter = storyGraph[chapterId];
+            
+            document.getElementById('chapter-title').textContent = chapter.title;
+            const contentContainer = document.getElementById('chapter-content');
+            
+            // Effet de fade out/in fluide
+            contentContainer.style.opacity = 0;
+            
+            setTimeout(() => {
+                contentContainer.innerHTML = chapter.content;
+
+                // Transformer tous les liens du document en boutons d'interface
+                const links = contentContainer.querySelectorAll('a');
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    
+                    // Si le lien pointe vers un autre chapitre (ex: #chapter_45)
+                    if (href && href.startsWith('#')) {
+                        link.classList.add('detroit-choice');
+                        
+                        link.onclick = (e) => {
+                            e.preventDefault();
+                            // Appel au prochain chapitre en enlevant le '#'
+                            playChapter(href.substring(1)); 
+                        };
+                    }
+                });
+
+                // Cacher les textes superflus des chapitres de base d'AO3 si présents
+                const headings = contentContainer.querySelectorAll('.heading, .chapter-title');
+                headings.forEach(h => h.style.display = 'none');
+
+                contentContainer.style.opacity = 1;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Mettre à jour l'affichage du bouton retour
+                const backBtn = document.getElementById('back-btn');
+                if (historyStack.length > 1) {
+                    backBtn.classList.remove('hidden');
+                } else {
+                    backBtn.classList.add('hidden');
+                }
+
+            }, 200); // 200ms pour l'animation
+        }
+
+    </script>
+</body>
+</html>
