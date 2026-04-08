@@ -138,7 +138,7 @@
             <p class="mb-8 text-gray-400 text-lg">Veuillez insérer le fichier de mémoire source <br><span class="font-mono text-[#00e5ff] mt-2 inline-block bg-black px-2 py-1 rounded">Detroit_The_Accomplice.html</span><br> pour reconstruire l'arborescence des événements.</p>
 
             <label class="cursor-pointer bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold py-3 px-10 rounded uppercase tracking-widest transition-all duration-300">
-                Lier la mémoire
+                <span id="upload-btn-text">Lier la mémoire</span>
                 <input type="file" id="file-upload" accept=".html,.htm" class="hidden" onchange="handleFileUpload(event)">
             </label>
         </div>
@@ -191,11 +191,13 @@
             const file = event.target.files[0];
             if (!file) return;
 
+            document.getElementById('upload-btn-text').innerText = "ANALYSE EN COURS...";
             updateStatus("DÉCRYPTAGE DES DONNÉES...");
             
             const reader = new FileReader();
             reader.onload = (e) => {
-                buildStoryGraph(e.target.result);
+                // Délai asynchrone pour laisser l'UI afficher le message de chargement
+                setTimeout(() => buildStoryGraph(e.target.result), 100);
             };
             reader.onerror = () => {
                 updateStatus("ERREUR LECTURE FICHIER", true);
@@ -206,32 +208,49 @@
         // 2. Construction de l'arborescence (Graph)
         function buildStoryGraph(htmlContent) {
             try {
+                updateStatus("PARSAGE DU DOM...");
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlContent, "text/html");
 
                 // Récupérer tous les chapitres générés par AO3
-                let chapters = doc.querySelectorAll('.chapter');
+                let chapters = Array.from(doc.querySelectorAll('.chapter'));
                 
-                // Fallback si le HTML a été exporté différemment
+                // Fallback 1 : si le HTML a été exporté différemment
                 if (chapters.length === 0) {
-                    chapters = doc.querySelectorAll('div[id^="chapter_"], div[id^="chapitre_"]');
+                    chapters = Array.from(doc.querySelectorAll('div[id^="chapter_"], div[id^="chapitre_"]'));
+                }
+
+                // Super-Fallback 2 : Si la structure est cassée, on cherche au moins le contenu de l'histoire
+                if (chapters.length === 0) {
+                    updateStatus("RECHERCHE AVANCÉE DES CHAPITRES...");
+                    const userstuffs = Array.from(doc.querySelectorAll('.userstuff'));
+                    if (userstuffs.length > 0) {
+                        chapters = userstuffs.map((us, i) => {
+                            const wrapper = document.createElement('div');
+                            wrapper.id = 'chapter_' + (i + 1);
+                            wrapper.appendChild(us.cloneNode(true));
+                            return wrapper;
+                        });
+                    }
                 }
 
                 if (chapters.length === 0) {
                     updateStatus("ÉCHEC: FORMAT INVALIDE", true);
-                    alert("Impossible de détecter la structure des chapitres. Avez-vous bien chargé le fichier HTML complet téléchargé depuis AO3 ?");
+                    alert("Impossible de détecter la structure des chapitres. Assurez-vous d'avoir téléchargé un HTML AO3.");
+                    document.getElementById('upload-btn-text').innerText = "RÉESSAYER";
                     return;
                 }
 
                 let firstChapId = null;
+                updateStatus("EXTRACTION DES DONNÉES (" + chapters.length + " NŒUDS)...");
 
-                chapters.forEach(chap => {
-                    const id = chap.id;
+                chapters.forEach((chap, index) => {
+                    const id = chap.id || 'chapter_' + (index + 1);
                     if (!firstChapId) firstChapId = id;
 
                     // Chercher le titre : balise heading ou class title
-                    const titleNode = chap.querySelector('.heading, .chapter-title');
-                    let titleText = titleNode ? titleNode.textContent.trim() : id;
+                    const titleNode = chap.querySelector('.heading, .chapter-title, h2, h3');
+                    let titleText = titleNode ? titleNode.textContent.trim() : `Chapitre ${index + 1}`;
                     
                     // Nettoyer les éventuels textes redondants de l'interface AO3
                     titleText = titleText.replace(/Chapter \d+/, '').replace(/^: /, '').trim();
@@ -257,7 +276,7 @@
                 
                 setTimeout(() => {
                     storySection.classList.remove('opacity-0');
-                    updateStatus("CONNEXION ÉTABLIE");
+                    updateStatus("CONNEXION ÉTABLIE - LECTURE");
                 }, 100);
 
                 // Démarrer sur le premier chapitre
@@ -267,6 +286,7 @@
                 console.error(error);
                 updateStatus("CORRUPTION SYSTÈME", true);
                 alert("Erreur lors de l'analyse : " + error.message);
+                document.getElementById('upload-btn-text').innerText = "RÉESSAYER";
             }
         }
 
@@ -316,15 +336,22 @@
                 links.forEach(link => {
                     const href = link.getAttribute('href');
                     
-                    // Si le lien pointe vers un autre chapitre (ex: #chapter_45)
-                    if (href && href.startsWith('#')) {
-                        link.classList.add('detroit-choice');
+                    // Tolérance max : Si le lien contient un '#' (ex: #chapter_45 ou fic.html#chapter_45)
+                    if (href && href.includes('#')) {
+                        const targetId = href.split('#')[1]; // Extraction de l'ID pur
                         
-                        link.onclick = (e) => {
-                            e.preventDefault();
-                            // Appel au prochain chapitre en enlevant le '#'
-                            playChapter(href.substring(1)); 
-                        };
+                        if (storyGraph[targetId]) {
+                            link.classList.add('detroit-choice');
+                            
+                            link.onclick = (e) => {
+                                e.preventDefault();
+                                playChapter(targetId); 
+                            };
+                        } else {
+                            // C'est un lien classique vers l'extérieur (ex: le profil de l'auteur)
+                            link.style.color = '#00e5ff';
+                            link.style.textDecoration = 'underline';
+                        }
                     }
                 });
 
