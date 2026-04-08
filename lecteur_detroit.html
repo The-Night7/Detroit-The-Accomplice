@@ -252,26 +252,54 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlContent, "text/html");
 
-                let chapters = Array.from(doc.querySelectorAll('.chapter'));
+                let chapterNodes = [];
                 
-                if (chapters.length === 0) {
-                    chapters = Array.from(doc.querySelectorAll('div[id^="chapter_"], div[id^="chapitre_"]'));
+                // Format 1 : Lecture en ligne standard
+                const webChapters = Array.from(doc.querySelectorAll('.chapter'));
+                if (webChapters.length > 0) {
+                    chapterNodes = webChapters;
+                } else {
+                    // Format 2 : HTML téléchargé via AO3 (Structure complexe)
+                    const container = doc.querySelector('#chapters') || doc.body;
+                    const userstuffs = Array.from(container.querySelectorAll('.userstuff'));
+                    
+                    userstuffs.forEach((us, i) => {
+                        // On évite les notes de l'auteur et le préface global
+                        if (us.closest('#endnotes') || us.closest('#afterword') || us.closest('#preface') || us.id === 'chapters') return;
+
+                        const wrapper = document.createElement('div');
+                        wrapper.id = 'chapter_' + (i + 1);
+
+                        let titleText = `Chapitre ${i + 1}`;
+                        let prev = us.previousElementSibling;
+                        
+                        // Remonter pour attraper le titre caché dans le bloc ".meta" précédent
+                        let limit = 5;
+                        while (prev && limit > 0) {
+                            if (prev.classList && prev.classList.contains('meta')) {
+                                const h = prev.querySelector('h2, h3, h1');
+                                if (h) titleText = h.textContent;
+                                break;
+                            } else if (prev.tagName && prev.tagName.match(/^H[1-6]$/i)) {
+                                titleText = prev.textContent;
+                                break;
+                            }
+                            prev = prev.previousElementSibling;
+                            limit--;
+                        }
+
+                        // On injecte manuellement le titre pour le parser à l'étape suivante
+                        const hNode = document.createElement('h2');
+                        hNode.className = 'chapter-title';
+                        hNode.textContent = titleText;
+                        wrapper.appendChild(hNode);
+                        
+                        wrapper.appendChild(us.cloneNode(true));
+                        chapterNodes.push(wrapper);
+                    });
                 }
 
-                if (chapters.length === 0) {
-                    updateStatus("RECHERCHE AVANCÉE DES CHAPITRES...");
-                    const userstuffs = Array.from(doc.querySelectorAll('.userstuff'));
-                    if (userstuffs.length > 0) {
-                        chapters = userstuffs.map((us, i) => {
-                            const wrapper = document.createElement('div');
-                            wrapper.id = 'chapter_' + (i + 1);
-                            wrapper.appendChild(us.cloneNode(true));
-                            return wrapper;
-                        });
-                    }
-                }
-
-                if (chapters.length === 0) {
+                if (chapterNodes.length === 0) {
                     updateStatus("ÉCHEC: FORMAT INVALIDE", true);
                     alert("Impossible de détecter la structure des chapitres. Assurez-vous d'avoir téléchargé un HTML AO3.");
                     resetGoButton();
@@ -279,16 +307,16 @@
                 }
 
                 let firstChapId = null;
-                updateStatus("EXTRACTION DES DONNÉES (" + chapters.length + " NŒUDS)...");
+                updateStatus("EXTRACTION DES DONNÉES (" + chapterNodes.length + " NŒUDS)...");
 
-                chapters.forEach((chap, index) => {
+                chapterNodes.forEach((chap, index) => {
                     const id = chap.id || 'chapter_' + (index + 1);
                     if (!firstChapId) firstChapId = id;
 
                     const titleNode = chap.querySelector('.heading, .chapter-title, h2, h3');
                     let titleText = titleNode ? titleNode.textContent.trim() : `Chapitre ${index + 1}`;
                     
-                    // Regex hyper permissive pour retirer "Chapter 1:", "1.", etc.
+                    // Nettoie agressivement "Chapter 1244:" pour n'avoir QUE "TRUTH"
                     titleText = titleText.replace(/^(Chapter|Chapitre)?\s*\d+[:.\-\s]*/i, '').trim();
 
                     const contentNode = chap.querySelector('.userstuff') || chap;
@@ -326,39 +354,28 @@
         // Helper ultra robuste pour lier le texte du choix au bon chapitre
         function findChapterByTitle(targetTitle) {
             const normalize = str => {
-                // 1. Retire le HTML caché (par ex <b>TRUTH</b> devient TRUTH)
+                // Purge totale des balises HTML et encodages parasites avant vérification
                 let plain = str.replace(/<[^>]*>?/gm, '');
-                // 2. Décode les entités HTML (par ex &nbsp;)
                 const txt = document.createElement('textarea');
                 txt.innerHTML = plain;
                 plain = txt.value;
-                // 3. Minuscule et suppression des caractères spéciaux
                 return plain.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '');
             };
 
             const targetNorm = normalize(targetTitle);
             if (!targetNorm || targetNorm.length < 2) return null;
             
-            // Étape A : Recherche exacte dans le titre du chapitre
+            // Étape A : Correspondance exacte
             for (let id in storyGraph) {
                 if (normalize(storyGraph[id].title) === targetNorm) {
                     return id;
                 }
             }
 
-            // Étape B : Recherche croisée (si le nom est un peu différent)
+            // Étape B : Inclusion partielle (ex: cible "pressureit" match avec chapitre "pressureitconnor")
             for (let id in storyGraph) {
                 const chapNorm = normalize(storyGraph[id].title);
                 if (chapNorm.length > 2 && (chapNorm.includes(targetNorm) || targetNorm.includes(chapNorm))) {
-                    return id;
-                }
-            }
-
-            // Étape C (Super-Fallback) : On cherche le texte du choix au TOUT DÉBUT du contenu du chapitre
-            for (let id in storyGraph) {
-                const contentStart = storyGraph[id].content.substring(0, 500); // Analyse les 500 premiers caractères
-                const contentNorm = normalize(contentStart);
-                if (contentNorm && contentNorm.includes(targetNorm)) {
                     return id;
                 }
             }
@@ -412,15 +429,14 @@
                 let html = chapter.content;
                 let choiceCount = 0;
 
-                // MAGIE : Auto-détection des choix sous forme de texte [Symbole][Titre du chapitre]
-                // Modifié pour tolérer du HTML entre les crochets et des espaces
+                // Auto-détection de la syntaxe [Symbole][Titre]
                 const choiceRegex = /\[([^\]]{1,30})\](?:[^\[\]]{0,30})\[([^\]]+)\]/gi;
                 
                 html = html.replace(choiceRegex, (match, symbol, choiceText) => {
                     const rawSymbol = symbol.replace(/<[^>]*>?/gm, '').trim();
                     const rawText = choiceText.replace(/<[^>]*>?/gm, '').trim();
 
-                    // Ignore les faux positifs comme [OBJECTIVE: EXTRACT CONFESSION]
+                    // Sécurité anti-faux-positifs
                     if (rawSymbol.toLowerCase().includes('objective')) return match;
                     
                     const targetChapId = findChapterByTitle(rawText);
@@ -431,15 +447,16 @@
                                     <span class="mr-4 text-[#00e5ff] font-bold text-xl inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText}
                                 </a>`;
                     }
-                    // Bouton inactif si le chapitre avec ce nom n'existe VRAIMENT pas
+                    
+                    // Alerte de lien brisé
                     return `<div class="p-4 my-2 border border-red-900 text-red-500 bg-red-900 bg-opacity-20 opacity-70 rounded">
-                                <span class="mr-4 inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText} <br><span class="text-sm opacity-80 mt-1 block">Système : Lien vers la mémoire "${rawText}" introuvable.</span>
+                                <span class="mr-4 inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText} <br><span class="text-sm opacity-80 mt-1 block">Lien bloqué : chapitre correspondant introuvable dans la mémoire.</span>
                             </div>`;
                 });
 
                 contentContainer.innerHTML = html;
 
-                // Récupération des liens classiques s'il y en a tout de même
+                // Récupération des liens classiques natifs s'il y en a
                 const links = contentContainer.querySelectorAll('a:not(.detroit-choice)');
                 links.forEach(link => {
                     const href = link.getAttribute('href');
@@ -459,7 +476,7 @@
                     }
                 });
 
-                // Gérer les cas sans choix (Fin ou premier chapitre)
+                // GO vers le chapitre suivant si aucun bouton trouvé
                 const keys = Object.keys(storyGraph);
                 const currentIndex = keys.indexOf(chapterId);
 
