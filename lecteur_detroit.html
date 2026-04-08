@@ -354,7 +354,7 @@
                     const contentNode = chap.querySelector('.userstuff') || chap;
                     let innerHtmlContent = contentNode.innerHTML;
 
-                    // NOUVEAU : Remplacement du YN600 par le nom du joueur si renseigné
+                    // Remplacement du YN600 par le nom du joueur si renseigné
                     if (customName !== "") {
                         // On ajoute un petit style CyberLife au nom pour l'immersion
                         const nameSpan = `<span class="text-[#00e5ff] font-bold drop-shadow-[0_0_5px_rgba(0,229,255,0.8)]">${customName}</span>`;
@@ -395,13 +395,22 @@
 
         // Helper ultra robuste pour lier le texte du choix au bon chapitre
         function findChapterByTitle(targetTitle) {
-            const normalize = str => {
-                // Purge totale des balises HTML et encodages parasites avant vérification
+            // Permet d'extraire un texte pur des balises HTML cachées et entités (&amp;)
+            const getPlain = str => {
                 let plain = str.replace(/<[^>]*>?/gm, '');
                 const txt = document.createElement('textarea');
                 txt.innerHTML = plain;
-                plain = txt.value;
-                return plain.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '');
+                return txt.value.trim();
+            };
+
+            // Normalisation classique
+            const normalize = str => {
+                return getPlain(str).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '');
+            };
+
+            // SQUELETTE CONSONANTIQUE (L'arme absolue contre les textes glitchés comme CR℅WL A+AY)
+            const getConsonants = str => {
+                return getPlain(str).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z]/g, '').replace(/[aeiou]/g, '');
             };
 
             const targetNorm = normalize(targetTitle);
@@ -414,7 +423,17 @@
                 }
             }
 
-            // Étape B : Inclusion partielle (ex: cible "pressureit" match avec chapitre "pressureitconnor")
+            // Étape B : Squelette Consonantique (CR℅WL A+AY = crwly, CRAWL AWAY = crwly -> MATCH !)
+            const targetCons = getConsonants(targetTitle);
+            if (targetCons.length >= 3) {
+                for (let id in storyGraph) {
+                    if (getConsonants(storyGraph[id].title) === targetCons) {
+                        return id;
+                    }
+                }
+            }
+
+            // Étape C : Inclusion partielle (ex: cible "pressureit" match avec chapitre "pressureitconnor")
             for (let id in storyGraph) {
                 const chapNorm = normalize(storyGraph[id].title);
                 if (chapNorm.length > 2 && (chapNorm.includes(targetNorm) || targetNorm.includes(chapNorm))) {
@@ -422,31 +441,27 @@
                 }
             }
 
-            // Étape C : Algorithme Fuzzy (Levenshtein) pour les textes "Glitchés" type CR℅WL A+AY
-            const targetFuzzy = targetTitle.toLowerCase().trim();
+            // Étape D : Algorithme Fuzzy (Levenshtein) de dernier recours
+            const targetFuzzy = getPlain(targetTitle).toLowerCase();
             let bestMatch = null;
             let bestDist = Infinity;
             
             for (let id in storyGraph) {
-                const chapFuzzy = storyGraph[id].title.toLowerCase().trim();
+                const chapFuzzy = getPlain(storyGraph[id].title).toLowerCase();
                 const dist = getLevenshteinDistance(targetFuzzy, chapFuzzy);
-                
-                // Tolérance : On autorise environ 35% de caractères "glitchés"
-                const maxErrors = Math.ceil(targetFuzzy.length * 0.35); 
+                const maxErrors = Math.ceil(targetFuzzy.length * 0.40); // Tolérance de 40%
                 
                 if (dist <= maxErrors && dist < bestDist) {
                     bestDist = dist;
                     bestMatch = id;
                 }
             }
-            
             if (bestMatch) return bestMatch;
 
-            // Étape D : Fallback dans le texte
+            // Étape E : Fallback dans le texte lui-même (si l'auteur a oublié le titre du chapitre)
             for (let id in storyGraph) {
-                const contentStart = storyGraph[id].content.substring(0, 500); 
-                const contentNorm = normalize(contentStart);
-                if (contentNorm && contentNorm.includes(targetNorm)) {
+                const contentStart = storyGraph[id].content.substring(0, 800); 
+                if (normalize(contentStart).includes(targetNorm)) {
                     return id;
                 }
             }
@@ -519,7 +534,7 @@
                                 </a>`;
                     }
                     
-                    // Alerte de lien brisé
+                    // Alerte de lien brisé (ne devrait presque plus arriver !)
                     return `<div class="p-4 my-2 border border-red-900 text-red-500 bg-red-900 bg-opacity-20 opacity-70 rounded">
                                 <span class="mr-4 inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText} <br><span class="text-sm opacity-80 mt-1 block">Lien bloqué : chapitre correspondant introuvable dans la mémoire.</span>
                             </div>`;
