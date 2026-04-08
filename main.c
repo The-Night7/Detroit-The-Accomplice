@@ -47,6 +47,7 @@
 #include <time.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <ctype.h> // Assurez-vous d'avoir ceci tout en haut pour isspace()
 
 /* Maximum number of choices per page.  Adjust if the story uses more. */
 #define MAX_CHOICES 16
@@ -80,6 +81,17 @@ static int load_game_data(const char *filename);
 static int find_page_index(const char *title);
 static void render_text_center(SDL_Renderer *renderer, TTF_Font *font,
                                const char *text, int y, SDL_Color color);
+
+// 1. Fonction pour retirer les espaces et retours à la ligne parasites
+void trim_string(char *str) {
+    if (!str) return;
+    char *end;
+    while (isspace((unsigned char)*str)) str++;
+    if (*str == 0) return;
+    end = str + strlen(str) - 1;
+    while (end > str && isspace((unsigned char)*end)) end--;
+    end[1] = '\0';
+}
 
 /* Helper: trim leading and trailing whitespace in place. */
 static char *trim_whitespace(char *str) {
@@ -157,13 +169,37 @@ char* lire_chapitre(const char* nom_fichier) {
     return buffer;
 }
 
+// 3. Système de Sauvegarde basique (stocke juste le numéro de la page)
+void save_game(int current_index) {
+    FILE *f = fopen("savegame.txt", "w");
+    if (f) {
+        fprintf(f, "%d\n", current_index);
+        fclose(f);
+        printf("[Sauvegarde] Partie sauvée à la page %d.\n", current_index);
+}
+}
+
+int load_game(int current_index) {
+    FILE *f = fopen("savegame.txt", "r");
+    int loaded_index = current_index; // Garde l'ancienne page si échec
+    if (f) {
+        if (fscanf(f, "%d", &loaded_index) == 1) {
+            printf("[Chargement] Partie chargée à la page %d.\n", loaded_index);
+        }
+        fclose(f);
+        } else {
+        printf("[Erreur] Fichier de sauvegarde introuvable.\n");
+        }
+    return loaded_index;
+    }
+
 /* Load chapters from a directory of individual chapter files. */
 static int load_chapters_dir(const char *dir_path) {
     DIR *dir = opendir(dir_path);
     if (!dir) {
         fprintf(stderr, "Could not open directory %s: %s\n", dir_path, strerror(errno));
-    return -1;
-}
+        return -1;
+    }
     struct dirent *entry;
     /* We'll store file names first so we can sort them for consistent order */
     char **filenames = NULL;
@@ -187,13 +223,13 @@ static int load_chapters_dir(const char *dir_path) {
         filenames = realloc(filenames, sizeof(char*) * (count + 1));
         filenames[count] = strdup(name);
         count++;
-    }
+        }
     closedir(dir);
     if (count == 0) {
         free(filenames);
         fprintf(stderr, "No chapter files found in %s\n", dir_path);
-        return -1;
-    }
+    return -1;
+}
     /* Sort filenames alphabetically to ensure deterministic ordering */
     for (size_t i = 0; i < count; i++) {
         for (size_t j = i + 1; j < count; j++) {
@@ -546,6 +582,15 @@ int main(int argc, char *argv[]) {
                                 fclose(rf);
                             }
                         }
+                        break;
+                    case SDLK_s:
+                        /* Save game */
+                        save_game(current_index);
+                        break;
+                    case SDLK_c:
+                        /* Load game */
+                        current_index = load_game(current_index);
+                        waiting_for_choice = 0; // Exit choice loop to display loaded page
                         break;
                     case SDLK_q:
                         /* Quit the program */

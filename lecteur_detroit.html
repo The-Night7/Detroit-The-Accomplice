@@ -495,9 +495,10 @@
                 let html = chapter.content;
                 let choiceCount = 0;
 
-                // NOUVEAU REGEX : Matche soit [X] [CRAWL], soit juste [X] CRAWL (ultra permissif)
+                // Amélioration du regex pour capturer plus de formats de choix
                 const choiceRegex = /\[([^\]]{1,10})\]\s*(?:<[^>]+>)*\s*(?:\[([^\]]+)\]|([^<\[\n]+))/gi;
                 
+                // Traitement des choix avec le format [X] [TEXTE] ou [X] TEXTE
                 html = html.replace(choiceRegex, (match, symbol, bracketed, plain) => {
                     const choiceText = bracketed || plain;
                     if (!choiceText || choiceText.trim().length < 2) return match;
@@ -531,27 +532,54 @@
                             </div>`;
                 });
 
-                contentContainer.innerHTML = html;
-
-                // Récupération des vrais liens HTML (si jamais il y en a quand même)
-                const links = contentContainer.querySelectorAll('a:not(.detroit-choice)');
-                links.forEach(link => {
+                // Nouveau traitement pour les liens standard HTML qui pourraient être des choix
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                
+                // Traiter tous les liens qui ne sont pas déjà des choix Detroit
+                const allLinks = tempDiv.querySelectorAll('a:not(.detroit-choice)');
+                allLinks.forEach(link => {
                     const href = link.getAttribute('href');
-                    if (href && href.includes('#')) {
-                        const targetId = href.split('#')[1]; 
-                        if (storyGraph[targetId]) {
+                    const linkText = link.textContent.trim();
+                    
+                    // Vérifier si c'est un lien interne avec ancre ou si le texte correspond à un chapitre
+                    if ((href && href.includes('#')) || linkText.length > 2) {
+                        let targetId = null;
+                        
+                        // Essayer d'abord l'ID de l'ancre si disponible
+                        if (href && href.includes('#')) {
+                            targetId = href.split('#')[1];
+                            if (!storyGraph[targetId]) {
+                                targetId = null;
+                            }
+                        }
+                        
+                        // Si pas d'ID valide par l'ancre, essayer par le texte du lien
+                        if (!targetId && linkText.length > 2) {
+                            targetId = findChapterByTitle(linkText);
+                        }
+                        
+                        if (targetId) {
+                            // Transformer en choix Detroit
                             link.classList.add('detroit-choice');
+                            link.setAttribute('onclick', `event.preventDefault(); playChapter('${targetId}')`);
+                            link.removeAttribute('href'); // Enlever l'attribut href pour éviter la navigation par défaut
                             choiceCount++;
-                            link.onclick = (e) => {
-                                e.preventDefault();
-                                playChapter(targetId); 
-                            };
-                        } else {
+                        } else if (href && !href.startsWith('javascript:')) {
+                            // Garder les liens externes mais avec style spécial
                             link.style.color = '#00e5ff';
                             link.style.textDecoration = 'underline';
+                            link.classList.add('external-link');
+                            // Ouvrir dans un nouvel onglet
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
                         }
                     }
                 });
+                
+                // Mettre à jour le HTML avec les modifications
+                html = tempDiv.innerHTML;
+                contentContainer.innerHTML = html;
 
                 // Génère le bouton GO de secours si on arrive dans un chapitre d'intro (comme le chapitre 1) ou une fin
                 const keys = Object.keys(storyGraph);
