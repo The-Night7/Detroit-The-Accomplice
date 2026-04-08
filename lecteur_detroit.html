@@ -288,8 +288,8 @@
                     const titleNode = chap.querySelector('.heading, .chapter-title, h2, h3');
                     let titleText = titleNode ? titleNode.textContent.trim() : `Chapitre ${index + 1}`;
                     
-                    // On supprime "Chapter XXX: " pour n'avoir que le nom exact du choix
-                    titleText = titleText.replace(/Chapter\s+\d+[:.\-\s]*/i, '').trim();
+                    // Regex hyper permissive pour retirer "Chapter 1:", "1.", etc.
+                    titleText = titleText.replace(/^(Chapter|Chapitre)?\s*\d+[:.\-\s]*/i, '').trim();
 
                     const contentNode = chap.querySelector('.userstuff') || chap;
                     
@@ -323,24 +323,46 @@
             }
         }
 
-        // Helper pour retrouver l'ID d'un chapitre à partir du texte d'un choix
+        // Helper ultra robuste pour lier le texte du choix au bon chapitre
         function findChapterByTitle(targetTitle) {
-            // Retire les caractères spéciaux pour un matching parfait
-            const normalize = str => str.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const normalize = str => {
+                // 1. Retire le HTML caché (par ex <b>TRUTH</b> devient TRUTH)
+                let plain = str.replace(/<[^>]*>?/gm, '');
+                // 2. Décode les entités HTML (par ex &nbsp;)
+                const txt = document.createElement('textarea');
+                txt.innerHTML = plain;
+                plain = txt.value;
+                // 3. Minuscule et suppression des caractères spéciaux
+                return plain.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '');
+            };
+
             const targetNorm = normalize(targetTitle);
+            if (!targetNorm || targetNorm.length < 2) return null;
             
-            // Recherche exacte d'abord
+            // Étape A : Recherche exacte dans le titre du chapitre
             for (let id in storyGraph) {
                 if (normalize(storyGraph[id].title) === targetNorm) {
                     return id;
                 }
             }
-            // Recherche partielle en secours
+
+            // Étape B : Recherche croisée (si le nom est un peu différent)
             for (let id in storyGraph) {
-                if (normalize(storyGraph[id].title).includes(targetNorm)) {
+                const chapNorm = normalize(storyGraph[id].title);
+                if (chapNorm.length > 2 && (chapNorm.includes(targetNorm) || targetNorm.includes(chapNorm))) {
                     return id;
                 }
             }
+
+            // Étape C (Super-Fallback) : On cherche le texte du choix au TOUT DÉBUT du contenu du chapitre
+            for (let id in storyGraph) {
+                const contentStart = storyGraph[id].content.substring(0, 500); // Analyse les 500 premiers caractères
+                const contentNorm = normalize(contentStart);
+                if (contentNorm && contentNorm.includes(targetNorm)) {
+                    return id;
+                }
+            }
+
             return null;
         }
 
@@ -391,24 +413,27 @@
                 let choiceCount = 0;
 
                 // MAGIE : Auto-détection des choix sous forme de texte [Symbole][Titre du chapitre]
-                // L'auteur a tapé ça : [□][PRESSURE IT] au lieu de faire des liens HTML !
-                const choiceRegex = /\[([^\]]{1,20})\]\s*\[([^\]]+)\]/g;
+                // Modifié pour tolérer du HTML entre les crochets et des espaces
+                const choiceRegex = /\[([^\]]{1,30})\](?:[^\[\]]{0,30})\[([^\]]+)\]/gi;
                 
                 html = html.replace(choiceRegex, (match, symbol, choiceText) => {
-                    // On ne modifie pas les textes comme [OBJECTIVE: EXTRACT CONFESSION]
-                    if (symbol.toLowerCase().includes('objective')) return match;
+                    const rawSymbol = symbol.replace(/<[^>]*>?/gm, '').trim();
+                    const rawText = choiceText.replace(/<[^>]*>?/gm, '').trim();
+
+                    // Ignore les faux positifs comme [OBJECTIVE: EXTRACT CONFESSION]
+                    if (rawSymbol.toLowerCase().includes('objective')) return match;
                     
-                    const targetChapId = findChapterByTitle(choiceText);
+                    const targetChapId = findChapterByTitle(rawText);
                     
                     if (targetChapId) {
                         choiceCount++;
                         return `<a class="detroit-choice w-full text-left" onclick="event.preventDefault(); playChapter('${targetChapId}')">
-                                    <span class="mr-4 text-[#00e5ff] font-bold text-xl inline-block w-8 text-center">[${symbol}]</span> ${choiceText}
+                                    <span class="mr-4 text-[#00e5ff] font-bold text-xl inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText}
                                 </a>`;
                     }
-                    // Bouton inactif si le chapitre avec ce nom n'existe pas
-                    return `<div class="p-4 my-2 border border-red-900 text-red-500 bg-red-900 bg-opacity-20 opacity-70">
-                                <span class="mr-4 inline-block w-8 text-center">[${symbol}]</span> ${choiceText} <span class="text-xs ml-2">(Erreur mémorielle : Chapitre manquant)</span>
+                    // Bouton inactif si le chapitre avec ce nom n'existe VRAIMENT pas
+                    return `<div class="p-4 my-2 border border-red-900 text-red-500 bg-red-900 bg-opacity-20 opacity-70 rounded">
+                                <span class="mr-4 inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText} <br><span class="text-sm opacity-80 mt-1 block">Système : Lien vers la mémoire "${rawText}" introuvable.</span>
                             </div>`;
                 });
 
