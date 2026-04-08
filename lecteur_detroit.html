@@ -137,6 +137,13 @@
             <h2 class="text-3xl font-bold mb-4 text-white glow-text uppercase tracking-wider">Initialisation Mentale</h2>
             <p class="mb-8 text-gray-400 text-lg">Veuillez insérer le fichier de mémoire source <br><span class="font-mono text-[#00e5ff] mt-2 inline-block bg-black px-2 py-1 rounded">Detroit_The_Accomplice.html</span><br> pour reconstruire l'arborescence des événements.</p>
 
+            <!-- NOUVEAU: Champ pour renommer YN600 -->
+            <div class="mb-8 w-full max-w-md flex flex-col gap-2">
+                <label class="text-[#00e5ff] text-sm font-bold uppercase tracking-widest text-left" for="player-name">Identité du modèle (Optionnel)</label>
+                <input id="player-name" type="text" placeholder="Ex: Connor, Alice... (Remplace YN600)" class="w-full bg-black bg-opacity-50 border border-[#00e5ff] text-white p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#00e5ff] focus:bg-gray-900 transition-all font-mono">
+                <p class="text-gray-500 text-xs text-left">Laissez vide pour conserver l'appellation d'origine "YN600".</p>
+            </div>
+
             <div class="flex flex-col items-center gap-4 w-full">
                 <label class="cursor-pointer bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold py-3 px-10 rounded uppercase tracking-widest transition-all duration-300">
                     <span id="upload-btn-text">Lier la mémoire</span>
@@ -186,6 +193,28 @@
         let storyGraph = {};
         let historyStack = [];
         let selectedFile = null;
+
+        // Algorithme de distance de Levenshtein (Fuzzy Matching pour les textes glitchés)
+        function getLevenshteinDistance(a, b) {
+            if (a.length === 0) return b.length;
+            if (b.length === 0) return a.length;
+            const matrix = [];
+            for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+            for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1, 
+                            Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1) 
+                        );
+                    }
+                }
+            }
+            return matrix[b.length][a.length];
+        }
 
         function updateStatus(text, isAlert = false) {
             const statusEl = document.getElementById('system-status');
@@ -252,6 +281,9 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlContent, "text/html");
 
+                // Récupération du nom personnalisé
+                const customName = document.getElementById('player-name').value.trim();
+
                 let chapterNodes = [];
                 
                 // Format 1 : Lecture en ligne standard
@@ -316,15 +348,25 @@
                     const titleNode = chap.querySelector('.heading, .chapter-title, h2, h3');
                     let titleText = titleNode ? titleNode.textContent.trim() : `Chapitre ${index + 1}`;
                     
-                    // Nettoie agressivement "Chapter 1244:" pour n'avoir QUE "TRUTH"
+                    // Nettoie agressivement "Chapter 1244:" pour n'avoir QUE le nom du chapitre
                     titleText = titleText.replace(/^(Chapter|Chapitre)?\s*\d+[:.\-\s]*/i, '').trim();
 
                     const contentNode = chap.querySelector('.userstuff') || chap;
+                    let innerHtmlContent = contentNode.innerHTML;
+
+                    // NOUVEAU : Remplacement du YN600 par le nom du joueur si renseigné
+                    if (customName !== "") {
+                        // On ajoute un petit style CyberLife au nom pour l'immersion
+                        const nameSpan = `<span class="text-[#00e5ff] font-bold drop-shadow-[0_0_5px_rgba(0,229,255,0.8)]">${customName}</span>`;
+                        innerHtmlContent = innerHtmlContent.replace(/YN600/gi, nameSpan);
+                        // On capture aussi Y/N au cas où il y en aurait pour palier aux potentielles erreurs de frappe de l'auteur
+                        innerHtmlContent = innerHtmlContent.replace(/\[Y\/N\]/gi, nameSpan);
+                    }
                     
                     storyGraph[id] = {
                         id: id,
                         title: titleText || "SANS TITRE",
-                        content: contentNode.innerHTML
+                        content: innerHtmlContent
                     };
                 });
 
@@ -376,6 +418,35 @@
             for (let id in storyGraph) {
                 const chapNorm = normalize(storyGraph[id].title);
                 if (chapNorm.length > 2 && (chapNorm.includes(targetNorm) || targetNorm.includes(chapNorm))) {
+                    return id;
+                }
+            }
+
+            // Étape C : Algorithme Fuzzy (Levenshtein) pour les textes "Glitchés" type CR℅WL A+AY
+            const targetFuzzy = targetTitle.toLowerCase().trim();
+            let bestMatch = null;
+            let bestDist = Infinity;
+            
+            for (let id in storyGraph) {
+                const chapFuzzy = storyGraph[id].title.toLowerCase().trim();
+                const dist = getLevenshteinDistance(targetFuzzy, chapFuzzy);
+                
+                // Tolérance : On autorise environ 35% de caractères "glitchés"
+                const maxErrors = Math.ceil(targetFuzzy.length * 0.35); 
+                
+                if (dist <= maxErrors && dist < bestDist) {
+                    bestDist = dist;
+                    bestMatch = id;
+                }
+            }
+            
+            if (bestMatch) return bestMatch;
+
+            // Étape D : Fallback dans le texte
+            for (let id in storyGraph) {
+                const contentStart = storyGraph[id].content.substring(0, 500); 
+                const contentNorm = normalize(contentStart);
+                if (contentNorm && contentNorm.includes(targetNorm)) {
                     return id;
                 }
             }
