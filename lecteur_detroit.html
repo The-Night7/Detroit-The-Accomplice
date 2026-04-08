@@ -109,6 +109,12 @@
         ::-webkit-scrollbar-track { background: var(--cyber-bg); }
         ::-webkit-scrollbar-thumb { background: var(--cyber-dark); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--cyber-blue); }
+
+        /* Modal custom pour REPLACE */
+        #replace-modal {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative">
@@ -129,40 +135,20 @@
 
     <main class="flex-grow flex flex-col items-center justify-start p-6 z-10 w-full max-w-4xl mx-auto relative pt-12">
 
-        <!-- Écran de Configuration du Système -->
+        <!-- Écran de Chargement Immédiat -->
         <div id="upload-section" class="w-full cyber-panel p-12 rounded-lg mt-10 flex flex-col items-center text-center transition-opacity duration-500">
-            
             <div class="mb-6 w-16 h-16 rounded-full border border-[#00e5ff] flex justify-center items-center animate-pulse">
                 <span class="text-[#00e5ff] text-2xl font-bold">!</span>
             </div>
             <h2 class="text-3xl font-bold mb-4 text-white glow-text uppercase tracking-wider">Initialisation Mentale</h2>
-            
-            <!-- ÉTAPE 1 : Fichier -->
-            <div id="step-1" class="w-full flex flex-col items-center">
-                <p class="mb-8 text-gray-400 text-lg">Veuillez insérer le fichier de mémoire source <br><span class="font-mono text-[#00e5ff] mt-2 inline-block bg-black px-2 py-1 rounded">Detroit_The_Accomplice.html</span><br> pour reconstruire l'arborescence des événements.</p>
-                <label class="cursor-pointer bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold py-3 px-10 rounded uppercase tracking-widest transition-all duration-300">
+            <p class="mb-8 text-gray-400 text-lg">Veuillez insérer le fichier de mémoire source <br><span class="font-mono text-[#00e5ff] mt-2 inline-block bg-black px-2 py-1 rounded">Detroit_The_Accomplice.html</span></p>
+
+            <div class="flex flex-col items-center gap-4 w-full">
+                <label id="upload-label" class="cursor-pointer bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] hover:bg-[#00e5ff] hover:text-black font-bold py-3 px-10 rounded uppercase tracking-widest transition-all duration-300">
                     <span id="upload-btn-text">Lier la mémoire</span>
                     <input type="file" id="file-upload" accept=".html,.htm" class="hidden" onchange="handleFileSelect(event)">
                 </label>
             </div>
-
-            <!-- ÉTAPE 2 : Nom + Go (Caché au départ) -->
-            <div id="step-2" class="hidden w-full max-w-md flex-col items-center gap-6 mt-4">
-                <div class="w-full text-left p-3 bg-black bg-opacity-40 border border-[#00e5ff] border-opacity-30 rounded">
-                    <p id="file-name-display" class="text-[#00e5ff] font-mono text-sm"></p>
-                </div>
-
-                <div class="w-full flex flex-col gap-2">
-                    <label class="text-[#00e5ff] text-sm font-bold uppercase tracking-widest text-left" for="player-name">Identité du modèle (Optionnel)</label>
-                    <input id="player-name" type="text" placeholder="Ex: Connor, Alice... (Remplace YN600)" class="w-full bg-black bg-opacity-50 border border-[#00e5ff] text-white p-3 rounded focus:outline-none focus:ring-2 focus:ring-[#00e5ff] focus:bg-gray-900 transition-all font-mono">
-                    <p class="text-gray-500 text-xs text-left">Le système remplacera automatiquement "YN600" et "Y/N". Laissez vide pour garder l'original.</p>
-                </div>
-
-                <button id="go-btn" onclick="startEngine()" class="mt-4 bg-[#00e5ff] text-black hover:bg-white hover:shadow-[0_0_20px_#00e5ff] font-bold py-4 px-20 rounded uppercase tracking-widest text-xl transition-all duration-300 w-full">
-                    DÉMARRER LA SIMULATION
-                </button>
-            </div>
-
         </div>
 
         <!-- Section de Lecture (Histoire) -->
@@ -192,41 +178,45 @@
 
     </main>
 
+    <!-- Modal pour l'action REPLACE -->
+    <div id="replace-modal" class="fixed inset-0 z-50 hidden flex-col items-center justify-center">
+        <div class="cyber-panel p-8 rounded-lg max-w-md w-full border border-[#00e5ff]">
+            <h3 class="text-2xl text-[#00e5ff] font-bold uppercase mb-4 tracking-widest glow-text">Nouvelle Identité</h3>
+            <p class="text-gray-300 mb-6 font-mono text-sm">Action "REPLACE" détectée. Entrez le nom qui remplacera YN600 de manière rétroactive dans la mémoire système.</p>
+            <input type="text" id="replace-input" placeholder="Ex: Connor" class="w-full bg-black bg-opacity-50 border border-[#00e5ff] text-white p-3 rounded focus:outline-none font-mono mb-6">
+            <div class="flex justify-end gap-4">
+                <button onclick="closeReplaceModal()" class="text-gray-500 hover:text-white uppercase font-bold text-sm">Annuler</button>
+                <button onclick="confirmReplace()" class="bg-[#00e5ff] text-black hover:bg-white px-6 py-2 rounded font-bold uppercase tracking-widest transition-all">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="w-full p-4 border-t border-gray-900 text-center text-gray-600 text-xs font-mono z-40 relative">
-        LOGICIEL LECTEUR CYBERLIFE v1.1 • SYSTÈME DE CORRECTION ALGORITHMIQUE ACTIF
+        LOGICIEL LECTEUR CYBERLIFE v2.0 • ALGORITHME DE RÉSOLUTION FUZZY & COMMANDES SYSTÈMES
     </footer>
 
     <script>
         let storyGraph = {};
         let historyStack = [];
-        let selectedFile = null;
 
-        // ALGORITHME DE FOUILLE OPTIMISÉ (Gliding Window Levenshtein)
-        // Permet de matcher "cr℅wl a+ay" avec "CRAWL AWAY" sans aucun problème.
-        function findSubstringDistance(target, text) {
-            const n = target.length;
-            const m = text.length;
-            if (n === 0) return 0;
-            if (m === 0) return n;
-            
-            let curr = new Array(n + 1).fill(0).map((_, i) => i);
-            let prev = new Array(n + 1).fill(0);
-            let min_dist = Infinity;
-
-            for (let j = 1; j <= m; j++) {
-                for (let i = 0; i <= n; i++) prev[i] = curr[i];
-                curr[0] = 0; // Le coût pour commencer n'importe où dans le texte est 0
-                for (let i = 1; i <= n; i++) {
-                    const cost = target[i - 1] === text[j - 1] ? 0 : 1;
-                    curr[i] = Math.min(
-                        curr[i - 1] + 1,      // Délétion
-                        prev[i] + 1,          // Insertion
-                        prev[i - 1] + cost    // Substitution
-                    );
+        // ALGORITHME DE LEVENSHTEIN (Fuzzy Matching pour les textes glitchés)
+        function getLevenshteinDistance(a, b) {
+            const matrix = [];
+            for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+            for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1, 
+                            Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1) 
+                        );
+                    }
                 }
-                if (curr[n] < min_dist) min_dist = curr[n];
             }
-            return min_dist;
+            return matrix[b.length][a.length];
         }
 
         function updateStatus(text, isAlert = false) {
@@ -241,29 +231,14 @@
             }
         }
 
-        // 1. Sélection du fichier (Fait apparaître l'étape 2)
+        // 1. Sélection et exécution instantanée
         function handleFileSelect(event) {
             const file = event.target.files[0];
             if (!file) return;
 
-            selectedFile = file;
-            
-            document.getElementById('step-1').classList.add('hidden');
-            document.getElementById('step-2').classList.remove('hidden');
-            document.getElementById('step-2').classList.add('flex');
-            
-            document.getElementById('file-name-display').innerText = "> Mémoire connectée : " + file.name;
-            updateStatus("EN ATTENTE DES PARAMÈTRES...");
-        }
-
-        // 2. Déclenchement de la lecture
-        function startEngine() {
-            if (!selectedFile) return;
-
-            const goBtn = document.getElementById('go-btn');
-            goBtn.innerText = "ANALYSE EN COURS...";
-            goBtn.disabled = true;
-            goBtn.classList.add('opacity-50', 'cursor-wait');
+            const uploadLabel = document.getElementById('upload-label');
+            uploadLabel.classList.add('opacity-50', 'cursor-wait');
+            document.getElementById('upload-btn-text').innerText = "ANALYSE EN COURS...";
 
             updateStatus("DÉCRYPTAGE DES DONNÉES...");
             
@@ -273,21 +248,19 @@
             };
             reader.onerror = () => {
                 updateStatus("ERREUR LECTURE FICHIER", true);
-                goBtn.innerText = "RÉESSAYER";
-                goBtn.disabled = false;
-                goBtn.classList.remove('opacity-50', 'cursor-wait');
+                uploadLabel.classList.remove('opacity-50', 'cursor-wait');
+                document.getElementById('upload-btn-text').innerText = "RÉESSAYER";
             };
-            reader.readAsText(selectedFile);
+            reader.readAsText(file);
         }
 
-        // 3. Construction de l'arborescence
+        // 2. Construction de l'arborescence (Graph)
         function buildStoryGraph(htmlContent) {
             try {
                 updateStatus("PARSAGE DU DOM...");
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlContent, "text/html");
 
-                const customName = document.getElementById('player-name').value.trim();
                 let chapterNodes = [];
                 
                 const webChapters = Array.from(doc.querySelectorAll('.chapter'));
@@ -350,23 +323,15 @@
                     const contentNode = chap.querySelector('.userstuff') || chap;
                     let innerHtmlContent = contentNode.innerHTML;
 
-                    // LE FAMEUX REPLACE DU NOM DE L'UTILISATEUR
-                    if (customName !== "") {
-                        const nameSpan = `<span class="text-[#00e5ff] font-bold drop-shadow-[0_0_5px_rgba(0,229,255,0.8)]">${customName}</span>`;
-                        innerHtmlContent = innerHtmlContent.replace(/YN600/g, nameSpan);
-                        innerHtmlContent = innerHtmlContent.replace(/yn600/g, nameSpan);
-                        innerHtmlContent = innerHtmlContent.replace(/\[Y\/N\]/gi, nameSpan);
-                        innerHtmlContent = innerHtmlContent.replace(/Y\/N/gi, nameSpan);
-                    }
-
-                    // On crée une version plain-text du tout début du chapitre pour aider le scanner si le titre foire
+                    // On génère du preview en texte pur pour pallier les éventuels titres manquants
                     const plainText = contentNode.textContent.toLowerCase().replace(/\s+/g, ' ').trim();
                     const previewText = plainText.substring(0, 200).replace(/^(chapter|chapitre)?\s*\d+[:.\-\s]*/i, '').trim();
                     
                     storyGraph[id] = {
                         id: id,
                         title: titleText || "SANS TITRE",
-                        content: innerHtmlContent,
+                        originalContent: innerHtmlContent, // Sauvegarde vierge pour le futur REPLACE
+                        content: innerHtmlContent,         // Contenu affiché actuellement
                         previewText: previewText
                     };
                 });
@@ -390,43 +355,102 @@
                 console.error(error);
                 updateStatus("CORRUPTION SYSTÈME", true);
                 alert("Erreur lors de l'analyse : " + error.message);
+                document.getElementById('upload-label').classList.remove('opacity-50', 'cursor-wait');
+                document.getElementById('upload-btn-text').innerText = "RÉESSAYER";
             }
         }
 
-        // L'ARME ABSOLUE POUR RETROUVER LES TITRES CASSÉS
+        // L'ARME ABSOLUE POUR RETROUVER LES TITRES GLITCHÉS (Levenshtein avec 45% de tolérance d'erreur)
         function findChapterByTitle(targetTitle) {
-            const rawTarget = targetTitle.toLowerCase().trim();
-            if (rawTarget.length < 2) return null;
+            const getPlain = str => {
+                let plain = str.replace(/<[^>]*>?/gm, '');
+                const txt = document.createElement('textarea');
+                txt.innerHTML = plain;
+                return txt.value.trim();
+            };
+
+            const targetPlain = getPlain(targetTitle).toLowerCase();
+            if (targetPlain.length < 2) return null;
 
             let bestMatch = null;
             let bestScore = Infinity;
-
-            // Tolérance d'erreur calculée (autorise 35% de lettres glitchées dans un choix)
-            const maxErrors = Math.ceil(rawTarget.length * 0.35);
+            // Tolérance d'erreur extrêmement large (jusqu'à 45% du mot peut être remplacé par des glitchs #,&,℅,+)
+            const maxErrors = Math.ceil(targetPlain.length * 0.45);
 
             for (let id in storyGraph) {
-                const chap = storyGraph[id];
+                const chapTitle = getPlain(storyGraph[id].title).toLowerCase();
                 
-                const titleDist = findSubstringDistance(rawTarget, chap.title.toLowerCase());
-                
-                // Si ce n'est pas parfait dans le titre, on fouille dans le début du chapitre !
-                let dist = titleDist;
-                if (dist > 0) {
-                    const previewDist = findSubstringDistance(rawTarget, chap.previewText);
-                    if (previewDist < dist) dist = previewDist;
+                // Match exact
+                if (chapTitle === targetPlain) return id;
+
+                // Match d'inclusion (si un bout du titre est le même)
+                if (chapTitle.length > 3 && (chapTitle.includes(targetPlain) || targetPlain.includes(chapTitle))) {
+                    return id;
                 }
 
-                if (dist < bestScore && dist <= maxErrors) {
+                // Match algorithmique Fuzzy Levenshtein (le vrai sauveur des glitches)
+                const dist = getLevenshteinDistance(targetPlain, chapTitle);
+                if (dist < bestScore) {
                     bestScore = dist;
                     bestMatch = id;
-                    if (dist === 0) break; // Match parfait 100%, on s'arrête de chercher
                 }
             }
 
-            return bestMatch;
+            if (bestMatch && bestScore <= maxErrors) {
+                return bestMatch;
+            }
+
+            // Fallback ultime : On cherche le texte du choix au tout début du contenu du chapitre
+            const normalize = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '');
+            const targetNorm = normalize(targetPlain);
+            
+            if (targetNorm.length >= 3) {
+                 for (let id in storyGraph) {
+                     const preview = normalize(storyGraph[id].previewText);
+                     if (preview.includes(targetNorm)) return id;
+                 }
+            }
+
+            return null;
         }
 
-        // 4. Navigation
+        // SYSTÈME "REPLACE" SUR-MESURE 
+        window.triggerReplace = function() {
+            document.getElementById('replace-modal').classList.remove('hidden');
+            document.getElementById('replace-modal').classList.add('flex');
+            document.getElementById('replace-input').focus();
+        }
+
+        function closeReplaceModal() {
+            document.getElementById('replace-modal').classList.add('hidden');
+            document.getElementById('replace-modal').classList.remove('flex');
+        }
+
+        function confirmReplace() {
+            const newName = document.getElementById('replace-input').value.trim();
+            if (newName && newName !== "") {
+                const nameSpan = `<span class="text-[#00e5ff] font-bold drop-shadow-[0_0_5px_rgba(0,229,255,0.8)]">${newName}</span>`;
+                
+                // Remplacement dynamique partout dans l'arborescence (sans toucher au fichier original)
+                for (let id in storyGraph) {
+                    let content = storyGraph[id].originalContent;
+                    content = content.replace(/YN600/gi, nameSpan);
+                    content = content.replace(/\[Y\/N\]/gi, nameSpan);
+                    storyGraph[id].content = content;
+                }
+                
+                closeReplaceModal();
+                updateStatus("MÉMOIRE MISE À JOUR : " + newName.toUpperCase());
+                
+                // Recharge immédiatement la page sans changer de chapitre
+                const currentChap = historyStack[historyStack.length - 1];
+                renderView(currentChap);
+            } else {
+                closeReplaceModal();
+            }
+        }
+
+        // 3. Navigation
         function playChapter(chapterId, isFirst = false) {
             const chapter = storyGraph[chapterId];
             if (!chapter) {
@@ -458,7 +482,7 @@
             }
         }
 
-        // 5. Rendu Visuel
+        // 4. Rendu Visuel
         function renderView(chapterId) {
             const chapter = storyGraph[chapterId];
             
@@ -471,8 +495,8 @@
                 let html = chapter.content;
                 let choiceCount = 0;
 
-                // NOUVEAU REGEX : Matche soit [X] [CRAWL], soit juste [X] CRAWL sans la deuxième paire de crochets !
-                const choiceRegex = /\[([^\]]{1,10})\]\s*(?:\[([^\]]+)\]|([^<\[\n]+))/gi;
+                // NOUVEAU REGEX : Matche soit [X] [CRAWL], soit juste [X] CRAWL (ultra permissif)
+                const choiceRegex = /\[([^\]]{1,10})\]\s*(?:<[^>]+>)*\s*(?:\[([^\]]+)\]|([^<\[\n]+))/gi;
                 
                 html = html.replace(choiceRegex, (match, symbol, bracketed, plain) => {
                     const choiceText = bracketed || plain;
@@ -481,9 +505,17 @@
                     const rawSymbol = symbol.replace(/<[^>]*>?/gm, '').trim();
                     const rawText = choiceText.replace(/<[^>]*>?/gm, '').trim();
 
-                    // Ignorer les faux positifs comme [OBJECTIVE: ...]
+                    // Ignorer les faux positifs comme [OBJECTIVE: ...] ou de simples numéros
                     if (rawSymbol.toLowerCase().includes('objective') || rawSymbol.match(/^\d+$/)) return match;
                     if (rawText.length > 50) return match; 
+
+                    // CAS PARTICULIER : L'ACTION "REPLACE" demandée par l'utilisateur
+                    if (rawText.toUpperCase() === 'REPLACE' || rawText.toUpperCase().includes('REPLACE')) {
+                        choiceCount++;
+                        return `<a class="detroit-choice w-full text-left" onclick="event.preventDefault(); window.triggerReplace()">
+                                    <span class="mr-4 text-[#00e5ff] font-bold text-xl inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText}
+                                </a>`;
+                    }
                     
                     const targetChapId = findChapterByTitle(rawText);
                     
@@ -495,12 +527,13 @@
                     }
                     
                     return `<div class="p-4 my-2 border border-red-900 text-red-500 bg-red-900 bg-opacity-20 opacity-70 rounded">
-                                <span class="mr-4 inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText} <br><span class="text-sm opacity-80 mt-1 block">Lien bloqué : Impossible de lier ce texte glitché à un chapitre.</span>
+                                <span class="mr-4 inline-block w-8 text-center">[${rawSymbol}]</span> ${rawText} <br><span class="text-sm opacity-80 mt-1 block">Erreur 404 : Mémoire fracturée. Chapitre introuvable.</span>
                             </div>`;
                 });
 
                 contentContainer.innerHTML = html;
 
+                // Récupération des vrais liens HTML (si jamais il y en a quand même)
                 const links = contentContainer.querySelectorAll('a:not(.detroit-choice)');
                 links.forEach(link => {
                     const href = link.getAttribute('href');
@@ -520,7 +553,7 @@
                     }
                 });
 
-                // Génère le bouton GO de secours si on arrive dans une impasse ou chapitre d'intro
+                // Génère le bouton GO de secours si on arrive dans un chapitre d'intro (comme le chapitre 1) ou une fin
                 const keys = Object.keys(storyGraph);
                 const currentIndex = keys.indexOf(chapterId);
 
