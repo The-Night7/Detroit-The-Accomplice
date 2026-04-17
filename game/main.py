@@ -157,20 +157,20 @@ def game_loop(state):
         chosen = ask_choice(choices)
 
         if metadata.get("ACTION") == "RENAME":
-            if chosen["key"] == "X":
+            if chosen["key"] == "x":
                 # Saisie manuelle
                 new_name = ask_player_name()
                 update_player_name(new_name)
 
-            elif chosen["key"] == "T":  # ∆
+            elif chosen["key"] == "t":  # ∆
                 # Andre choisit → nom fixe défini dans les métadonnées
                 new_name = metadata.get("RENAME_T", "YN600")
                 update_player_name(new_name)
 
-            elif chosen["key"] == "O":
+            elif chosen["key"] == "o":
                 pass  # Reste YN600
 
-            elif chosen["key"] == "S":  # □
+            elif chosen["key"] == "s":  # □
                 pass  # Reste YN600, mais effet narratif différent
 
         # ── Apply stat effects from metadata ──
