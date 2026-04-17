@@ -55,7 +55,7 @@ def save_game(slot, chapter, choice_key, player_stats, history):
 
 def new_game_state():
     return {
-        "chapter": "chapters/chapter_01.txt",
+        "chapter": "chapter_01.txt",
         "history": [],
         "player_stats": {
             "SOFTWARE_INSTABILITY": 0,
