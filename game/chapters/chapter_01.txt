@@ -1,10 +1,8 @@
 ##TITLE=Act I — Awakening
-##NEXT_T=chapters/chapter_01a.txt
-##NEXT_O=chapters/chapter_01b.txt
+##NEXT_T=chapter_01a.txt
+##NEXT_O=chapter_01b.txt
 ##EFFECT_X=SOFTWARE_INSTABILITY+5
 ##EFFECT_S=SOFTWARE_INSTABILITY+15
-
-Chapter 1: [Awakening]   Chapter Notes  See the end of the chapter for notes
 
 MODEL {PLAYER_NAME}  
 SERIAL#: 358 163 489  
@@ -25,5 +23,5 @@ REINSTALLING NAME REGISTRATION COMPONENT REQUIRED
 
 [OBJECTIVE:  
 REPLACE {PLAYER_NAME}]  
-[O][REPLACE]  
-[∆][DO NOTHING]
+[O] REPLACE  
+[∆] DO NOTHING
