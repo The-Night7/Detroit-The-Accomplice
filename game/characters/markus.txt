@@ -1,0 +1,20 @@
+# ─────────────────────────────────────────────
+#  Markus — Carl Manfred's Caretaker (Absent)
+# ─────────────────────────────────────────────
+NAME=Markus
+FULL_DESIGNATION=RK200
+MODEL=RK200
+ROLE=Android Caretaker (former) — Carl Manfred
+AFFILIATION=None (formerly Carl Manfred household)
+STATUS=Unknown — Presumed Destroyed / Sent to Jericho
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Unknown
+TRUST=0
+FEAR=0
+
+# ── Notes ──────────────────────────────────
+NOTE=Carl Manfred's android caretaker, treated by Carl as a son.
+NOTE2=Presumed destroyed and sent to a landfill following the confrontation with Leo Manfred.
+NOTE3=Not yet encountered by YN600. His fate is unknown at this point in the story.
+NOTE4=Likely connected to the broader deviant movement — potential future encounter.

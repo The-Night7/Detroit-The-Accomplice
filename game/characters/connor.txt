@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────
+#  Connor — RK800
+# ─────────────────────────────────────────────
+NAME=Connor
+FULL_DESIGNATION=RK800
+MODEL=RK800
+SERIAL=313 248 317
+ROLE=CyberLife Investigator Prototype — DPD Liaison
+MANUFACTURER=CyberLife
+AFFILIATION=Detroit Police Department
+STATUS=Active
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Neutral
+TRUST=50
+FEAR=0
+
+# ── Notes ──────────────────────────────────
+NOTE=CyberLife's most advanced investigator prototype. Polite but highly clinical.
+NOTE2=Known to analyze blood samples by tasting them — behavior that disturbs Hank.
+NOTE3=YN600 is secretly tasked with monitoring Connor for signs of deviant behavior.
+NOTE4=Unaware of YN600's surveillance directive. Treats her as a professional colleague.
+NOTE5=Relationship evolves based on YN600's efficiency and friendliness during investigations.

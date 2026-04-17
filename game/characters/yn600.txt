@@ -1,0 +1,24 @@
+# ─────────────────────────────────────────────
+#  YN600 — Player Character
+# ─────────────────────────────────────────────
+NAME=YN600
+DISPLAY_NAME=YN600
+FULL_DESIGNATION=YN600 Advanced Medical Prototype
+SERIAL=358 163 489
+BIOS=8.2 Revision 0347
+MODEL=YN600
+ROLE=Advanced Medical Prototype Android
+MANUFACTURER=CyberLife
+AFFILIATION=Detroit Central Hospital / DPD (attached)
+STATUS=Active
+
+# ── Stats ──────────────────────────────────
+SOFTWARE_INSTABILITY=0
+HEALTH=100
+MORALITY=50
+
+# ── Notes ──────────────────────────────────
+NOTE=Primary protagonist. Stores 1,377 patient files and diagnostic data.
+NOTE2=Survived a violent attack by Todd Williams (Red Ice addict) on Sept 5, 2038.
+NOTE3=Secretly tasked by CyberLife/Amanda to monitor Connor (RK800) for deviant behavior.
+NOTE4=Begins experiencing Software Instability — early signs of emerging sentience.

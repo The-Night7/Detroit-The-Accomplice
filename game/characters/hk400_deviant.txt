@@ -1,0 +1,24 @@
+# ─────────────────────────────────────────────
+#  HK400 Deviant — Carlos Ortiz's Android
+# ─────────────────────────────────────────────
+NAME=HK400 Deviant
+FULL_DESIGNATION=HK400
+MODEL=HK400
+ROLE=Domestic Android (former) — Deviant
+AFFILIATION=None (formerly Carlos Ortiz household)
+STATUS=Captured — DPD Custody
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Neutral
+TRUST=30
+FEAR=40
+
+# ── Notes ──────────────────────────────────
+NOTE=Found hiding in the attic of Carlos Ortiz's house, covered in burns and crusted blood.
+NOTE2=Claims he acted in self-defense — Ortiz was going to kill him.
+NOTE3=Begged YN600 not to report him, saying "I don't want to die."
+NOTE4=His plea triggers a spike in YN600's Software Instability — she sees her own struggle reflected in him.
+NOTE5=Captured by Connor and Hank regardless of YN600's hesitation.
+NOTE6=Sent a telepathic message to YN600 during arrest: "It's not your fault."
+NOTE7=During interrogation, directly confronts YN600 about her loyalty and her inaction in the attic.
+NOTE8=Connected to the rA9 graffiti found throughout Carlos Ortiz's house.

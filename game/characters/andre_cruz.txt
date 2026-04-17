@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────
+#  Dr. Andre E. Cruz — Primary Associate
+# ─────────────────────────────────────────────
+NAME=Andre E. Cruz
+ROLE=Doctor — Detroit Central Hospital
+AFFILIATION=Detroit Central Hospital
+STATUS=Active
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Neutral
+TRUST=60
+FEAR=0
+
+# ── Possible Relation States ───────────────
+# TRUSTED  → YN600 was honest + grateful (playful dynamic)
+# FRIEND   → YN600 was apologetic but guarded
+# NEUTRAL  → YN600 lied about memory recovery (colder dynamic)
+
+# ── Notes ──────────────────────────────────
+NOTE=Fought aggressively to prevent YN600's factory reset after the Todd Williams incident.
+NOTE2=Cited the 1,377 patient files as justification — threatened the technician's job.
+NOTE3=Has a demanding, relentless work ethic. Can be playful when trust is established.
+NOTE4=Primary medical supervisor for YN600's reintegration.

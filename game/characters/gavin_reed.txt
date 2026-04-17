@@ -1,0 +1,18 @@
+# ─────────────────────────────────────────────
+#  Detective Gavin Reed — DPD
+# ─────────────────────────────────────────────
+NAME=Gavin Reed
+ROLE=Detective — Detroit Police Department
+AFFILIATION=Detroit Police Department
+STATUS=Active
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Tense
+TRUST=15
+FEAR=0
+
+# ── Notes ──────────────────────────────────
+NOTE=Present during the HK400 deviant interrogation at the DPD precinct.
+NOTE2=Suggested "roughing up" the deviant to get information — dismissed by Connor as illogical.
+NOTE3=Hostile attitude toward androids. Likely to create friction with YN600 throughout the story.
+NOTE4=Antagonistic but not a primary villain — more of a recurring obstacle.

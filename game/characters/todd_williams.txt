@@ -1,0 +1,21 @@
+# ─────────────────────────────────────────────
+#  Todd Williams — Red Ice Addict
+# ─────────────────────────────────────────────
+NAME=Todd Williams
+ROLE=Patient — Detroit Central Hospital (former)
+AFFILIATION=None
+STATUS=At Large
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Hostile
+TRUST=0
+FEAR=0
+
+# ── Notes ──────────────────────────────────
+NOTE=Admitted to Detroit Central Hospital for recovery after a Red Ice overdose.
+NOTE2=Red Ice composition: Thorium, Acetone, Lithium, Toluene, Hydrochloric Acid.
+NOTE3=Under the influence, became violently aggressive toward YN600 on September 5, 2038.
+NOTE4=Pinned YN600 against a wall, threw a bedside table at her, grabbed her by the hair.
+NOTE5=Attempted to bash YN600's head into a radiator. Fled when the alarm sounded.
+NOTE6=YN600 cracked a bulletproof window using military-grade force to trigger the alarm.
+NOTE7=Directly responsible for YN600's near-destruction and forced shutdown.

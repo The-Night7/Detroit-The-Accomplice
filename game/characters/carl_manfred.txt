@@ -1,0 +1,19 @@
+# ─────────────────────────────────────────────
+#  Carl Manfred — Famous Artist
+# ─────────────────────────────────────────────
+NAME=Carl Manfred
+ROLE=Famous Artist — Civilian
+AFFILIATION=None
+STATUS=Active
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Neutral
+TRUST=50
+FEAR=0
+
+# ── Notes ──────────────────────────────────
+NOTE=Renowned Detroit artist. Present at the hospital during Leo Manfred's emergency.
+NOTE2=Devastated by his son Leo's critical condition.
+NOTE3=Confided in YN600 about Markus — his android caretaker whom he viewed as a son.
+NOTE4=Believes Markus has been destroyed and sent to a landfill following the incident with Leo.
+NOTE5=His grief and openness toward YN600 suggest potential for a meaningful relationship.

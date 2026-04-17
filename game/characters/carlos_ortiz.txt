@@ -1,0 +1,14 @@
+# ─────────────────────────────────────────────
+#  Carlos Ortiz — Victim
+# ─────────────────────────────────────────────
+NAME=Carlos Ortiz
+ROLE=Victim — Red Ice Addict
+AFFILIATION=None
+STATUS=Deceased
+
+# ── Notes ──────────────────────────────────
+NOTE=Found dead in his home in the Detroit suburbs. Stabbed 28 times.
+NOTE2=Cause of death: internal bleeding. Time of death: approximately 19 days before discovery.
+NOTE3=Red Ice addict. His home was trashed and covered in "rA9" graffiti.
+NOTE4=A blood-stained bat was found at the scene.
+NOTE5=His HK400 domestic android is the prime suspect — claims self-defense.

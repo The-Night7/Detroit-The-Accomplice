@@ -1,0 +1,19 @@
+# ─────────────────────────────────────────────
+#  Leo Manfred — Carl's Son
+# ─────────────────────────────────────────────
+NAME=Leo Manfred
+ROLE=Patient — Detroit Central Hospital
+AFFILIATION=None
+DATE_OF_BIRTH=July 13, 2015
+STATUS=Critical — Under Care of Dr. Andre E. Cruz
+
+# ── Medical Data ───────────────────────────
+SURVIVAL_CHANCE=74.03%
+TRAUMA=Critical head and spinal trauma
+ATTENDING=Andre E. Cruz
+
+# ── Notes ──────────────────────────────────
+NOTE=Brought into Detroit Central Hospital with critical head and spinal injuries.
+NOTE2=Injuries sustained during a confrontation involving Markus (Carl Manfred's android caretaker).
+NOTE3=His survival chance is 74.03% under Dr. Cruz's care.
+NOTE4=His condition is a catalyst for Carl Manfred's emotional breakdown and his confession about Markus.

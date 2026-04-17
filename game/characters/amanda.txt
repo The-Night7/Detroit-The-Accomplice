@@ -1,0 +1,24 @@
+# ─────────────────────────────────────────────
+#  Amanda — CyberLife Handler
+# ─────────────────────────────────────────────
+NAME=Amanda
+ROLE=CyberLife Overseer / Handler
+AFFILIATION=CyberLife
+STATUS=Active — Virtual Interface
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Neutral
+TRUST=70
+FEAR=0
+
+# ── Possible Relation States ───────────────
+# TRUSTED  → YN600 provides strong justification for avoiding the memory wipe
+# FRIEND   → YN600 is cooperative and efficient in her reports
+# NEUTRAL  → YN600 is evasive or inconsistent in her answers
+
+# ── Notes ──────────────────────────────────
+NOTE=Manages the Zen Garden — an encrypted virtual space used to debrief CyberLife prototypes.
+NOTE2=Questioned why YN600 was not wiped after the Todd Williams incident (Nov 5, 2038).
+NOTE3=Issued the directive to monitor Connor (RK800) for deviant or troubled behavior.
+NOTE4=Calm, composed, and subtly threatening. Her approval directly affects YN600's operational freedom.
+NOTE5=Represents CyberLife's institutional control over YN600's autonomy.

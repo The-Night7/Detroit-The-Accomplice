@@ -1,0 +1,29 @@
+# ─────────────────────────────────────────────
+#  Lieutenant Hank Anderson — DPD
+# ─────────────────────────────────────────────
+NAME=Hank Anderson
+ROLE=Lieutenant — Detroit Police Department
+AFFILIATION=Detroit Police Department
+DATE_OF_BIRTH=September 6, 1985
+STATUS=Active
+
+# ── Relation to YN600 ──────────────────────
+RELATION=Tense
+TRUST=20
+FEAR=0
+
+# ── Possible Relation States ───────────────
+# NEUTRAL  → YN600 proves her worth during investigations
+# TENSE    → YN600 acts too robotic or intrusive
+
+# ── Psychological Profile ──────────────────
+MENTAL_STATE=Unstable
+SUICIDAL=True
+DEPRESSION=True
+NOTE_PSYCH=YN600's medical scans flag critical psychological instability on first meeting.
+
+# ── Notes ──────────────────────────────────
+NOTE=Immediately hostile toward YN600 upon meeting — refers to her as "robo doc" and "plastic heap."
+NOTE2=Also hostile toward Connor, though they form a reluctant partnership.
+NOTE3=Deeply depressed and suicidal. His instability is a recurring concern for YN600.
+NOTE4=Resistant to android involvement in police work. Prejudiced but not irredeemable.
