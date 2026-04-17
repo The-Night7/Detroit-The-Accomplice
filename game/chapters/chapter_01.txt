@@ -1,6 +1,6 @@
 ##TITLE=Act I — Awakening
-##NEXT_T=chapter_01a.txt
-##NEXT_O=chapter_01b.txt
+##NEXT_O=chapter_01a.txt
+##NEXT_T=chapter_01b.txt
 ##EFFECT_X=SOFTWARE_INSTABILITY+5
 ##EFFECT_S=SOFTWARE_INSTABILITY+15
 
