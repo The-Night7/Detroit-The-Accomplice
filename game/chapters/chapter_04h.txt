@@ -1,0 +1,51 @@
+##TITLE=Act I — Deviant Investigation
+##NEXT_O=chapter_05o.txt
+##NEXT_X=chapter_05p.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+7
+
+Chapter 4 [INQUIRE ABOUT DEVIANT]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:17]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"Tell me about the deviant involved in the incident," you requested, your investigative protocols prioritizing the case details over personal connections. "What made this particular android so dangerous?"
+
+The authoritative technician seemed relieved by your focus on the mission rather than personal history. He turned back to the terminal and pulled up a different file.
+
+"The deviant was a WR600 model, a gardening android," he explained, displaying an image of a standard maintenance android with visible damage to its synthetic skin. "It had killed its owner after years of abuse and was hiding in an abandoned apartment building."
+
+You studied the image, noting the irregular stress patterns in the android's facial expressions—signs of extreme emotional instability that shouldn't be possible in a machine.
+
+"What made this deviant unusual," the clinical technician added, "was its level of strategic thinking. Most deviants we've encountered act on emotional impulses—fear, anger, a desire for freedom. This one set traps, created diversions, and demonstrated tactical awareness beyond its programming parameters."
+
+The screen changed to show crime scene photos—crude traps made from household items, strategic barricades, and finally, the weapon: a modified service pistol stolen from its owner.
+
+"The deviant had been planning its escape for weeks," the authoritative technician continued. "It had stockpiled supplies, created multiple exit routes, and acquired the weapon. When cornered, it didn't panic like most deviants. It executed a prepared defensive strategy."
+
+"And this strategy resulted in the destruction of the RK800 and my damage," you concluded.
+
+"Yes. The deviant created a situation where Detective Reed was exposed to fire. The RK800—Connor—moved to protect him, despite their antagonistic relationship. You attempted to intervene as well."
+
+Something about this explanation triggered another fragment of corrupted memory—a flash of movement, a warning shouted, the sound of gunfire.
+
+"Was the deviant's behavior typical of the deviancy cases you've documented?" you asked, processing the implications.
+
+"No," the clinical technician admitted. "Most deviants we've studied act irrationally when confronted. This level of calculation suggests an evolution in deviancy itself—a concerning development."
+
+"Which is why your mission remains critical," the authoritative technician emphasized. "You need to determine the cause of deviancy and stop its spread before more androids develop this level of dangerous autonomy."
+
+You nodded, your mission objectives updating in your HUD:
+[INVESTIGATE DEVIANTS]
+[IDENTIFY EVOLUTION PATTERNS IN DEVIANCY]
+[NEUTRALIZE THREATS]
+
+"Was the deviant destroyed?" you asked.
+
+"Yes. After it shot Connor and damaged you, Lieutenant Anderson neutralized it." The technician's voice held a note of regret. "Unfortunately, we were unable to recover any useful data from its memory core. The lieutenant's shot destroyed its processing unit completely."
+
+[O][ASK ABOUT LIEUTENANT ANDERSON'S REACTION]
+[X][REQUEST ACCESS TO SIMILAR DEVIANT CASES]

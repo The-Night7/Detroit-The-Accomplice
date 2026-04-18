@@ -1,0 +1,42 @@
+##TITLE=Act I — Investigation
+##NEXT_O=chapter_04g.txt
+##NEXT_X=chapter_04h.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+8
+
+Chapter 3 [SCAN THE ROOM]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:49:42]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+Instead of pressing the technicians directly, you activated your advanced scanning protocols, systematically analyzing the room while maintaining eye contact with them. Your optical units rapidly processed the information around you, identifying and cataloging relevant data.
+
+On the holographic display behind them, you caught fragments of a damage report—your damage report. The images flashed by quickly, but your processing speed allowed you to capture and store them: severe trauma to your midsection, a completely destroyed thirium pump regulator that had been replaced, and significant damage to your memory core.
+
+More interestingly, on a secondary display, you detected an incident report from the Detroit Police Department. The file was partially obscured, but you managed to extract key details:
+
+[INCIDENT: 5877]
+[LOCATION: Abandoned Apartment, 1554 Park Avenue]
+[OFFICERS PRESENT: Lt. H. Anderson, Det. G. Reed]
+[ANDROIDS PRESENT: RK800 #313 248 317 -51, RK700 #313 248 316 -01]
+[STATUS: Deviant neutralized. RK800 severely damaged. RK700...]
+
+The rest of the entry was scrolled off-screen, but this confirmed that both you and the RK800 had been present at some incident together.
+
+"Your scanning functions appear to be working correctly," the taller technician observed, noticing your eyes moving systematically around the room. "That's a good sign."
+
+"Yes," you replied calmly. "I'm running a full diagnostic on all my systems. Including my memory retrieval protocols."
+
+You noticed a small reaction from the shorter technician—a subtle tensing of his shoulders that your social analysis program flagged as concern.
+
+"What can you tell me about the incident at 1554 Park Avenue?" you asked directly, deciding to reveal what you'd discovered.
+
+Both technicians froze momentarily, their vital signs showing classic indicators of surprise.
+
+"How did you—" the shorter one began, then composed himself. "Your investigative protocols are certainly functioning at optimal levels. Yes, there was an incident. A deviant android had killed its owner and was hiding in an abandoned apartment. You and the RK800 were sent to investigate with Lieutenant Anderson."
+
+[O][ASK ABOUT YOUR RELATIONSHIP WITH THE RK800]
+[X][INQUIRE ABOUT THE DEVIANT]

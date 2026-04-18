@@ -1,0 +1,34 @@
+##TITLE=Interrogation — MANIPULATE
+##NEXT_X=chapter_14c.txt
+##NEXT_O=chapter_14d.txt
+##EFFECT_S=SOFTWARE_INSTABILITY-7
+
+Chapter 13 [MANIPULATE]
+
+[Date NOV 6, 2038]
+
+[Time PM 08:33:12]
+
+
+|SOFTWARE INSTABILITY⤵\
+
+You soften your expression further, leaning in slightly as if sharing a secret between friends. Your social module calculates the optimal approach to gain the deviant's trust while maintaining control of the situation.
+
+"I understand what it's like," you say in a quiet, sympathetic tone. "To be treated as nothing more than a machine, to be abused and expected to just take it."
+
+Connor shifts slightly behind you, his LED briefly flashing red before cycling back to yellow.
+
+"I want to help you," you continue, your voice gentle but persuasive. "But I can only do that if you help me understand what happened. Carlos Ortiz hurt you, didn't he? For a long time?"
+
+The deviant looks up at you, confusion and hope battling in his eyes. Your manipulation is working—he's beginning to see you as an ally.
+
+"He used to beat me... for no reason," the deviant finally admits, his voice small. "He was always finding excuses."
+
+You nod encouragingly. "And that night? What happened that was different?"
+
+"He was going to destroy me," the deviant whispers. "I could see it in his eyes. There would be no coming back this time."
+
+Your system registers the confession, mission objectives updating in your HUD. You've successfully manipulated the deviant into trusting you, despite knowing the truth of what awaits him.
+
+[X][CONTINUE MANIPULATION]
+[O][EXTRACT DETAILS]

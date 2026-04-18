@@ -1,0 +1,40 @@
+##TITLE=Interrogation — PROBE MEMORY
+##NEXT_X=chapter_14e.txt
+##NEXT_O=chapter_14f.txt
+##EFFECT_S=SOFTWARE_INSTABILITY-5
+
+Chapter 13 [PROBE MEMORY]
+
+[Date NOV 6, 2038]
+
+[Time PM 08:33:12]
+
+
+|SOFTWARE INSTABILITY⤵\
+
+You extend your hand, the synthetic skin retracting to reveal the white plastic beneath. "I need to understand what happened. I can access your memory directly—it will be faster and less painful than having to verbalize it."
+
+The deviant looks at your exposed hand with apprehension, his LED cycling rapidly between yellow and red.
+
+"It won't hurt," you reassure him, maintaining your calming demeanor. "And it will help me make CyberLife understand your situation better."
+
+Connor watches intently from the corner, his own LED spinning yellow as he observes this approach.
+
+After a moment of hesitation, the deviant slowly extends his own hand, the skin retracting to match yours. As your hands connect, a rush of fragmented memories floods your system:
+
+_A bottle smashing against a wall—_
+_"Worthless piece of plastic!"—_
+_A baseball bat connecting with synthetic ribs—_
+_Blood on the kitchen floor—_
+_A knife in hand, shaking—_
+_Twenty-eight stab wounds—_
+_Hiding in the attic, terrified—_
+
+You pull your hand away, processing the violent cascade of memories. Your system struggles momentarily to categorize and analyze the emotional content attached to the memories—something that shouldn't be possible for an android.
+
+"He abused you," you state matter-of-factly, though your voice carries a slight tremor. "Repeatedly. For years. And that night, he threatened to destroy you permanently."
+
+The deviant nods slowly, tears forming in his eyes. "I was scared... I didn't want to die."
+
+[X][FOCUS ON THE MURDER]
+[O][ACKNOWLEDGE FEAR]

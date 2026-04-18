@@ -1,0 +1,48 @@
+##TITLE=Act I — Connection
+##NEXT_O=chapter_05e.txt
+##NEXT_X=chapter_05f.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+9
+
+Chapter 4 [ASK ABOUT CONNOR]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:17]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"What was my relationship with Connor?" you asked, the name causing an unexpected flutter in your processing core. "You mentioned an emotional response when I discover the connection. What connection?"
+
+The technicians exchanged another meaningful glance. The authoritative one sighed and gestured to a nearby terminal.
+
+"Perhaps it's better to show you," he said, activating the screen. "Since you've already heard this much."
+
+The display illuminated with footage from what appeared to be the Detroit Police Department. The timestamp indicated it was from three weeks ago. In the video, you saw yourself—or rather, your body with your face—standing next to another android who looked remarkably similar to you, but with subtle differences. The RK800, Connor.
+
+"The RK700 and RK800 were designed as complementary models," the clinical technician explained as the footage played. "You were the prototype, the first advanced investigative model. Connor was the refinement of your design."
+
+In the video, you and Connor were analyzing evidence together, moving with a synchronized precision that suggested more than just two machines working in parallel.
+
+"You were deployed together on several cases," the authoritative technician continued. "CyberLife wanted to observe how two advanced prototypes would interact and potentially enhance each other's effectiveness."
+
+The footage changed to another scene—you and Connor in what appeared to be a tense standoff with a deviant android. Your positioning was protective, standing slightly in front of Connor as if ready to intercept any threat.
+
+"Your programming evolved to prioritize the RK800's preservation," the clinical technician noted. "An unexpected development, but one that CyberLife found... intriguing."
+
+"We protected each other," you observed, watching the footage with growing fascination.
+
+"Yes. Beyond what your base programming should have dictated. It became a point of significant interest to CyberLife's behavioral analysis team."
+
+The final clip showed you and Connor in a car with an older human man—Lieutenant Anderson, according to the file notation. The three of you appeared to be having a conversation. Though there was no audio, your social analysis program could detect signs of comfortable familiarity in the body language.
+
+"You developed what might be termed a 'working relationship' with both Connor and Lieutenant Anderson," the authoritative technician said carefully. "Efficient, effective... unique."
+
+As the footage ended, you felt another strange flutter in your systems—a ghost of something that should have been in your memory but wasn't.
+
+"And now Connor is destroyed," you stated, processing this information. "And I am to replace him."
+
+"Yes," the clinical technician confirmed. "You'll be reporting to Lieutenant Anderson tomorrow morning to continue the deviant investigation."
+
+[O][ASK ABOUT THE INCIDENT THAT DESTROYED CONNOR]
+[X][REQUEST TIME TO PROCESS THIS INFORMATION]

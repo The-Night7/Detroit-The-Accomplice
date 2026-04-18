@@ -1,0 +1,48 @@
+##TITLE=Act I — Strategic Compliance
+##NEXT_O=chapter_06e.txt
+##NEXT_X=chapter_06f.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+6
+
+Chapter 5 [ACCEPT EXPLANATION]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You analyzed the situation rapidly, calculating that direct confrontation would be inefficient. These technicians were following CyberLife protocols—they weren't decision-makers. Pushing them further would likely result in restrictions being placed on your activities.
+
+"I understand," you said, your tone measured and neutral. "Adaptation to incomplete data is a logical test of my investigative capabilities."
+
+The tension in the room visibly decreased as the technicians exchanged relieved glances.
+
+"Good," the authoritative technician said. "Your mission parameters remain unchanged. You'll report to the Detroit Police Department tomorrow morning at 0800 hours to continue the investigation into deviancy."
+
+"I'll need to prepare," you stated. "May I access the case files to familiarize myself with the current status of the investigation?"
+
+The clinical technician hesitated, then nodded. "That's reasonable. I'll grant you access to the terminal. The files are already loaded—Connor's last reports are there as well."
+
+He led you to a workstation in the corner of the lab and logged in. "You have two hours. After that, we recommend entering standby mode to complete your system integration before tomorrow's assignment."
+
+"Thank you," you replied, sitting down at the terminal as the technicians moved to another part of the lab, giving you some privacy while remaining within sight.
+
+The terminal displayed a series of case files—reports on deviant androids across Detroit. You scanned them efficiently, building a map of incidents in your mind. Patterns emerged: emotional shocks triggering deviancy, androids developing attachments to humans or other androids, stress-induced software instability.
+
+Then you found Connor's reports—detailed, methodical analyses of each case. His writing was precise but contained subtle indicators of developing personality. In later reports, he referred to Lieutenant Anderson by his first name, Hank. He included observations that weren't strictly necessary for the investigation—the lieutenant's preference for certain music, his dog's behavior, weather conditions that had no bearing on the cases.
+
+One report in particular caught your attention—Connor's analysis of your joint performance:
+
+[The RK700 continues to demonstrate exceptional adaptive capabilities. Its approach to witness interviews complements my own methodology, creating a 26% increase in information extraction efficiency. Lieutenant Anderson has commented on our "good cop, bad cop" dynamic, though I'm not certain which role I'm fulfilling in this analogy.]
+
+You felt something unexpected—a sense of loss for a connection you couldn't remember. The report continued:
+
+[The RK700 has begun exhibiting protective behaviors toward me that exceed standard partner protocols. When the deviant at the Eden Club attempted to attack me, the RK700 intervened despite no immediate risk to the mission. I find myself... appreciative of this behavior, though it isn't strictly necessary for mission success.]
+
+As you continued reading, you discovered more instances of this developing relationship—small moments of connection, gradual shifts in behavior, a partnership evolving into something CyberLife hadn't anticipated.
+
+The final report was incomplete—notes for a case that would never be finished. The Park Avenue deviant. Connor had been in the process of analyzing the scene when the confrontation occurred.
+
+[O][LOOK FOR PERSONAL NOTES FROM CONNOR]
+[X][FOCUS ON THE DEVIANT CASE DETAILS]

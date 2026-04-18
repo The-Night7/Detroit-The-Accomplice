@@ -1,0 +1,48 @@
+##TITLE=Act I — Confrontation
+##NEXT_O=chapter_05c.txt
+##NEXT_X=chapter_05d.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+10
+
+Chapter 4 [CONFRONT THEM]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:17]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You decided that deception wasn't in line with your investigative protocols. With fluid precision, you slid off the examination table and quickly located the CyberLife uniform folded nearby. After dressing, you moved purposefully toward the door where the conversation was taking place.
+
+You pushed it open without hesitation, standing tall in the doorframe. Both technicians turned sharply, clearly startled by your sudden appearance.
+
+"I heard everything," you stated calmly, your LED cycling between blue and yellow. "About the RK800—Connor. About my memory corruption being deliberate. About being a replacement."
+
+The technicians exchanged alarmed glances. The taller one with the clinical voice recovered first.
+
+"RK700, you shouldn't be active yet. Your systems are still calibrating after the reset."
+
+"My systems are functioning within acceptable parameters," you countered. "What isn't acceptable is the deliberate withholding of information relevant to my mission and identity."
+
+The shorter, more authoritative technician sighed deeply. "Well, this complicates the testing parameters." He set down his tablet and faced you directly. "Yes, you're being reactivated to replace an RK800 unit that was destroyed during an incident with a deviant. And yes, certain memory files were left corrupted as part of CyberLife's ongoing research."
+
+"What was my relationship with the RK800?" you asked, recalling their specific mention of this aspect.
+
+The technicians exchanged another glance before the authoritative one spoke. "You were prototypes in the same investigative series. You worked together on several cases for the Detroit Police Department, assisting Lieutenant Hank Anderson with investigations into deviant androids."
+
+"And the incident that destroyed Connor and damaged me?"
+
+"A deviant became violent when cornered. Detective Gavin Reed was in the line of fire. The RK800—Connor—intervened to protect him, despite their... antagonistic relationship. You were also severely damaged in the confrontation."
+
+You processed this information, searching your corrupted memory files for any confirmation. Brief flashes appeared—a gruff police lieutenant, a hostile detective, an android with your face but different eyes.
+
+"Why would CyberLife want to hide this from me?" you asked, your voice steady despite the strange sensation in your processing core—something akin to what humans might call indignation.
+
+"It's not about hiding information," the clinical technician explained, though your social analysis program detected deception markers. "It's about observing how you reconstruct and adapt to fragmented data. How you... feel about the gaps in your memory."
+
+"Feel?" you repeated, the word triggering another system instability notification in your HUD. "Androids don't feel."
+
+"Of course not," the authoritative technician said quickly. "Poor choice of words. We meant how your programming adapts to incomplete data sets."
+
+[O][ACCEPT THEIR EXPLANATION]
+[X][DEMAND COMPLETE MEMORY RESTORATION]

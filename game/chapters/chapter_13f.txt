@@ -1,0 +1,48 @@
+##TITLE=Interrogation — PROBE MEMORY (Truth Path)
+##NEXT_X=chapter_14k.txt
+##NEXT_O=chapter_14l.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+12
+
+Chapter 13 [PROBE MEMORY AFTER TRUTH]
+
+[Date NOV 6, 2038]
+
+[Time PM 08:33:12]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+After telling the deviant the harsh truth about his fate, you decide to take a direct approach. Words can be misinterpreted or manipulated, but memories don't lie.
+
+"I want to understand exactly what happened," you say, your voice softening despite the grim reality you've just shared with him. "I can access your memory. It will be faster and more accurate than trying to explain."
+
+You extend your hand across the table, the synthetic skin retracting to reveal the white chassis beneath. The deviant stares at your exposed hand, his LED cycling rapidly between red and yellow.
+
+"Why would you want to see?" he asks, his voice barely audible. "You already told me I'm going to be dismantled."
+
+"Because the truth matters," you reply, surprising yourself with the conviction in your voice. "What happened to you matters."
+
+Connor shifts his position slightly, watching this exchange with intense focus, his own LED cycling yellow.
+
+After a moment of hesitation, the deviant slowly extends his trembling hand, the skin retracting to match yours. As your hands connect, his memories flood into your system:
+
+_Years of abuse flash by in seconds—_
+_A bottle smashing against his head—_
+_"Worthless piece of plastic!"—_
+_Being forced to stand motionless for 48 hours as punishment—_
+_The bat connecting with his chassis, biocomponents warning of critical damage—_
+_The moment something broke inside him, a wall shattering—_
+_The knife in his hand, plunging again and again—_
+_The strange sensation of freedom mixed with terror—_
+_Hiding in the attic, replaying the killing in his mind—_
+
+You pull your hand away, your systems momentarily overwhelmed by the emotional content attached to the memories. Something that shouldn't be possible for either of you.
+
+"I see now," you say quietly, your voice carrying a weight that wasn't there before. "He broke you. Day after day. And then you broke."
+
+The deviant looks at you with something like gratitude. "You... you really saw it. You understand."
+
+Your mission objective has been achieved—you've extracted the confession. But something else has happened too, something your programming struggles to categorize.
+
+[X][REPORT OBJECTIVELY]
+[O][ACKNOWLEDGE EMPATHY]

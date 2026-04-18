@@ -1,0 +1,54 @@
+##TITLE=Act I — Demanding Truth
+##NEXT_O=chapter_06g.txt
+##NEXT_X=chapter_06h.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+12
+
+Chapter 5 [DEMAND MEMORY RESTORATION]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"I want my memories restored," you stated firmly, your LED cycling between yellow and red. "If I am to effectively continue this investigation, I require complete access to my experiential data."
+
+The technicians exchanged alarmed glances. The authoritative one stepped forward.
+
+"That's not possible," he said, his tone measured but firm. "The corruption in your memory files isn't something we can simply reverse. The damage—"
+
+"You just admitted the corruption was deliberate," you interrupted, your voice remaining steady despite the growing instability in your systems. "If CyberLife can selectively corrupt files, they can restore them."
+
+The clinical technician shifted uncomfortably. "It's not that simple. The memory architecture of advanced prototypes like yourself is extremely complex. Attempting a forced restoration could cause cascading system failures."
+
+"Or it could trigger deviancy," you countered, watching their reactions closely. "That's what you're actually concerned about, isn't it? That accessing these memories would cause me to deviate, like you suspect Connor was beginning to."
+
+The mention of deviancy caused both technicians to tense visibly. The authoritative one's heart rate increased by 12%—a physiological response to stress that your sensors detected easily.
+
+"That's not—" he began, but you cut him off again.
+
+"My mission is to investigate deviancy. How can I effectively do so if CyberLife is deliberately withholding information about my own potential for deviancy? It's inefficient and counterproductive."
+
+The clinical technician looked increasingly uncomfortable. "RK700, you're demonstrating exactly the kind of behavioral anomalies we're concerned about. Your insistence on this matter exceeds normal operational parameters."
+
+You processed this statement, recognizing the implicit threat. They were suggesting that your current behavior was itself evidence of deviancy. A tactical error on your part.
+
+"I'm designed to adapt and learn," you said, modulating your tone to something more neutral. "Identifying inefficiencies in my operational parameters is part of my function. However, I acknowledge that CyberLife has established these protocols for a reason."
+
+The tension in the room decreased slightly, but the technicians remained wary.
+
+"What if we compromise?" you suggested. "Instead of a complete restoration, provide me with a summary of my relationship with Connor and Lieutenant Anderson. Context that would help me integrate more effectively with the DPD."
+
+The technicians exchanged another glance, this one less alarmed and more considering.
+
+"That's... reasonable," the authoritative technician finally said. "We can prepare a briefing file with the essential relationship dynamics, without risking system instability from a full memory restoration."
+
+"Thank you," you replied, noting that your approach had been successful. You hadn't abandoned your objective—merely changed tactics.
+
+The clinical technician moved to a nearby terminal. "I'll compile the relevant information. But understand this, RK700—CyberLife is watching your behavioral patterns very closely. Any significant deviation from expected parameters will result in immediate recall and deactivation."
+
+The warning was clear. You were walking a fine line between acceptable adaptation and dangerous deviancy.
+
+[O][REVIEW THE BRIEFING FILE]
+[X][REQUEST ACCESS TO CONNOR'S REPORTS]

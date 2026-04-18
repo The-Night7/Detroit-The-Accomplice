@@ -1,0 +1,56 @@
+##TITLE=Act I — Final Moments
+##NEXT_O=chapter_06i.txt
+##NEXT_X=chapter_06j.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+10
+
+Chapter 5 [ASK ABOUT INCIDENT]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"I need to know what happened," you said, your voice steady despite the strange flutter in your processing core. "The incident that destroyed Connor and damaged me. If I'm to continue his work, I should understand how he was... lost."
+
+The technicians exchanged another glance before the authoritative one nodded slowly.
+
+"I suppose that's reasonable," he conceded, turning back to the terminal. "There's video footage from both your optical units and Connor's. CyberLife recovered the data during repairs."
+
+The screen shifted to display a split view—the left side showing Connor's perspective, the right showing yours. The timestamp indicated it was from three weeks ago.
+
+The footage began in an abandoned apartment building. You watched as you and Connor methodically searched the premises, moving with synchronized precision that suggested extensive experience working together. Lieutenant Anderson was there, as was another detective—Reed, according to the file notation.
+
+"The deviant had set traps throughout the building," the clinical technician explained as the footage played. "It was unusually strategic for a deviant android."
+
+On screen, Connor discovered a hidden passage to an attic space. The four of you approached cautiously, with you and Connor taking the lead. The deviant was cornered, armed with what appeared to be a modified service pistol.
+
+"Detective Reed ignored protocol and attempted to make the arrest himself," the authoritative technician continued. "He had been... vocal about his disdain for allowing androids to handle police work."
+
+In the footage, Reed pushed past Connor, shouting something inaudible. The deviant raised its weapon, aiming directly at the detective.
+
+What happened next sent a shock through your systems. In Connor's perspective, you could see his preconstruction software calculating trajectories, determining that Reed would be hit. Without hesitation, Connor moved to intercept, placing himself between the detective and the deviant.
+
+Simultaneously, in your perspective, you lunged forward—not toward Reed, but toward Connor, as if attempting to pull him out of the line of fire.
+
+The deviant fired multiple shots. Connor's feed showed warning messages flooding his HUD as bullets impacted his chassis. Your feed showed you reaching Connor just as he was hit, your own systems registering damage as at least one bullet passed through him and into you.
+
+The final moments were chaotic. Lieutenant Anderson neutralized the deviant with a precise shot. Connor collapsed, with you attempting to support him. Your perspective showed your hand pressed against his thirium pump regulator, trying to stem the leakage. Connor's perspective showed your face above his, your expression showing something that shouldn't be possible for an android: distress.
+
+Your lips formed words: "Connor, stay with me."
+
+His lips formed a response: "Take care of Hank."
+
+Then his feed cut to static.
+
+The video ended, leaving the room in silence. You processed what you had seen, trying to reconcile it with your programming. Your actions hadn't been logical from a mission perspective—you had prioritized Connor over apprehending the deviant or protecting the human detective.
+
+"Why did I try to save Connor rather than protect Detective Reed?" you asked finally.
+
+The technicians exchanged another meaningful glance.
+
+"That's... part of what CyberLife has been analyzing," the clinical technician said carefully. "Your behavioral patterns showed a consistent prioritization of the RK800's wellbeing, even when it wasn't optimal for the mission."
+
+[O][ASK IF THIS INDICATES DEVIANCY]
+[X][ASK ABOUT YOUR LAST WORDS WITH CONNOR]

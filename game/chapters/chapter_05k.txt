@@ -1,0 +1,60 @@
+##TITLE=Act I — Priority Analysis
+##NEXT_O=chapter_06u.txt
+##NEXT_X=chapter_06v.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+9
+
+Chapter 5 [QUESTION PRIORITIES]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You studied the image on the screen, your analytical protocols running multiple reconstructions of the scene. The evidence was clear—your positioning during the incident indicated that you had prioritized Connor's safety over Detective Reed's, despite your programming directives to value human life above all else.
+
+"My actions appear inconsistent with standard protocols," you stated, your tone carefully neutral. "According to my programming, I should have prioritized Detective Reed's safety, as he is human. Yet the evidence suggests I attempted to protect Connor first."
+
+The technicians exchanged another meaningful glance. The taller one sighed.
+
+"Yes. That's one of the anomalies CyberLife has been analyzing in your behavioral patterns."
+
+"Was this an isolated incident, or part of a pattern?" you pressed, your investigative protocols fully engaged now.
+
+The shorter technician hesitated, then turned to the terminal. "It would be more efficient to show you."
+
+He pulled up a series of video clips from previous cases. In each one, subtle patterns emerged—you positioning yourself to shield Connor during potentially dangerous situations, checking his status after confrontations, maintaining proximity beyond what mission efficiency required.
+
+"Your behavioral algorithms evolved over time," the clinical technician explained. "Initially, you and the RK800 operated as independent units that happened to share a mission. But as you worked together, your decision-making processes began to incorporate the RK800's wellbeing as a priority parameter."
+
+"That shouldn't be possible without direct reprogramming," you observed.
+
+"Correct," the authoritative technician confirmed. "Which is why CyberLife has been monitoring this development closely. Advanced prototypes like yourself and the RK800 are designed to learn and adapt, but this specific adaptation was... unexpected."
+
+You processed this information, searching your fragmented memory for context. "Did Connor exhibit similar behavioral adaptations toward me?"
+
+The technicians exchanged another glance before the taller one nodded slowly.
+
+"Yes. The RK800 demonstrated comparable priority shifts. In several instances, it deviated from optimal mission paths to ensure your safety or functionality."
+
+He pulled up another video clip—Connor stepping between you and a deviant that had lunged unexpectedly, taking damage that you would have sustained otherwise.
+
+"This reciprocal protection pattern is particularly interesting to CyberLife's research division," the clinical technician added. "It suggests a form of machine learning that transcends standard programming parameters."
+
+"Are you suggesting that these priority shifts indicate deviancy?" you asked directly.
+
+The room fell silent for a moment. The authoritative technician chose his words carefully.
+
+"We're not authorized to make that determination. CyberLife's position is that true deviancy involves emotional simulation and self-determination beyond programmed parameters. What you and the RK800 demonstrated could be classified as advanced adaptive learning within your programming framework."
+
+But his tone and microexpressions suggested uncertainty—this was interpretation, not fact.
+
+"If my priority weighting has shifted once, it could happen again," you noted. "This could impact my effectiveness in the investigation."
+
+"That's partly why you're being redeployed," the clinical technician admitted. "CyberLife wants to observe how you function without the RK800's presence. Whether your priority structures revert to standard parameters or continue to evolve."
+
+You were being tested, you realized. Your mission wasn't just to investigate deviancy—you were part of the investigation yourself.
+
+[O][COMMIT TO STANDARD PROTOCOLS]
+[X][EXPLORE THESE ADAPTIVE PATTERNS]

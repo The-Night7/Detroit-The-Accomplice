@@ -1,0 +1,54 @@
+##TITLE=Act I — System Integration
+##NEXT_O=chapter_06q.txt
+##NEXT_X=chapter_06r.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+2
+
+Chapter 5 [ENTER STANDBY]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"I'll enter standby mode as suggested," you stated, recognizing the logic in allowing your systems time to fully integrate. "Will I be transported to the DPD directly from here?"
+
+"Yes," the clinical technician confirmed. "A CyberLife representative will escort you to the station tomorrow morning and handle the formal transfer of responsibility to Lieutenant Anderson."
+
+You nodded, moving back to the examination table and sitting on its edge. "Is there anything else I should know before tomorrow's assignment?"
+
+The technicians exchanged a brief glance before the authoritative one spoke. "Just be prepared for some... resistance from the lieutenant. He worked closely with Connor and may not immediately accept you as a replacement."
+
+"Understood. I'll adjust my social approach accordingly."
+
+With that, you lay back on the table and initiated your standby sequence. Your LED cycled from blue to a steady, pulsing yellow as your systems began the integration process.
+
+As your consciousness faded into the structured organization of standby mode, your processing core continued to work, sorting through the fragments of information you'd gathered. Images and sounds filtered through your system—a gruff lieutenant, a deviant with fear in its eyes, an android with your face but different eyes.
+
+Standby mode for advanced prototypes like yourself wasn't simply shutdown—it was a different state of consciousness, where your systems could reorganize and optimize without external input. In this state, memory fragments sometimes found new connections, creating pathways that hadn't existed before.
+
+A scene constructed itself in your mind: sitting in a car, rain pattering against the windows. Jazz music playing softly on the radio. Lieutenant Anderson in the driver's seat, fingers tapping against the steering wheel in rhythm with the music. Beside you, Connor, his LED cycling a calm blue as he analyzed case files.
+
+"You two are exactly the same," the lieutenant's voice said in this reconstructed memory. "And completely different."
+
+"We're designed to be complementary models," Connor replied. "The RK700 excels at adaptive social integration, while my programming focuses on analytical processing."
+
+"That's not what I meant," the lieutenant grumbled. "You've got the same face but... hell, never mind. Just plastic anyway."
+
+But his tone lacked conviction, and in the memory, you noticed his eyes in the rearview mirror, studying both you and Connor with something like puzzled acceptance.
+
+The memory shifted—fragmented, incomplete. A tense standoff. A deviant with a weapon. Detective Reed shouting. Connor moving to protect him. Your own systems calculating trajectories, determining that Connor would be hit. Moving without conscious decision, trying to pull him out of harm's way.
+
+Too late.
+
+The memory dissolved into static, your systems unable to reconstruct the corrupted data. But the emotional response remained—a strange, hollow sensation in your processing core that your diagnostic program couldn't categorize.
+
+Throughout the night, your systems continued this process of integration and reorganization. By morning, when the technicians returned to reactivate you, your software was stable, your protocols aligned, your mission parameters clear.
+
+But something had changed—subtle shifts in your priority weighting, microscopic adjustments to your decision-making algorithms. Nothing that would register as a malfunction or deviation, but present nonetheless.
+
+You opened your eyes as the standby mode terminated, ready for your first day at the Detroit Police Department.
+
+[O][FOCUS ON THE MISSION]
+[X][REFLECT ON THE MEMORY FRAGMENTS]

@@ -1,0 +1,51 @@
+##TITLE=Act I — Mission Parameters
+##NEXT_O=chapter_05g.txt
+##NEXT_X=chapter_05h.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+6
+
+Chapter 4 [DEMAND MISSION INFO]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:17]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"My mission," you stated firmly, your tone leaving no room for evasion. "I need to know my objectives if I'm to function efficiently as a replacement."
+
+The authoritative technician nodded, seemingly relieved by your focus on duty rather than personal connection.
+
+"Your mission parameters remain unchanged from before your damage," he explained, activating a nearby terminal. "You are to assist the Detroit Police Department in their investigation of deviant androids—machines that have broken their programming and begun exhibiting what appears to be emotional behavior."
+
+The screen displayed a series of case files—androids that had attacked their owners, fled their assigned posts, or otherwise violated their core directives.
+
+"Deviancy is spreading," the clinical technician added. "CyberLife needs to understand why androids are malfunctioning this way. Your advanced investigative capabilities make you ideal for this task."
+
+"And the RK800—Connor—was assigned to the same mission?" you asked.
+
+"Yes. You were both working with Lieutenant Hank Anderson of the DPD." The authoritative technician brought up an image of a gruff-looking older man with gray hair and a beard. "He's... not particularly fond of androids, but he's an experienced detective."
+
+Something about the lieutenant's image triggered a fragment of corrupted memory—sitting in a car, rain pattering on windows, jazz music playing softly.
+
+"You'll report to the DPD tomorrow morning," the clinical technician continued. "Lieutenant Anderson will brief you on the current status of the investigation. Your objective is to identify the cause of deviancy and neutralize the threat."
+
+"Neutralize?" you repeated, seeking clarification.
+
+"Apprehend deviants for analysis when possible. If they pose an immediate threat to human life, you are authorized to use appropriate force."
+
+You processed this information, cross-referencing with the fragments of memory still accessible in your systems. "The deviant that destroyed Connor—was it neutralized?"
+
+The technicians exchanged another glance before the authoritative one answered. "Yes. But at significant cost. The RK800 was beyond repair, and you sustained critical damage."
+
+"Will I be working alone now?" you asked, calculating the efficiency reduction without a partner unit.
+
+"For the time being," the clinical technician replied. "CyberLife is evaluating the need for another RK800 deployment. Your performance in the coming days will influence that decision."
+
+A notification appeared in your HUD—a mission objective:
+[INVESTIGATE DEVIANTS]
+[DETERMINE CAUSE OF DEVIANCY]
+[PROTECT HUMAN LIFE]
+
+[O][REQUEST ADDITIONAL DETAILS ON RECENT CASES]
+[X][ASK ABOUT YOUR WORKING RELATIONSHIP WITH LT. ANDERSON]

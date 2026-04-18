@@ -1,0 +1,54 @@
+##TITLE=Act I — Digital Investigation
+##NEXT_O=chapter_06c.txt
+##NEXT_X=chapter_06d.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+8
+
+Chapter 5 [ACCESS TERMINAL]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+With the technicians gone, you decided to focus on gathering information directly from the source. You moved swiftly to the terminal they had been using, finding it still active—they had left in too much of a hurry to properly log out.
+
+You interfaced with the system, your advanced hacking protocols easily bypassing the minimal security measures left in place. The CyberLife network opened before you, a vast repository of information. You needed to be strategic—you had limited time before the technicians returned.
+
+First, you accessed your own file:
+
+[RK700 #313 248 316 -01]
+[STATUS: ACTIVE - REDEPLOYMENT PENDING]
+[DAMAGE REPORT: REPAIRED - FULL FUNCTIONALITY RESTORED]
+[MEMORY CORE: PARTIAL CORRUPTION (DELIBERATE) - 78% INTEGRITY]
+[NOTES: Subject exhibits unusual attachment to RK800 unit. Social integration and emotional response protocols modified for continued observation of potential deviancy indicators.]
+
+The confirmation that your memory corruption was deliberate sent a ripple of something like indignation through your systems. You flagged it for later analysis and continued your search.
+
+Next, you located Connor's file:
+
+[RK800 #313 248 317 -51 "CONNOR"]
+[STATUS: DEACTIVATED - BEYOND REPAIR]
+[DAMAGE REPORT: Critical failure of processing core, thirium pump regulator, and multiple biocomponents]
+[MEMORY CORE: RECOVERED - PARTIAL INTEGRITY]
+[NOTES: Subject showed signs of software instability consistent with early deviancy. Prioritized android preservation over mission success in multiple instances. Formed attachment to RK700 unit and Lt. Anderson. Sacrificed self to protect Det. Reed despite antagonistic relationship.]
+
+Attached to the file was video footage from Connor's optical units—his final moments. You hesitated, then accessed the recording.
+
+The video played from Connor's perspective: A dilapidated apartment, Detective Reed shouting something inaudible, a deviant android raising a weapon. Connor's systems calculating trajectories, determining that Reed would be hit. The decision to move, to intercept. The impact of bullets. Warning messages flooding his HUD. Then you—your face appearing in his field of vision, your expression showing something that shouldn't be possible for an android: fear. Your lips forming words: "Connor, stay with me." Then static.
+
+You disconnected from the recording, your systems registering unexpected instability. You needed more information about your relationship with Connor. You searched the database and found a series of mission reports documenting your joint operations with the RK800.
+
+The reports were clinical, but the attached observational notes revealed more:
+
+[RK700 and RK800 exhibit synchronized behavior beyond programmed parameters]
+[Subjects demonstrate preference for maintaining proximity when not required by mission]
+[RK700 prioritizes RK800's functionality over mission efficiency in 73% of observed instances]
+[RK800 reciprocates protective behaviors toward RK700]
+[Both units show signs of social protocol evolution when interacting with each other]
+
+You were about to access more detailed analysis when a security alert appeared on the screen—someone had noticed the unauthorized access. You had seconds to decide your next action.
+
+[O][DOWNLOAD CONNOR'S MEMORY CORE DATA]
+[X][ERASE EVIDENCE OF YOUR ACCESS]

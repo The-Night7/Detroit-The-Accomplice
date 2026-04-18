@@ -1,0 +1,36 @@
+##TITLE=Act I — Confrontation
+##NEXT_O=chapter_03c.txt
+##NEXT_X=chapter_03d.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+5
+
+Chapter 2 [GO TO SOURCE]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:49:15]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You decided to go directly to the source of the conversation. With careful precision, you swung your legs over the edge of the metal table, noting the unfamiliar sensation of your systems recalibrating to the movement. Your balance stabilization took 0.47 seconds longer than your programming indicated it should—another sign of your recent reset.
+
+As you stood, you realized you were still without clothing, your synthetic skin now fully regenerated but your modesty protocols activating nonetheless. You spotted a standard CyberLife uniform folded neatly on a nearby counter—white and black with blue accents, your model number RK700 emblazoned on the chest.
+
+Quickly dressing, you moved toward the voices, your footsteps deliberately quiet as you approached the partially open door. Through the gap, you could see two men in CyberLife technician uniforms, their backs to you as they reviewed data on a holographic display.
+
+"...completely destroyed. The damage to the central processing unit was extensive," the taller technician was saying, his voice clinical and detached.
+
+Without hesitation, you pushed the door open fully. Both men turned, startled by your sudden appearance.
+
+"I see the RK700 has reactivated itself," the shorter technician said, recovering quickly. "That's... unexpected. Initialization protocols should have kept it dormant until manually activated."
+
+"I heard you talking," you said, your voice steady despite the confusion in your systems. "You were discussing my damage. And someone called RK800."
+
+The technicians exchanged a glance that your social relations program immediately identified as concern mixed with surprise.
+
+"You shouldn't be up and moving yet," the taller one said, approaching you cautiously. "Your systems need time to properly integrate the repairs."
+
+"What happened to me?" you asked directly. "And who is RK800?"
+
+[O][DEMAND ANSWERS]
+[X][SCAN THE ROOM FOR INFORMATION]

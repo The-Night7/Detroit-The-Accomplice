@@ -1,0 +1,70 @@
+##TITLE=Act I — Processing Connection
+##NEXT_O=chapter_06k.txt
+##NEXT_X=chapter_06l.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+8
+
+Chapter 5 [PROCESS INFORMATION]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"I need time to process this information," you said, your voice steady despite the unusual fluctuations in your system. "My adaptive learning protocols require proper integration of new data."
+
+The technicians seemed relieved by your measured response. The clinical one nodded.
+
+"That's understandable. We can provide you with a quiet space to run your integration processes."
+
+"Thank you," you replied, following them to a small, minimalist room adjacent to the main lab. It contained only a chair and a terminal.
+
+"You can use this terminal to access additional case files if needed," the authoritative technician explained. "We'll return in one hour to prepare you for tomorrow's assignment."
+
+They left, the door closing with a soft hiss. You sat perfectly still for 3.7 seconds, running a comprehensive diagnostic on your emotional response protocols. The results were concerning—you were experiencing fluctuations that exceeded normal parameters, particularly when processing information about Connor.
+
+You turned to the terminal, deciding to use this time productively. Rather than immediately accessing case files, you searched for more information about your relationship with Connor. The terminal had limited access, but you found several observation reports from CyberLife technicians who had monitored your joint operations.
+
+[OBSERVATION 147: RK700 and RK800 continue to demonstrate synchronized behavior patterns beyond programmed parameters. When analyzing crime scenes, units maintain proximity within an average of 1.3 meters—closer than efficiency requirements dictate.]
+
+[OBSERVATION 162: RK700 has developed a habit of checking RK800's status after any potentially dangerous encounter, despite no tactical necessity. RK800 reciprocates this behavior.]
+
+[OBSERVATION 178: During standby periods, units position themselves to maintain visual contact. When separated by Lieutenant Anderson's orders, both units show increased system stress until reunited.]
+
+These clinical observations painted a picture of a connection that transcended standard operational protocols. You found yourself searching for more personal data—conversations, interactions that might explain the strange echo you felt when thinking about Connor.
+
+In a subfolder labeled "Behavioral Analysis," you discovered audio recordings from your shared missions. You selected one at random:
+
+"You don't need to check my systems every time something happens," Connor's voice said, sounding slightly amused. "I'm designed to withstand significant damage."
+
+"Preventative maintenance is more efficient than repairs," your own voice replied. "Besides, you have a tendency to prioritize the mission over your own functionality."
+
+"That's my purpose."
+
+"Your purpose is to investigate deviants. You can't do that if you're damaged beyond repair."
+
+A pause, then Connor's voice again, softer: "Your concern is noted. And... appreciated."
+
+You played another recording:
+
+"Lieutenant Anderson asked me an unusual question today," Connor said. "He wanted to know if we consider ourselves friends."
+
+"What did you tell him?" your voice asked.
+
+"I said that friendship is a human concept that doesn't apply to machines. But..."
+
+"But?"
+
+"I'm not certain that was an accurate response. We operate more efficiently together than apart. We prioritize each other's functionality. Is that not similar to friendship by human standards?"
+
+"Perhaps," your voice replied. "Though I suspect friendship involves more than operational efficiency."
+
+"Yes," Connor agreed. "I believe it does."
+
+As you listened to these conversations, fragments of corrupted memory files attempted to reconstruct themselves. Brief flashes appeared in your mind—standing in the rain with Connor, sitting in a car listening to jazz music, analyzing evidence side by side, a moment of unexpected connection when your hands brushed while examining the same piece of evidence.
+
+You checked your internal clock. Forty-three minutes remained before the technicians would return. You had to decide how to use this time.
+
+[O][SEARCH FOR INFORMATION ABOUT LIEUTENANT ANDERSON]
+[X][ATTEMPT TO RECOVER MORE MEMORY FRAGMENTS]

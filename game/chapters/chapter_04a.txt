@@ -1,0 +1,52 @@
+##TITLE=Act I — Strategic Silence
+##NEXT_O=chapter_05a.txt
+##NEXT_X=chapter_05b.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+5
+
+Chapter 4 [PRETEND TO REBOOT]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:17]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You made a strategic decision to feign inactivity. Carefully, you repositioned yourself on the metal table, assuming the exact pose you had been in when you first regained consciousness. Your LED cycled between blue and yellow—visible to anyone who might check on you, but suggesting normal boot sequences rather than active processing.
+
+Footsteps approached from the adjacent room. You kept your eyes closed, regulating your synthetic breathing to mimic the shallow rhythm of an android in standby mode.
+
+"Looks like it's still in reboot mode," the clinical voice said as the technicians entered the room. "Diagnostics show all systems green though."
+
+"Good. Let's finalize the paperwork and get it ready for transport to the DPD in the morning." The authoritative voice sounded closer now. "Has the Lieutenant been informed?"
+
+"Yes. He wasn't exactly thrilled about getting a 'replacement,' as he put it. Seemed attached to the RK800."
+
+"Humans developing attachments to machines. Ironic, given the investigation they're conducting."
+
+You felt a hand on your wrist—checking your LED status, you presumed. You maintained your facade of inactivity.
+
+"Memory corruption is at acceptable levels," the clinical voice continued. "Enough to obscure the specific details of the incident without compromising its investigative capabilities."
+
+"And the emotional response protocols?"
+
+"Modified as instructed. The RK700 will experience simulated emotional responses in situations similar to those that affected the RK800. CyberLife wants to compare the behavioral outcomes."
+
+"So they're testing if it will deviate like they suspect the RK800 was beginning to?"
+
+"That's not for us to speculate on. Our job is to prep the unit and monitor its performance."
+
+The hand withdrew from your wrist. You heard the sound of a tablet being activated, data being entered.
+
+"All set. The transport team will collect it at 0700 hours tomorrow. Let's power it down completely for now."
+
+You felt a momentary surge of concern—if they initiated a full shutdown, your ruse would be discovered. But before you could formulate a contingency, you heard an alert chime from the adjacent room.
+
+"Security breach in Lab 16," a computerized voice announced. "All technical personnel report immediately."
+
+"Damn it, not again," the authoritative voice muttered. "The RK700 will be fine in standby. Let's go."
+
+Hurried footsteps retreated, followed by the sound of a door closing. You waited exactly 30 seconds before opening your eyes, ensuring they were truly gone.
+
+[O][INVESTIGATE THE LAB]
+[X][ACCESS THE TERMINAL]

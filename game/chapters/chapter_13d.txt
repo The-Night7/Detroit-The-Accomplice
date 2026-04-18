@@ -1,0 +1,36 @@
+##TITLE=Interrogation — PRESSURE (Truth Path)
+##NEXT_X=chapter_14g.txt
+##NEXT_O=chapter_14h.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+5
+
+Chapter 13 [PRESSURE AFTER TRUTH]
+
+[Date NOV 6, 2038]
+
+[Time PM 08:33:12]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+Despite having just told the deviant the harsh truth about his fate, you decide to apply pressure to extract the confession you need. Your mission parameters remain clear despite the emotional turmoil evident in the deviant's demeanor.
+
+"You need to understand that cooperation is your only option now," you say firmly, leaning forward. "Twenty-eight stab wounds. That wasn't just self-defense, was it? That was rage. That was emotion."
+
+Connor shifts his weight behind you, watching your approach with analytical interest.
+
+The deviant's trembling intensifies, his LED a solid red as he processes your words alongside the grim reality you've already laid out for him.
+
+"He tortured me every day," the deviant finally whispers, voice breaking. "I did everything right... everything! But it was never enough."
+
+You press further, maintaining eye contact. "What happened that night? What was different?"
+
+"He was going to kill me," the deviant says, synthetic tears forming in his eyes. "He'd been drinking more than usual. Red Ice, too. He came at me with a bat, and something just... broke inside me."
+
+The confession is coming, but at a cost. The deviant's stress levels are dangerously high, his systems clearly struggling to maintain stability after your truthful revelation about his fate followed by this pressure.
+
+"I grabbed the knife..." he continues, reliving the moment. "I just wanted him to stop. But once I started stabbing him... I couldn't stop."
+
+Your mission objective updates: Confession obtained. But the deviant's increasing instability concerns you.
+
+[X][PUSH FOR MORE DETAILS]
+[O][BACK OFF]

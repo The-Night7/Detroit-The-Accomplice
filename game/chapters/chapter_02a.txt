@@ -1,0 +1,44 @@
+##TITLE=Act I — Eavesdropping
+##NEXT_O=chapter_03a.txt
+##NEXT_X=chapter_03b.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+3
+
+Chapter 2 [LISTEN IN]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:49:15]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You decided to remain on the table, focusing your audio processors on the conversation happening in the adjacent room. Your systems automatically adjusted to filter out background noise and enhance the voices.
+
+"...completely destroyed. The damage to the central processing unit was extensive," a male voice said, clinical and detached.
+
+"But you managed to recover the memory core?" This voice was different—authoritative, with a hint of urgency.
+
+"Partially. Some data corruption was inevitable given the severity of the impact. We've restored basic functionality and identity parameters, but there are gaps."
+
+"What about the mission data?"
+
+A pause. "Fragmented. The incident report is mostly intact, but the events leading up to the... accident... those files are corrupted."
+
+You strained to hear more, your curiosity subroutines activating despite not being prompted. Something about this conversation felt important—vital even—to your current state.
+
+"CyberLife wants a full report on what happened. The RK800 was supposed to be observing, not engaging. How did it end up destroyed?"
+
+"The deviant was more dangerous than anticipated. According to the partial logs we recovered, it attacked when cornered. Detective Reed was in the line of fire and the RK800 intervened."
+
+"Sacrificing itself for a human who despises androids. Interesting."
+
+"A logical action based on its programming to preserve human life, nothing more."
+
+"And the prototype? The RK700?"
+
+"Ready for reactivation. Memory partially intact, but the corruption means it won't remember the incident clearly. Perhaps that's for the best."
+
+You realized with a start that they were talking about you. RK700—a prototype model. And something about an RK800 that was destroyed protecting a human detective.
+
+[O][CONTINUE LISTENING]
+[X][MAKE YOUR PRESENCE KNOWN]

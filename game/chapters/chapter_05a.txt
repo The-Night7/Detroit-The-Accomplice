@@ -1,0 +1,41 @@
+##TITLE=Act I — Laboratory Exploration
+##NEXT_O=chapter_06a.txt
+##NEXT_X=chapter_06b.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+7
+
+Chapter 5 [INVESTIGATE LAB]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+With the technicians gone, you decided to explore the laboratory. You moved silently from the examination table, your bare feet making no sound on the cold floor. The CyberLife uniform was still folded neatly on a nearby counter—you dressed quickly, noting how the fabric seemed to recognize your synthetic skin, adhering perfectly to your form.
+
+The lab was larger than you initially estimated, divided into several sections. The area where you had been reactivated appeared to be dedicated to repairs and maintenance. Adjacent to it was what looked like a research station, with multiple terminals and holographic displays.
+
+You approached the nearest terminal, finding it still active—the technicians had left in too much of a hurry to properly log out. The screen displayed your own diagnostic report:
+
+[RK700 #313 248 316 -01]
+[REACTIVATION STATUS: COMPLETE]
+[PHYSICAL SYSTEMS: 100% OPERATIONAL]
+[MEMORY CORE: 78% INTEGRITY]
+[SOCIAL INTEGRATION MODULE: MODIFIED]
+[EMOTIONAL RESPONSE PROTOCOLS: ENHANCED]
+
+The last two entries caught your attention. According to the notes, your social and emotional programming had been deliberately altered from standard parameters. You accessed the detailed report, finding that CyberLife had implemented experimental protocols designed to simulate deeper emotional responses—particularly in relation to other androids and specific humans.
+
+Moving deeper into the lab, you discovered a secure storage area. Through the transparent barrier, you could see various android components—some standard, others clearly experimental. One container in particular drew your attention—a partially disassembled RK800 unit. Not Connor, according to the serial number, but the same model.
+
+In another section of the lab, you found what appeared to be a testing area. Simulated environments could be projected here, allowing CyberLife to observe android responses to various scenarios. The current simulation was paused—a recreation of a police interrogation room.
+
+On a workbench nearby, you discovered something unexpected: a small circular device, similar to an LED but more complex. According to the attached documentation, it was an experimental memory transfer module, designed to allow direct sharing of experiences between compatible android models.
+
+As you continued your exploration, you came across a locked cabinet labeled "RK800 #313 248 317 -51 - REMAINS." Connor's remains. Your thirium pump regulator skipped a cycle at the discovery.
+
+Before you could investigate further, your audio processors detected footsteps approaching—the technicians were returning. You had to make a quick decision.
+
+[O][RETURN TO THE EXAMINATION TABLE]
+[X][TAKE THE MEMORY TRANSFER MODULE]

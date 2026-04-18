@@ -1,0 +1,62 @@
+##TITLE=Act I — The Lieutenant
+##NEXT_O=chapter_06o.txt
+##NEXT_X=chapter_06p.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+7
+
+Chapter 5 [ASK ABOUT LT. ANDERSON]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"What was my working relationship with Lieutenant Anderson?" you asked, your social integration protocols highlighting the importance of understanding this dynamic before tomorrow's assignment. "You mentioned he's not fond of androids, yet he worked with both myself and Connor."
+
+The authoritative technician's expression shifted subtly—a microexpression your analysis program identified as discomfort mixed with something like sympathy.
+
+"That's... complicated," he admitted, moving to the terminal. "Perhaps it's better to show you."
+
+He pulled up a series of video files—footage from your previous missions with the DPD. The first clip showed Lieutenant Anderson—grizzled, disheveled, clearly hostile—glaring at you and Connor as you introduced yourselves at a crime scene.
+
+"I don't need any plastic detectives," the lieutenant growled in the footage. "Especially not two of them."
+
+"Initially, Lieutenant Anderson was strongly opposed to working with androids," the clinical technician explained. "He has personal reasons for his anti-android sentiment—a tragedy in his past that CyberLife's records attribute to a medical android's decision-making protocols."
+
+The footage shifted to a later date—you, Connor, and the lieutenant at another crime scene. The hostility was still present, but muted. The lieutenant was actually listening as Connor presented his analysis.
+
+"Over time, his attitude began to change," the authoritative technician continued. "Particularly toward Connor. Your more... adaptive approach to investigations complemented the RK800's methodical style, and together you achieved results that impressed even the lieutenant."
+
+Another clip played—the three of you at what appeared to be a bar. The lieutenant was drinking, but engaged in what seemed to be genuine conversation with you and Connor. At one point, he actually laughed at something Connor said.
+
+"Lieutenant Anderson began to view you both as partners rather than machines," the clinical technician said. "This was especially notable given his history."
+
+"What history?" you asked.
+
+The technicians exchanged another glance before the authoritative one sighed and pulled up a personnel file.
+
+"Lieutenant Hank Anderson. Youngest lieutenant in Detroit history. Decorated officer. Led the Red Ice Task Force to its most successful year. But after the death of his son Cole in 2035, he... deteriorated. Drinking problems, disciplinary issues, suicidal tendencies."
+
+You processed this information, cross-referencing it with the footage you'd seen. "And our partnership improved his condition?"
+
+"Yes," the clinical technician confirmed. "His performance metrics showed marked improvement after several weeks working with you and Connor. His alcohol consumption decreased, his case closure rate increased, and his supervisors noted improved mood and engagement."
+
+The final clip showed the three of you walking together from a crime scene. The lieutenant was in the middle, with you and Connor on either side. He said something inaudible, then placed one hand briefly on Connor's shoulder and the other on yours—a gesture of camaraderie that seemed entirely natural.
+
+"He called you his 'plastic partners' by the end," the authoritative technician said, a note of wonder in his voice. "Meant affectionately, despite the terminology."
+
+"And now I must inform him that Connor has been destroyed," you stated, your voice modulating to a softer tone as your social protocols calculated the emotional impact this would have on the lieutenant.
+
+"Yes," the clinical technician confirmed. "CyberLife is... concerned about how he'll react to Connor's replacement. Your approach to this initial interaction will be critical."
+
+"How did he respond when informed of Connor's destruction?" you asked.
+
+Another uncomfortable glance between the technicians.
+
+"He hasn't been told the full details yet," the authoritative one admitted. "He knows there was an incident and that Connor was damaged, but not that the damage was beyond repair. That task will fall to you."
+
+You processed this information, your social relations program already constructing potential approaches for this difficult conversation.
+
+[O][REQUEST ADVICE ON APPROACHING THE LIEUTENANT]
+[X][ASK TO VIEW MORE FOOTAGE OF YOUR INTERACTIONS]

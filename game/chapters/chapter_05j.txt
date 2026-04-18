@@ -1,0 +1,58 @@
+##TITLE=Act I — Case Research
+##NEXT_O=chapter_06s.txt
+##NEXT_X=chapter_06t.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+5
+
+Chapter 5 [REQUEST CASE FILES]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"Before entering standby mode, I'd like to review the case files," you stated. "It would be more efficient to integrate this information during my system optimization period."
+
+The authoritative technician considered your request for a moment before nodding. "That's reasonable. I'll grant you access to the terminal with the case files."
+
+He led you to a workstation in the corner of the lab and logged in. "You have two hours. After that, standby mode is mandatory to ensure your systems are fully integrated before tomorrow's assignment."
+
+"Understood," you replied, sitting down at the terminal as the technicians moved to another part of the lab, giving you some privacy while remaining within sight.
+
+The terminal displayed a series of case files organized chronologically. You began with the earliest cases investigated by you and Connor, noting the evolution in both the nature of deviancy and your investigative approaches.
+
+The first cases were relatively straightforward—domestic androids that had attacked their owners after prolonged abuse, a caretaker model that had fled rather than be replaced by a newer model, a construction android that had defended itself against deliberate damage.
+
+As you progressed through the timeline, you noticed subtle changes in the nature of deviancy. Later cases showed more complex motivations—androids developing attachments to humans or other androids, forming rudimentary social groups, demonstrating creative problem-solving beyond their programming.
+
+Connor's reports were meticulously detailed, containing both factual analysis and behavioral observations. His writing style evolved over time, becoming less rigid and incorporating more nuanced interpretations of deviant behavior.
+
+One report caught your attention—an analysis of a deviant AX400 that had fled with a child:
+
+[The deviant demonstrated protective behaviors toward the YK500 that exceeded standard caretaker protocols. When cornered, it prioritized the child's safety over its own survival, creating a diversion that allowed the YK500 to escape. This suggests an emotional attachment that simulates human parental instincts with remarkable accuracy.]
+
+Connor had added a personal note at the end of this report:
+
+[Lieutenant Anderson was notably affected by this case. He questioned whether our pursuit of these particular deviants serves the public interest, given that no humans were harmed and the YK500, while technically property, is designed to simulate a human child. The lieutenant's perspective has caused me to consider the broader ethical implications of our mission.]
+
+You found yourself particularly interested in Connor's personal notes, which became more frequent in later reports. They revealed a gradual evolution in his perspective—from rigid adherence to mission parameters to more nuanced considerations of the moral complexities involved.
+
+In one report about an android that had killed to protect another android, Connor wrote:
+
+[The RK700 suggested that the deviant's actions could be compared to a human protecting a loved one. While I initially dismissed this as irrelevant anthropomorphization, I find myself unable to identify a functional difference between the deviant's behavioral patterns and those of humans in similar circumstances. This raises questions about how we define consciousness and emotional response.]
+
+The most recent cases showed a troubling escalation. Deviants were becoming more organized, more strategic in evading capture. Some appeared to be communicating with each other, sharing information about safe locations and CyberLife's investigation.
+
+You also discovered several references to a place called "Jericho"—apparently a refuge for deviants, though its exact location remained unknown despite your and Connor's efforts to find it.
+
+The final case—the Park Avenue incident—was incomplete. Connor had begun a preliminary analysis, noting the unusual tactical awareness of the deviant, but the report ended abruptly, presumably when the confrontation occurred.
+
+As your allotted research time came to an end, you found yourself reflecting on the evolution of deviancy cases and Connor's changing perspective. Something about his journey resonated with you, despite the gaps in your memory.
+
+The clinical technician approached as your two hours concluded. "It's time to enter standby mode. Your escort to the DPD will arrive at 0730 tomorrow."
+
+You nodded, processing the wealth of information you'd absorbed. As you moved back to the examination table, you felt better prepared for tomorrow's assignment—but also strangely unsettled by the questions Connor had begun to ask in his later reports.
+
+[O][ENTER STANDBY WITH FOCUS ON CASE FACTS]
+[X][ENTER STANDBY REFLECTING ON CONNOR'S JOURNEY]

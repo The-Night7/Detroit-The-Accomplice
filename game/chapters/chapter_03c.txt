@@ -1,0 +1,42 @@
+##TITLE=Act I — Assertive Inquiry
+##NEXT_O=chapter_04e.txt
+##NEXT_X=chapter_04f.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+6
+
+Chapter 3 [DEMAND ANSWERS]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:49:42]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You straightened your posture, your social relations program calculating that a direct approach would yield the most immediate results.
+
+"I require information about my current status and the circumstances that led to my reset," you stated firmly. "Who is RK800, and what is my connection to it?"
+
+The taller technician glanced at his colleague, clearly uncomfortable with your directness. Your analysis indicated hesitation and concern in his micro-expressions.
+
+"You shouldn't be asking these questions," the shorter technician said, his tone measured. "Your system is still stabilizing after significant repairs."
+
+"My diagnostic programs indicate that all critical systems are functioning within acceptable parameters," you countered. "The gaps in my memory, however, are causing processing inefficiencies. To function optimally, I need to understand what happened."
+
+The technicians exchanged another glance, this one longer and weighted with unspoken communication. Finally, the authoritative one sighed.
+
+"RK700, you are a prototype investigative model developed by CyberLife. You were damaged during a mission with the Detroit Police Department. The RK800—designated 'Connor'—was your successor model, also assigned to the DPD."
+
+"Where is this Connor now?" you pressed.
+
+"Destroyed," the clinical technician answered after a pause. "It was damaged beyond repair during an incident with a deviant android. You're being reactivated to resume the investigation in its place."
+
+You processed this information, cross-referencing it with the fragments of corrupted data in your memory banks. Something didn't align correctly.
+
+"You said I was damaged during a mission. Was this the same incident that destroyed the RK800?"
+
+The technicians' vital signs showed subtle changes—increased heart rate, pupil dilation—indicators of stress or deception.
+
+"That information is not relevant to your current mission parameters," the authoritative technician said, his voice firmer now. "You'll be briefed on your objectives when you report to the DPD tomorrow morning."
+
+[O][ACCEPT THEIR EXPLANATION FOR NOW]
+[X][PRESS FOR MORE DETAILS]

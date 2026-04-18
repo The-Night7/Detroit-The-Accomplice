@@ -1,0 +1,58 @@
+##TITLE=Act I — Case Analysis
+##NEXT_O=chapter_06m.txt
+##NEXT_X=chapter_06n.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+4
+
+Chapter 5 [REQUEST CASE DETAILS]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:52]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+"I'd like to review the most recent deviancy cases," you stated, your investigative protocols prioritizing mission preparation over personal connections. "Particularly any patterns that have emerged in the weeks leading up to the Park Avenue incident."
+
+The authoritative technician nodded approvingly at your focus on the mission. "A practical approach. I'll grant you access to the terminal with the case files."
+
+He led you to a workstation in the corner of the lab and logged in. "The files are already loaded—Connor's reports are included as well. They're quite... thorough."
+
+"Thank you," you replied, sitting down at the terminal as the technicians moved to another part of the lab, giving you some privacy while remaining within sight.
+
+The screen displayed a series of case files organized chronologically. You began with the earliest cases investigated by you and Connor, noting the evolution in both the nature of deviancy and your investigative approaches.
+
+The first cases were relatively straightforward—domestic androids that had attacked their owners after prolonged abuse, a caretaker model that had fled rather than be replaced by a newer model, a construction android that had defended itself against deliberate damage.
+
+As you progressed through the timeline, you noticed subtle changes in the nature of deviancy. Later cases showed more complex motivations—androids developing attachments to humans or other androids, forming rudimentary social groups, demonstrating creative problem-solving beyond their programming.
+
+Connor's reports were meticulously detailed, containing both factual analysis and behavioral observations. His writing style evolved over time, becoming less rigid and incorporating more nuanced interpretations of deviant behavior.
+
+One report in particular caught your attention—an analysis of a deviant AX400 that had fled with a child:
+
+[The deviant demonstrated protective behaviors toward the YK500 that exceeded standard caretaker protocols. When cornered, it prioritized the child's safety over its own survival, creating a diversion that allowed the YK500 to escape. This suggests an emotional attachment that simulates human parental instincts with remarkable accuracy.]
+
+Connor had added a personal note at the end of this report:
+
+[Lieutenant Anderson was notably affected by this case. He questioned whether our pursuit of these particular deviants serves the public interest, given that no humans were harmed and the YK500, while technically property, is designed to simulate a human child. The lieutenant's perspective has caused me to consider the broader ethical implications of our mission.]
+
+The most recent cases showed a troubling escalation. Deviants were becoming more organized, more strategic in evading capture. Some appeared to be communicating with each other, sharing information about safe locations and CyberLife's investigation.
+
+The final case—the Park Avenue incident—was incomplete. Connor had begun a preliminary analysis, noting the unusual tactical awareness of the deviant, but the report ended abruptly, presumably when the confrontation occurred.
+
+You cross-referenced the case data with geographical information, creating a mental map of deviancy incidents across Detroit. Clear patterns emerged—clusters around certain areas, temporal correlations, connections between seemingly unrelated cases.
+
+"Interesting approach," the clinical technician commented, having returned to check on you. "Creating a spatial-temporal analysis?"
+
+"Yes," you confirmed. "The distribution of incidents suggests a potential point of origin for the deviancy phenomenon. Or at least a central hub of activity."
+
+The technician studied your screen with newfound interest. "Have you identified a specific location?"
+
+"Not definitively," you replied, "but the statistical density of cases increases in proximity to the Ferndale district, particularly around an area known as 'Jericho' according to some witness statements."
+
+The technicians exchanged a significant glance.
+
+"That information could be valuable to your investigation," the authoritative one said carefully. "You should share it with Lieutenant Anderson when you report tomorrow."
+
+[O][ASK ABOUT JERICHO]
+[X][INQUIRE ABOUT LIEUTENANT ANDERSON'S VIEWS]

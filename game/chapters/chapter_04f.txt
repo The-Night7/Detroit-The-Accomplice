@@ -1,0 +1,50 @@
+##TITLE=Act I — Persistent Inquiry
+##NEXT_O=chapter_05k.txt
+##NEXT_X=chapter_05l.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+8
+
+Chapter 4 [PRESS FOR DETAILS]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:17]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+Your investigative protocols overrode any inclination toward compliance. The inconsistencies in their explanation required clarification.
+
+"With respect," you said, your tone firm but measured, "the information is relevant to my mission. If I am to effectively replace the RK800, I need to understand the circumstances of its destruction. Particularly if those circumstances also led to my own damage."
+
+The technicians exchanged another glance, this one laden with resignation.
+
+"We have our instructions," the shorter technician began, but the taller one raised a hand to interrupt him.
+
+"It's an investigative model. It won't stop until it has answers. And it will find them eventually—that's what it's designed to do." He turned to you. "Very well, RK700. I'll show you the incident report."
+
+He moved to a nearby terminal and entered his credentials. After a moment of hesitation, he pulled up a file labeled "Incident 5877 - Park Avenue Confrontation."
+
+"Three weeks ago," he explained as the report loaded, "you and the RK800 were investigating a deviant that had killed its owner. You tracked it to an abandoned apartment building on Park Avenue."
+
+The screen displayed images of the scene—a dilapidated apartment, evidence of a struggle, thirium stains on the walls and floor.
+
+"Lieutenant Anderson was with you, as was Detective Gavin Reed—against protocol, I might add. The detective has a documented history of anti-android sentiment."
+
+Images of the two officers appeared on screen. The lieutenant—older, grizzled, with a world-weary expression. The detective—younger, with a perpetual scowl and aggressive posture.
+
+"The deviant was cornered but armed. When you attempted to apprehend it, it became violent." The technician's voice became more clinical, detached. "Detective Reed interfered with the apprehension attempt, putting himself in danger. The deviant fired at him."
+
+The next image made your thirium pump regulator skip a cycle—the RK800, positioned between Detective Reed and the deviant, multiple bullet wounds in its chassis. Behind it, you could see yourself, also damaged, having apparently attempted to shield both Connor and the human.
+
+"The RK800 moved to protect Detective Reed, despite their antagonistic relationship. You moved to protect them both. The deviant was neutralized, but not before inflicting critical damage to the RK800's processing core. Your own damage was severe but repairable."
+
+"I tried to save Connor," you stated, the words emerging before your social protocols could filter them.
+
+The technicians looked at you sharply.
+
+"You attempted to protect both the human officer and the RK800 unit, yes," the taller technician corrected carefully. "As per your programming to preserve life and CyberLife property."
+
+But something in the images didn't align with that explanation. Your positioning, the angle of your damaged components—you hadn't simply been following programming. The evidence suggested you had prioritized Connor over the human detective.
+
+[O][QUESTION YOUR PRIORITY CHOICES]
+[X][ASK ABOUT YOUR RELATIONSHIP WITH CONNOR]

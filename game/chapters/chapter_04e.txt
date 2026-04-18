@@ -1,0 +1,44 @@
+##TITLE=Act I — Strategic Compliance
+##NEXT_O=chapter_05i.txt
+##NEXT_X=chapter_05j.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+3
+
+Chapter 4 [ACCEPT EXPLANATION]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:50:17]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You analyzed the situation rapidly, calculating that pressing further now might be counterproductive. Your social relations program indicated that the technicians were becoming defensive, which would likely result in them restricting your access to information even more.
+
+"I understand," you said, adopting a neutral tone. "My primary concern is operational readiness for my assignment tomorrow. Will my current state impact my ability to perform my duties at the Detroit Police Department?"
+
+The tension in the technicians' postures visibly eased at your apparent acceptance.
+
+"Your investigative and analytical functions are operating at optimal capacity," the clinical technician assured you. "The memory corruption only affects certain personal experiences, not your core programming or capabilities."
+
+"Good," you nodded. "When am I scheduled to report to the DPD?"
+
+"0800 hours tomorrow morning," the authoritative technician replied, clearly relieved by your shift in focus. "You'll be working with Lieutenant Hank Anderson. He was previously partnered with the RK800."
+
+"Connor," you said, testing the name. "That was its designation?"
+
+"Yes," the technician confirmed, watching you carefully. "Though it's unusual for androids to use names rather than model numbers in official contexts."
+
+You filed this information away, noting the subtle implication that the RK800 might have been developing individualistic tendencies—a potential sign of deviancy.
+
+"Is there anything I should know about Lieutenant Anderson to facilitate an effective working relationship?" you asked.
+
+The technicians exchanged a brief glance before the authoritative one answered. "He's an experienced detective with an excellent record, though his performance has... declined in recent years. He has expressed anti-android sentiments in the past, but had developed a working rapport with the RK800."
+
+"He may be resistant to accepting you as a replacement," the clinical technician added. "Be prepared for initial hostility."
+
+You nodded, processing this information and formulating preliminary social approach strategies.
+
+"I suggest you enter standby mode for the remainder of the night," the authoritative technician said. "Your systems could benefit from the additional integration time before your assignment begins."
+
+[O][ENTER STANDBY MODE]
+[X][REQUEST ACCESS TO CASE FILES FIRST]

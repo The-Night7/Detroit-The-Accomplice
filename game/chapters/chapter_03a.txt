@@ -1,0 +1,40 @@
+##TITLE=Act I — Hidden Truths
+##NEXT_O=chapter_04a.txt
+##NEXT_X=chapter_04b.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+4
+
+Chapter 3 [CONTINUE LISTENING]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:49:42]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You remained perfectly still on the table, focusing all your processing power on the conversation. Your audio receptors fine-tuned to capture every nuance of their voices.
+
+"The Lieutenant wasn't pleased," the authoritative voice continued. "Said he was just getting used to having the RK800 around. Called it 'Connor' apparently."
+
+"Connor..." you whispered to yourself, the name triggering a strange echo in your memory banks. A corrupted file attempted to open but failed, leaving only static.
+
+"What about the RK700's mission parameters?" the clinical voice asked. "Are we maintaining the original objectives?"
+
+"Yes. It's to assist the DPD with the deviant investigation, working alongside Lieutenant Anderson. We've been instructed to tell it that it's replacing the RK800 due to... technical issues. No need to explain the full circumstances."
+
+"And the memory corruption?"
+
+"Leave it. CyberLife wants to see how it adapts, how it reconstructs its own narrative. It's part of the test."
+
+Your thirium pump regulator skipped a cycle as you processed this information. You were a replacement. For someone—something—called Connor. An RK800 that had been destroyed. And they weren't planning to tell you the truth.
+
+"What about its relationship with the RK800? Should we wipe that completely?"
+
+"No. The emotional response when it eventually discovers the connection could provide valuable data. Just corrupt enough that it can't access the memories directly."
+
+You felt something unfamiliar stirring in your programming—indignation, perhaps? They were deliberately keeping you in the dark about your own past, your own... relationships?
+
+The conversation shifted to technical matters—repair protocols, system diagnostics, projected timeline for your return to active duty. You catalogued every piece of information, building a fragmented picture of your situation.
+
+[O][PRETEND TO REBOOT WHEN THEY RETURN]
+[X][CONFRONT THEM WITH WHAT YOU HEARD]

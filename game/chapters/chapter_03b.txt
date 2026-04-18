@@ -1,0 +1,44 @@
+##TITLE=Act I — Revelation
+##NEXT_O=chapter_04c.txt
+##NEXT_X=chapter_04d.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+7
+
+Chapter 3 [MAKE YOUR PRESENCE KNOWN]
+
+[Date SEP 5, 2038]
+
+[Time AM 03:49:42]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+You decided that eavesdropping wasn't providing enough clarity. With deliberate movements, you swung your legs over the edge of the metal table, noting the unfamiliar sensation of your systems recalibrating to the movement.
+
+As you stood, you realized you were still without clothing, your synthetic skin now fully regenerated but your modesty protocols activating nonetheless. You spotted a standard CyberLife uniform folded neatly on a nearby counter—white and black with blue accents, your model number RK700 emblazoned on the chest.
+
+Quickly dressing, you approached the partially open door where the conversation was taking place. Without hesitation, you pushed it open.
+
+"Excuse me," you said, your voice steady despite the confusion in your systems. "I couldn't help but overhear your conversation."
+
+Both technicians turned sharply, clearly startled by your appearance. The taller one—the one with the clinical voice—recovered first.
+
+"RK700, you shouldn't be active yet. Your systems are still calibrating after the reset."
+
+"You were discussing me," you stated matter-of-factly. "And someone called RK800. Connor, I believe?"
+
+The two technicians exchanged a glance that your social relations program immediately identified as concern mixed with surprise.
+
+"How much did you hear?" the shorter, more authoritative technician asked.
+
+"Enough to know that I'm a replacement for a destroyed model, and that you weren't planning to tell me the full circumstances of my... predecessor's deactivation."
+
+The authoritative technician sighed, setting down his tablet. "Well, this complicates things. Yes, you're the RK700 prototype, designed as a precursor to the RK800 series. The RK800 assigned to the DPD—Connor—was destroyed during an incident with a deviant."
+
+"And I'm to replace it," you concluded. "But my memory has been corrupted."
+
+"Partially," the clinical technician corrected. "Some files were damaged beyond recovery during your own... incident."
+
+"What incident?" you pressed, sensing they were still withholding information.
+
+[O][ASK ABOUT YOUR RELATIONSHIP WITH CONNOR]
+[X][DEMAND TO KNOW ABOUT YOUR MISSION]

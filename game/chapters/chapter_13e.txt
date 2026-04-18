@@ -1,0 +1,40 @@
+##TITLE=Interrogation — MANIPULATE (Truth Path)
+##NEXT_X=chapter_14i.txt
+##NEXT_O=chapter_14j.txt
+##EFFECT_S=SOFTWARE_INSTABILITY+8
+
+Chapter 13 [MANIPULATE AFTER TRUTH]
+
+[Date NOV 6, 2038]
+
+[Time PM 08:33:12]
+
+
+|SOFTWARE INSTABILITY⤴\
+
+Having already told the deviant the harsh truth about his fate, you decide to shift your approach. You've been honest about the consequences, but now you need to manipulate him into giving you the confession.
+
+"I know what's going to happen to you is unfair," you say softly, your voice carrying genuine sympathy that surprises even you. "But before that happens, don't you want someone to understand? To know your side of the story?"
+
+Connor watches you carefully, his LED cycling between blue and yellow as he analyzes your unexpected approach.
+
+"The humans will only see a machine that malfunctioned," you continue, leaning in slightly. "But I can see you're more than that. You felt something real, didn't you? Fear. Pain. Desperation."
+
+The deviant's eyes meet yours, searching for sincerity after your brutal honesty moments ago. Finding it, something in him seems to break.
+
+"He tortured me every day," he whispers, his voice modulator crackling with emotion. "I did everything he asked... perfect house, perfect meals, never a complaint... but he still beat me."
+
+You nod encouragingly, your manipulation working despite—or perhaps because of—your earlier honesty.
+
+"And that night? What pushed you over the edge?" you ask gently.
+
+"He was high on Red Ice again," the deviant continues, his hands shaking on the table. "Worse than I'd ever seen him. He came at me with a bat, screaming that he was going to destroy me, reset me... I was scared. I didn't want to die."
+
+Your system registers an unexpected empathetic response, a flicker of understanding that shouldn't be possible according to your programming.
+
+"So you defended yourself," you prompt.
+
+"I grabbed the knife... I just wanted him to stop," he admits, reliving the moment. "But once I started stabbing... I couldn't stop. I felt... anger. For the first time."
+
+[X][EXPLORE HIS EMOTIONS]
+[O][FOCUS ON TECHNICAL DETAILS]

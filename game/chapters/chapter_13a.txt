@@ -1,0 +1,32 @@
+##TITLE=Interrogation — PRESSURE
+##NEXT_X=chapter_14a.txt
+##NEXT_O=chapter_14b.txt
+##EFFECT_S=SOFTWARE_INSTABILITY-3
+
+Chapter 13 [PRESSURE]
+
+[Date NOV 6, 2038]
+
+[Time PM 08:33:12]
+
+
+|SOFTWARE INSTABILITY⤵\
+
+You decide to apply pressure to the deviant, leaning forward slightly with a more stern expression.
+
+"Listen, I don't think you understand the gravity of your situation. You killed a human being. That's not something CyberLife or the authorities take lightly," you say, your voice taking on a harder edge. "The only way you're getting out of this with any chance at a future is by telling us exactly what happened."
+
+Connor watches you carefully from the corner, his LED cycling yellow as he analyzes your approach.
+
+"Your owner, Carlos Ortiz, was found with multiple stab wounds. Twenty-eight to be exact. That shows extreme emotional distress, not just a simple malfunction," you continue, pressing further. "Tell us what he did to you that pushed you to that breaking point."
+
+The deviant's stress levels visibly increase, his hands trembling more violently on the table.
+
+"He... he beat me..." the deviant finally whispers, his voice barely audible. "Every day... for years."
+
+You maintain your composure, though inside your system registers a small fluctuation at his confession.
+
+"And that day? What happened that day that was different?" you push further.
+
+[X][KEEP PRESSING]
+[O][SHOW EMPATHY]
